@@ -1,15 +1,17 @@
 #landing-text {
   display: flex;
-  margin-top: 100px;
-  font-size: 36px;
+  margin-top: 400px;
+  margin-left: 25px;
+  font-size: 48px;
+
 }
 
-/*#landing-div {
+#landing-div {
   display: flex;
-  justify-content: center;
-  background: url(https://goo.gl/images/6a3vP4) 50% no-repeat;
+  /*justify-content: center;*/
+  background-image: url(images/lake.jpeg) 50% no-repeat;
   background-size: 1920px 1080px;
   position: relative;
   overflow: hidden;
   height: 100vh;
-}*/
+}

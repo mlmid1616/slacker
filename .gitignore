@@ -9,7 +9,7 @@
 .bundle.js
 
 # Ignore all logfiles and tempfiles.
-/node_modules/
+node_modules/
 /log/*
 /tmp/*
 !/log/.keep

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import NavBar from '../navbar/navbar';
+
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -30,13 +30,13 @@ class SessionForm extends React.Component {
     this.props.processForm({user});
   }
 
-  navLink() {
-    if (this.props.formType === 'login') {
-      return <Link to="/signup">sign up instead</Link>;
-    } else {
-      return <Link to="/login">log in instead</Link>;
-    }
-  }
+  // navLink() {
+  //   if (this.props.type === 'login') {
+  //     return <Link to="/signup">sign up instead</Link>;
+  //   } else {
+  //     return <Link to="/login">log in instead</Link>;
+  //   }
+  // }
 
   renderErrors() {
     //
@@ -52,12 +52,18 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    //
+    let alternative;
+    if (this.props.type === "login") {
+      alternative = "login";
+    } else {
+      alternative = "signup";
+    }
+
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
           <br/>
-          Please {this.props.formType} or {this.navLink()}
+          Please {this.props.type}.
           {this.renderErrors()}
           <div className="login-form">
             <br/>
