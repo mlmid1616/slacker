@@ -6,9 +6,12 @@ import NavBarContainer from './navbar/navbar_container';
 class LandingPage extends React.Component {
 
   render (){
+    // debuggesr
     return(
       <div id="landing-div">
-        <NavBarContainer />
+        <div>
+          <NavBarContainer />
+        </div>
         <p id="landing-text">Where Slacking Happens</p>
       </div>
     );

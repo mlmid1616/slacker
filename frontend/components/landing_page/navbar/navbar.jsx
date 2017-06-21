@@ -47,11 +47,11 @@ class Navbar extends React.Component {
   }
 
   handleModal(e){
-   if (e.currentTarget.textContent === 'Sign up for free' ||
-     e.currentTarget.textContent === 'Create account'){
-     this.props.signupForm();
-   } else if (e.currentTarget.textContent === 'Sign in'){
+    // debugger
+   if (e.currentTarget.textContent === 'Login' ){
      this.props.loginForm();
+   } else if (e.currentTarget.textContent === 'Sign Up'){
+     this.props.signupForm();
    }
    this.openModal();
  }
@@ -59,6 +59,14 @@ class Navbar extends React.Component {
   render(){
 
     const customStyles = {
+      overlay : {
+        position          : 'fixed',
+        top               : 0,
+        left              : 0,
+        right             : 0,
+        bottom            : 0,
+        backgroundColor   : 'rgba(50, 50, 50, 0.50)'
+      },
     content : {
     top                   : '50%',
     left                  : '50%',
@@ -75,7 +83,7 @@ class Navbar extends React.Component {
       formType = "signup";
     }
       return(
-        <div>
+        <div className="nav">
           <Modal
             onRequestClose={this.closeModal}
              isOpen={this.state.isOpen}
@@ -83,8 +91,8 @@ class Navbar extends React.Component {
              style={customStyles} >
             <SessionFormContainer  />
           </Modal>
-            <button onClick={this.handleModal}>
-              Sign in
+            <button className="auth" onClick={this.handleModal}>
+              Sign Up
           </button>
 
           <Modal
@@ -94,7 +102,7 @@ class Navbar extends React.Component {
              style={customStyles} >
             <SessionFormContainer  />
           </Modal>
-            <button onClick={this.handleModal}>
+            <button className="auth" onClick={this.handleModal}>
               Login
             </button>
 

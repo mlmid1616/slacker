@@ -1,14 +1,86 @@
 #landing-text {
   display: flex;
-  margin-top: 400px;
+  margin-top: 480px;
   margin-left: 25px;
-  font-size: 48px;
+  font-size: 56px;
+  color: white;
+  font-family: 'Nunito', sans-serif;
 }
 
 
 #landing-div {
-  display: flex;
-  background-image: url("lake.jpg");
-  background-size: cover;
-  
+  background-image: url("yosemite.jpeg");
+  background-size: 1920px 1080px;
+  font-family: 'Nunito', sans-serif;
 }
+
+// html {
+//   background-image: url("yosemite.jpeg");
+//   background-size: 1920px 1080px;
+//   font-family: 'Nunito', sans-serif;
+  // opacity: 0.5;
+  // filter: alpha(opacity=50);
+// }
+
+.nav {
+  display: flex;
+  flex-direction: row-reverse;
+  border-bottom: solid;
+  background-color: gray;
+  opacity: .5;
+}
+
+.auth {
+    margin: 10px;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    overflow: hidden;
+    outline: none;
+    cursor:pointer;
+    font-size: 24px;
+    font-family: 'Nunito', sans-serif;
+    color: white;
+    opacity: .99;
+}
+
+.login-form-container {
+  font-size: 18px;
+}
+
+.submit {
+  margin: 10px;
+  background-color: blue;
+  background-repeat: blue;
+  border: none;
+  overflow: hidden;
+  outline: none;
+  cursor:pointer;
+  font-size: 18px;
+  color: white;
+  opacity: .99;
+  color: white;
+}
+
+.auth-input {
+  width: 400px;
+  margin-top: 15px;
+  color: lightgray;
+}
+
+.auth-input:focus{
+  color: black;
+}
+
+
+
+
+// .session-wrapper {
+//   display: flex;
+//   justify-content: center;
+//   background: url(https://discordapp.com/assets/85e031dc63742b86264cc0dbc2a6fdb8.jpg) 50% no-repeat;
+//   background-size: 1920px 1080px;
+//   position: relative;
+//   overflow: hidden;
+//   height: 100vh;
+// }

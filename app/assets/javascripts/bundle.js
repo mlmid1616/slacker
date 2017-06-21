@@ -12808,14 +12808,27 @@ var SessionForm = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (SessionForm.__proto__ || Object.getPrototypeOf(SessionForm)).call(this, props));
 
     _this.state = {
-      username: '',
-      password: ''
+      username: 'username',
+      password: 'password'
     };
     _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.empty = _this.empty.bind(_this);
     return _this;
   }
 
   _createClass(SessionForm, [{
+    key: 'empty',
+    value: function empty(type) {
+      var _this2 = this;
+
+      return function (e) {
+        e.preventDefault();
+        if (e.currentTarget.value === "username" || e.currentTarget.value === "password") {
+          _this2.setState(_defineProperty({}, type, ''));
+        }
+      };
+    }
+  }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       if (nextProps.loggedIn) {
@@ -12825,18 +12838,23 @@ var SessionForm = function (_React$Component) {
   }, {
     key: 'update',
     value: function update(field) {
-      var _this2 = this;
+      var _this3 = this;
 
       return function (e) {
-        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+        return _this3.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
+      debugger;
       e.preventDefault();
       var user = this.state;
-      this.props.processForm({ user: user });
+      if (this.props.type === "login") {
+        this.props.login({ user: user });
+      } else {
+        this.props.signup({ user: user });
+      }
     }
 
     // navLink() {
@@ -12872,7 +12890,7 @@ var SessionForm = function (_React$Component) {
       } else {
         alternative = "signup";
       }
-
+      // debugger
       return _react2.default.createElement(
         'div',
         { className: 'login-form-container' },
@@ -12888,29 +12906,21 @@ var SessionForm = function (_React$Component) {
             'div',
             { className: 'login-form' },
             _react2.default.createElement('br', null),
-            _react2.default.createElement(
-              'label',
-              null,
-              'Username:',
-              _react2.default.createElement('input', { type: 'text',
-                value: this.state.username,
-                onChange: this.update('username'),
-                className: 'login-input'
-              })
-            ),
+            _react2.default.createElement('input', { type: 'text',
+              className: 'auth-input',
+              value: this.state.username,
+              onClick: this.empty("username"),
+              onChange: this.update('username')
+            }),
             _react2.default.createElement('br', null),
-            _react2.default.createElement(
-              'label',
-              null,
-              'Password:',
-              _react2.default.createElement('input', { type: 'password',
-                value: this.state.password,
-                onChange: this.update('password'),
-                className: 'login-input'
-              })
-            ),
+            _react2.default.createElement('input', { type: 'password',
+              className: 'auth-input',
+              value: this.state.password,
+              onClick: this.empty("password"),
+              onChange: this.update('password')
+            }),
             _react2.default.createElement('br', null),
-            _react2.default.createElement('input', { type: 'submit', value: 'Submit' })
+            _react2.default.createElement('input', { className: 'submit', type: 'submit', value: this.props.type })
           )
         )
       );
@@ -13024,14 +13034,12 @@ var _session_form2 = _interopRequireDefault(_session_form);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mapStateToProps = function mapStateToProps(_ref) {
-  var session = _ref.session,
-      modal = _ref.modal;
-
+var mapStateToProps = function mapStateToProps(state) {
+  // debugger
   return {
-    loggedIn: Boolean(session.currentUser),
-    errors: session.errors,
-    type: modal
+    loggedIn: Boolean(state.session.currentUser),
+    errors: state.session.errors,
+    type: state.modal
   };
 };
 
@@ -25610,9 +25618,9 @@ var _reactRedux = __webpack_require__(17);
 
 var _reactRouterDom = __webpack_require__(34);
 
-var _app = __webpack_require__(295);
+var _App = __webpack_require__(386);
 
-var _app2 = _interopRequireDefault(_app);
+var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25624,7 +25632,7 @@ var Root = function Root(_ref) {
     _react2.default.createElement(
       _reactRouterDom.HashRouter,
       null,
-      _react2.default.createElement(_app2.default, null)
+      _react2.default.createElement(_App2.default, null)
     )
   );
 };
@@ -29045,64 +29053,7 @@ NavLink.defaultProps = {
 
 
 /***/ }),
-/* 295 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(4);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(17);
-
-var _reactRouterDom = __webpack_require__(34);
-
-var _landing_page = __webpack_require__(296);
-
-var _landing_page2 = _interopRequireDefault(_landing_page);
-
-var _greeting_container = __webpack_require__(309);
-
-var _greeting_container2 = _interopRequireDefault(_greeting_container);
-
-var _session_form_container = __webpack_require__(129);
-
-var _session_form_container2 = _interopRequireDefault(_session_form_container);
-
-var _route_util = __webpack_require__(311);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var App = function App() {
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'header',
-      null,
-      _react2.default.createElement(_landing_page2.default, null)
-    )
-  );
-};
-
-exports.default = App;
-
-// <Switch>
-// <AuthRoute path="/login" component={SessionFormContainer} />
-// <AuthRoute path="/signup" component={SessionFormContainer} />
-// </Switch>
-
-// <Link to="/" className="header-link">
-// <h1>Slack</h1>
-// </Link>
-
-/***/ }),
+/* 295 */,
 /* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29149,10 +29100,15 @@ var LandingPage = function (_React$Component) {
   _createClass(LandingPage, [{
     key: 'render',
     value: function render() {
+      // debuggesr
       return _react2.default.createElement(
         'div',
         { id: 'landing-div' },
-        _react2.default.createElement(_navbar_container2.default, null),
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(_navbar_container2.default, null)
+        ),
         _react2.default.createElement(
           'p',
           { id: 'landing-text' },
@@ -29298,10 +29254,11 @@ var Navbar = function (_React$Component) {
   }, {
     key: 'handleModal',
     value: function handleModal(e) {
-      if (e.currentTarget.textContent === 'Sign up for free' || e.currentTarget.textContent === 'Create account') {
-        this.props.signupForm();
-      } else if (e.currentTarget.textContent === 'Sign in') {
+      // debugger
+      if (e.currentTarget.textContent === 'Login') {
         this.props.loginForm();
+      } else if (e.currentTarget.textContent === 'Sign Up') {
+        this.props.signupForm();
       }
       this.openModal();
     }
@@ -29310,6 +29267,14 @@ var Navbar = function (_React$Component) {
     value: function render() {
 
       var customStyles = {
+        overlay: {
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(50, 50, 50, 0.50)'
+        },
         content: {
           top: '50%',
           left: '50%',
@@ -29327,7 +29292,7 @@ var Navbar = function (_React$Component) {
       }
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'nav' },
         _react2.default.createElement(
           _reactModal2.default,
           {
@@ -29339,8 +29304,8 @@ var Navbar = function (_React$Component) {
         ),
         _react2.default.createElement(
           'button',
-          { onClick: this.handleModal },
-          'Sign in'
+          { className: 'auth', onClick: this.handleModal },
+          'Sign Up'
         ),
         _react2.default.createElement(
           _reactModal2.default,
@@ -29353,7 +29318,7 @@ var Navbar = function (_React$Component) {
         ),
         _react2.default.createElement(
           'button',
-          { onClick: this.handleModal },
+          { className: 'auth', onClick: this.handleModal },
           'Login'
         )
       );
@@ -49876,6 +49841,126 @@ exports.default = ModalReducer;
 }.call(this));
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(32), __webpack_require__(33)(module)))
+
+/***/ }),
+/* 386 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(17);
+
+var _reactRouterDom = __webpack_require__(34);
+
+var _landing_page = __webpack_require__(296);
+
+var _landing_page2 = _interopRequireDefault(_landing_page);
+
+var _homepage = __webpack_require__(387);
+
+var _homepage2 = _interopRequireDefault(_homepage);
+
+var _greeting_container = __webpack_require__(309);
+
+var _greeting_container2 = _interopRequireDefault(_greeting_container);
+
+var _session_form_container = __webpack_require__(129);
+
+var _session_form_container2 = _interopRequireDefault(_session_form_container);
+
+var _route_util = __webpack_require__(311);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var App = function App() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'header',
+      null,
+      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _landing_page2.default }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/homepage', component: _homepage2.default })
+    )
+  );
+};
+
+exports.default = App;
+
+// <div>
+// <header>
+// <LandingPage />
+// </header>
+// </div>
+
+
+// <Switch>
+// <AuthRoute path="/login" component={SessionFormContainer} />
+// <AuthRoute path="/signup" component={SessionFormContainer} />
+// </Switch>
+
+// <Link to="/" className="header-link">
+// <h1>Slack</h1>
+// </Link>
+
+/***/ }),
+/* 387 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Homepage = function (_React$Component) {
+  _inherits(Homepage, _React$Component);
+
+  function Homepage() {
+    _classCallCheck(this, Homepage);
+
+    return _possibleConstructorReturn(this, (Homepage.__proto__ || Object.getPrototypeOf(Homepage)).apply(this, arguments));
+  }
+
+  _createClass(Homepage, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'h1',
+        null,
+        'welcome slacker'
+      );
+    }
+  }]);
+
+  return Homepage;
+}(_react2.default.Component);
+
+exports.default = Homepage;
 
 /***/ })
 /******/ ]);

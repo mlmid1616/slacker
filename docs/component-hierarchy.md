@@ -2,10 +2,10 @@
 
 
 ### Before logging in:
-  - Session Form Container
-   - NavBarContainer
-      * NavBar
-   - SessionForm
+  - LandingPageContainer
+     - NavBarContainer
+        * NavBar
+         * SessionForm
 
 
 ## After logging in:
@@ -22,7 +22,7 @@
             * ChannelListItem
       - DirectMessageListContainer:
           - DirectMessageFormContainer
-            - DirectMessageForm 
+            - DirectMessageForm
           - DirectMessagesList
               * DirectMessageListItem
   - MainChannelContainer

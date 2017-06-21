@@ -6,12 +6,22 @@ class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: ''
+      username: 'username',
+      password: 'password'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.empty = this.empty.bind(this);
   }
 
+  empty (type) {
+    return (e) => {
+      e.preventDefault();
+      if (e.currentTarget.value === "username" ||
+          e.currentTarget.value === "password"){
+            this.setState({[type]:''});
+          }
+    };
+  }
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn) {
       this.props.history.push('/');
@@ -25,9 +35,16 @@ class SessionForm extends React.Component {
   }
 
   handleSubmit(e) {
+    debugger
     e.preventDefault();
     const user = this.state;
-    this.props.processForm({user});
+    if (this.props.type === "login"){
+      this.props.login({user});
+    } else {
+      this.props.signup({user});
+    }
+
+
   }
 
   // navLink() {
@@ -58,7 +75,7 @@ class SessionForm extends React.Component {
     } else {
       alternative = "signup";
     }
-
+    // debugger
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
@@ -67,23 +84,21 @@ class SessionForm extends React.Component {
           {this.renderErrors()}
           <div className="login-form">
             <br/>
-            <label>Username:
               <input type="text"
+                className="auth-input"
                 value={this.state.username}
+                onClick={this.empty("username")}
                 onChange={this.update('username')}
-                className="login-input"
               />
-            </label>
             <br/>
-            <label>Password:
               <input type="password"
+                className="auth-input"
                 value={this.state.password}
+                onClick={this.empty("password")}
                 onChange={this.update('password')}
-                className="login-input"
               />
-            </label>
             <br/>
-            <input type="submit" value="Submit" />
+            <input className="submit" type="submit" value={this.props.type} />
           </div>
         </form>
       </div>

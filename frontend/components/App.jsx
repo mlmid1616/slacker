@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 
 import LandingPage from './landing_page/landing_page';
+import HomePage from './homepage/homepage';
 import GreetingContainer from './greeting/greeting_container';
 import SessionFormContainer from './landing_page/session_form/session_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
@@ -16,12 +17,21 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 const App = () => (
   <div>
     <header>
-      <LandingPage />
+      <Route exact path="/" component={LandingPage} />
+      <Route path="/homepage" component={HomePage} />
     </header>
   </div>
 );
 
 export default App;
+
+// <div>
+// <header>
+// <LandingPage />
+// </header>
+// </div>
+
+
 
 // <Switch>
 // <AuthRoute path="/login" component={SessionFormContainer} />
