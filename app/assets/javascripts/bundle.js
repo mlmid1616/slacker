@@ -29204,7 +29204,7 @@ var LandingPage = function (_React$Component) {
         _react2.default.createElement(
           'p',
           { id: 'landing-text' },
-          'Slack, Relax'
+          'slack a bit'
         )
       );
     }
@@ -30615,6 +30615,10 @@ var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _channel_list_item = __webpack_require__(401);
+
+var _channel_list_item2 = _interopRequireDefault(_channel_list_item);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30633,14 +30637,25 @@ var ChannelList = function (_React$Component) {
   }
 
   _createClass(ChannelList, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.fetchUserChannels(this.props.currentUser);
+    }
+  }, {
     key: 'render',
     value: function render() {
-
-      var allChannels = this.props.fetchUserChannels(this.props.currentUser);
+      var allChannels = this.props.channels.map(function (channel) {
+        return _react2.default.createElement(_channel_list_item2.default, { channel: channel });
+      });
       return _react2.default.createElement(
-        'div',
+        'ul',
         null,
-        allChannels
+        allChannels,
+        _react2.default.createElement(
+          'p',
+          null,
+          'Channels should be here in the Channel List'
+        )
       );
     }
   }]);
@@ -50492,18 +50507,13 @@ var _lodash = __webpack_require__(396);
 
 var _channel_actions = __webpack_require__(398);
 
-var _channel_actions2 = _interopRequireDefault(_channel_actions);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var default_state = {};
-
 var ChannelReducer = function ChannelReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : default_state;
   var action = arguments[1];
 
   switch (action.type) {
-    case _channel_actions2.default:
+    case _channel_actions.RECEIVE_USER_CHANNELS:
       var newState = (0, _lodash.merge)({}, state, action.channels);
       return newState;
     default:
@@ -50535,14 +50545,13 @@ var RECEIVE_USER_CHANNELS = exports.RECEIVE_USER_CHANNELS = "RECEIVE_USER_CHANNE
 
 var receiveUserChannels = exports.receiveUserChannels = function receiveUserChannels(channels) {
   return {
-    type: RECEIVE_ALL_CHANNELS,
+    type: RECEIVE_USER_CHANNELS,
     channels: channels
   };
 };
 
 var fetchUserChannels = exports.fetchUserChannels = function fetchUserChannels(user) {
   return function (dispatch) {
-
     APIUtil.fetchUserChannels(user).then(function (channels) {
       return dispatch(receiveUserChannels(channels));
     }, function (err) {
@@ -50591,6 +50600,7 @@ var _channel_list2 = _interopRequireDefault(_channel_list);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
+
   return {
     channels: Object.keys(state.channels).map(function (key) {
       return state.channels[key];
@@ -50608,6 +50618,35 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_channel_list2.default);
+
+/***/ }),
+/* 401 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ChannelListItem = function ChannelListItem(_ref) {
+  var channel = _ref.channel;
+
+  return _react2.default.createElement(
+    'li',
+    null,
+    channel.name
+  );
+};
+
+exports.default = ChannelListItem;
 
 /***/ })
 /******/ ]);

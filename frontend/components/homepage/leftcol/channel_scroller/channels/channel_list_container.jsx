@@ -4,6 +4,7 @@ import { fetchUserChannels, receiveUserChannels } from '../../../../../actions/c
 import ChannelList from './channel_list';
 
 const mapStateToProps = (state) => {
+  
   return ({
     channels: Object.keys(state.channels)
     .map(function (key) { return state.channels[key]; }),

@@ -4,14 +4,13 @@ import * as APIUtil from '../util/channel_api_util';
 
 export const receiveUserChannels = (channels) => {
   return({
-    type: RECEIVE_ALL_CHANNELS,
+    type: RECEIVE_USER_CHANNELS,
     channels
   });
 };
 
 export const fetchUserChannels = user => dispatch => {
-
-  APIUtil.fetchUserChannels(user)
-  .then(channels => (dispatch(receiveUserChannels(channels))),
-  err => (dispatch(receiveErrors(err.responseJSON))));
+    APIUtil.fetchUserChannels(user)
+    .then(channels => (dispatch(receiveUserChannels(channels))),
+    err => (dispatch(receiveErrors(err.responseJSON))));
 };
