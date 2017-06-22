@@ -1,12 +1,12 @@
 import React from 'react';
-import ChannelList from './channels/channel_list';
+import ChannelListContainer from './channels/channel_list_container';
 import DirectMessageList from './direct_messages/direct_message_list';
 
 class ChannelScroller extends React.Component {
   render(){
     return(
       <div>
-        <ChannelList />
+        <ChannelListContainer />
         <DirectMessageList />
       </div>
     );

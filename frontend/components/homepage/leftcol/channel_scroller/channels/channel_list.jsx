@@ -1,11 +1,19 @@
 import React from 'react';
 
 class ChannelList extends React.Component {
+  constructor(props){
+    super(props);
+
+  }
   render(){
+     
+    let allChannels = this.props.fetchUserChannels(this.props.currentUser);
     return(
-      <h1>Hi from channellist</h1>
+      <div>
+        {allChannels}
+      </div>
     );
   }
 }
 
-export default ChannelList; 
+export default ChannelList;

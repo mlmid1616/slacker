@@ -12,7 +12,7 @@ class LandingPage extends React.Component {
         <div>
           <NavBarContainer />
         </div>
-        <p id="landing-text">Where Slacking Happens</p>
+        <p id="landing-text">Slack, Relax</p>
       </div>
     );
   }
