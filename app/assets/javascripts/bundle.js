@@ -49963,7 +49963,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Homepage = function Homepage() {
   return _react2.default.createElement(
     'div',
-    null,
+    { className: 'homepage' },
     _react2.default.createElement(_leftcol2.default, null),
     _react2.default.createElement(_selected_channel2.default, null)
   );
@@ -49990,23 +49990,18 @@ var _col_header_container = __webpack_require__(396);
 
 var _col_header_container2 = _interopRequireDefault(_col_header_container);
 
-var _channel_list = __webpack_require__(394);
+var _channel_scroller = __webpack_require__(397);
 
-var _channel_list2 = _interopRequireDefault(_channel_list);
-
-var _direct_message_list = __webpack_require__(395);
-
-var _direct_message_list2 = _interopRequireDefault(_direct_message_list);
+var _channel_scroller2 = _interopRequireDefault(_channel_scroller);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var LeftCol = function LeftCol() {
   return _react2.default.createElement(
     'div',
-    null,
+    { className: 'left-col' },
     _react2.default.createElement(_col_header_container2.default, null),
-    _react2.default.createElement(_channel_list2.default, null),
-    _react2.default.createElement(_direct_message_list2.default, null)
+    _react2.default.createElement(_channel_scroller2.default, null)
   );
 };
 
@@ -50060,9 +50055,18 @@ var ColHeader = function (_React$Component) {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        'button',
-        { className: 'logout', onClick: this.handleClick },
-        'Logout'
+        'div',
+        { className: 'col-header' },
+        _react2.default.createElement(
+          'button',
+          { className: 'logout', onClick: this.handleClick },
+          'Logout'
+        ),
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Hi from col header'
+        )
       );
     }
   }]);
@@ -50148,12 +50152,16 @@ var SelectedHeader = function (_React$Component) {
   }
 
   _createClass(SelectedHeader, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'h1',
-        null,
-        'hello from Channel Header'
+        "div",
+        { className: "selected-header" },
+        _react2.default.createElement(
+          "h1",
+          null,
+          " Hi from selected header "
+        )
       );
     }
   }]);
@@ -50266,7 +50274,107 @@ var SelectedInput = function (_React$Component) {
 exports.default = SelectedInput;
 
 /***/ }),
-/* 394 */
+/* 394 */,
+/* 395 */,
+/* 396 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(17);
+
+var _session_actions = __webpack_require__(77);
+
+var _col_header = __webpack_require__(389);
+
+var _col_header2 = _interopRequireDefault(_col_header);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    logout: function logout() {
+      return dispatch((0, _session_actions.logout)());
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_col_header2.default);
+
+/***/ }),
+/* 397 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _channel_list = __webpack_require__(398);
+
+var _channel_list2 = _interopRequireDefault(_channel_list);
+
+var _direct_message_list = __webpack_require__(399);
+
+var _direct_message_list2 = _interopRequireDefault(_direct_message_list);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ChannelScroller = function (_React$Component) {
+  _inherits(ChannelScroller, _React$Component);
+
+  function ChannelScroller() {
+    _classCallCheck(this, ChannelScroller);
+
+    return _possibleConstructorReturn(this, (ChannelScroller.__proto__ || Object.getPrototypeOf(ChannelScroller)).apply(this, arguments));
+  }
+
+  _createClass(ChannelScroller, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(_channel_list2.default, null),
+        _react2.default.createElement(_direct_message_list2.default, null)
+      );
+    }
+  }]);
+
+  return ChannelScroller;
+}(_react2.default.Component);
+
+exports.default = ChannelScroller;
+
+/***/ }),
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50316,7 +50424,7 @@ var ChannelList = function (_React$Component) {
 exports.default = ChannelList;
 
 /***/ }),
-/* 395 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50364,45 +50472,6 @@ var DirectMessageList = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = DirectMessageList;
-
-/***/ }),
-/* 396 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(4);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(17);
-
-var _session_actions = __webpack_require__(77);
-
-var _col_header = __webpack_require__(389);
-
-var _col_header2 = _interopRequireDefault(_col_header);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {};
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    logout: function logout() {
-      return dispatch((0, _session_actions.logout)());
-    }
-  };
-};
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_col_header2.default);
 
 /***/ })
 /******/ ]);

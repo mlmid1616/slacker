@@ -4,7 +4,7 @@ import LeftCol from './leftcol/leftcol';
 import SelectedChannel from './selected_channel/selected_channel';
 
 const Homepage = () => (
-  <div>
+  <div className="homepage">
     <LeftCol />
     <SelectedChannel />
   </div>

@@ -15,9 +15,12 @@ class ColHeader extends React.Component {
   }
   render(){
     return (
-      <button className="logout" onClick={this.handleClick}>
-      Logout
-      </button>
+      <div className="col-header">
+        <button className="logout" onClick={this.handleClick}>
+        Logout
+        </button>
+        <h1>Hi from col header</h1>
+      </div>
     );
   }
 }

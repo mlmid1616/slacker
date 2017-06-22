@@ -1,15 +1,13 @@
 import React from 'react';
 
 import ColHeaderContainer from './header/col_header_container';
-import ChannelList from './channels/channel_list';
-import DirectMessageList from './direct_messages/direct_message_list';
+import ChannelScroller from './channel_scroller/channel_scroller';
 
 const LeftCol = () => {
   return (
-    <div>
+    <div className="left-col">
       <ColHeaderContainer />
-      <ChannelList />
-      <DirectMessageList />
+      <ChannelScroller />
     </div>
   );
 };

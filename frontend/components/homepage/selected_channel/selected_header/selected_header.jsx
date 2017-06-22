@@ -4,7 +4,9 @@ class SelectedHeader extends React.Component {
 
   render(){
     return (
-      <h1>hello from Channel Header</h1>
+      <div className="selected-header">
+        <h1> Hi from selected header </h1>
+      </div>
     );
   }
 }

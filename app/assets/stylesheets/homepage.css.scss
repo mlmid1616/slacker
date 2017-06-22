@@ -1,0 +1,24 @@
+.homepage {
+  display: flex;
+  font-family: 'Nunito', sans-serif;
+}
+
+
+.left-col {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  background-color: #4d394b;
+  color: gray;
+  width: 220px;
+  height: 100vh;
+}
+
+.col-header {
+  height: 60px;
+}
+
+.selected-header {
+  height: 61px;
+
+}
