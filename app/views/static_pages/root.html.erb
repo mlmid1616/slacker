@@ -3,5 +3,10 @@
   	window.currentUser = <%= render("api/users/user.json.jbuilder",
   		user: current_user).html_safe %>
   <% end %>
+
+  window.staticImages = {
+    yosemite: "<%= asset_path('yosemite.jpg') %>"
+  }
+
 </script>
 <main id="root"></main>
