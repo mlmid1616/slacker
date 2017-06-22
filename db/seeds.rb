@@ -33,3 +33,13 @@ Membership.create(user_id: user_ids[1], channel_id: channel_ids[0])
 Membership.create(user_id: user_ids[2], channel_id: channel_ids[1])
 Membership.create(user_id: user_ids[0], channel_id: channel_ids[1])
 Membership.create(user_id: user_ids[1], channel_id: channel_ids[1])
+
+Message.destroy_all
+
+Message.create(user_id: teddy.id, channel_id: ch1.id, content: "it works bb")
+Message.create(user_id: teddy.id, channel_id: ch1.id, content: "look we are messages")
+Message.create(user_id: teddy.id, channel_id: ch1.id, content: "im teddy roosevelt")
+Message.create(user_id: george.id, channel_id: ch1.id, content: "sup teddy im george")
+Message.create(user_id: george.id, channel_id: ch1.id, content: "this clone is pretty sweet")
+Message.create(user_id: teddy.id, channel_id: ch2.id, content: "channel 2 works as well??")
+Message.create(user_id: george.id, channel_id: ch1.id, content: "yeah pretty rad")

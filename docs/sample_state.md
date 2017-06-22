@@ -2,6 +2,9 @@
   modal : {
     type: loginForm
   }
+  current_channel : {
+    name: "MenOfHonor123"
+  }
   session: {
     currentUser: {
       user: null,

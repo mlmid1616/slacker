@@ -30615,9 +30615,17 @@ var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactModal = __webpack_require__(299);
+
+var _reactModal2 = _interopRequireDefault(_reactModal);
+
 var _channel_list_item = __webpack_require__(401);
 
 var _channel_list_item2 = _interopRequireDefault(_channel_list_item);
+
+var _new_channel_form_container = __webpack_require__(402);
+
+var _new_channel_form_container2 = _interopRequireDefault(_new_channel_form_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -50512,9 +50520,13 @@ var ChannelReducer = function ChannelReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : default_state;
   var action = arguments[1];
 
+  var newState = void 0;
   switch (action.type) {
     case _channel_actions.RECEIVE_USER_CHANNELS:
-      var newState = (0, _lodash.merge)({}, state, action.channels);
+      newState = (0, _lodash.merge)({}, state, action.channels);
+      return newState;
+    case _channel_actions.RECEIVE_USER_CHANNEL:
+      newState = (0, _lodash.merge)({}, state, action.channel);
       return newState;
     default:
       return state;
@@ -50533,7 +50545,7 @@ exports.default = ChannelReducer;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchUserChannels = exports.receiveUserChannels = exports.RECEIVE_USER_CHANNELS = undefined;
+exports.createChannel = exports.fetchUserChannels = exports.receiveUserChannel = exports.receiveUserChannels = exports.RECEIVE_USER_CHANNEL = exports.RECEIVE_USER_CHANNELS = undefined;
 
 var _channel_api_util = __webpack_require__(399);
 
@@ -50542,6 +50554,7 @@ var APIUtil = _interopRequireWildcard(_channel_api_util);
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var RECEIVE_USER_CHANNELS = exports.RECEIVE_USER_CHANNELS = "RECEIVE_USER_CHANNELS";
+var RECEIVE_USER_CHANNEL = exports.RECEIVE_USER_CHANNEL = "RECEIVE_USER_CHANNEL";
 
 var receiveUserChannels = exports.receiveUserChannels = function receiveUserChannels(channels) {
   return {
@@ -50550,10 +50563,27 @@ var receiveUserChannels = exports.receiveUserChannels = function receiveUserChan
   };
 };
 
+var receiveUserChannel = exports.receiveUserChannel = function receiveUserChannel(channel) {
+  return {
+    type: RECEIVE_USER_CHANNEL,
+    channel: channel
+  };
+};
+
 var fetchUserChannels = exports.fetchUserChannels = function fetchUserChannels(user) {
   return function (dispatch) {
     APIUtil.fetchUserChannels(user).then(function (channels) {
       return dispatch(receiveUserChannels(channels));
+    }, function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+
+var createChannel = exports.createChannel = function createChannel(channel) {
+  return function (dispatch) {
+    APIUtil.createChannel(channel).then(function (channel) {
+      return dispatch(receiveUserChannel(channel));
     }, function (err) {
       return dispatch(receiveErrors(err.responseJSON));
     });
@@ -50575,6 +50605,14 @@ var fetchUserChannels = exports.fetchUserChannels = function fetchUserChannels(u
     type: "GET",
     url: "api/channels",
     data: user
+  });
+};
+
+var createChannel = exports.createChannel = function createChannel(channel) {
+  return $.ajax({
+    type: "POST",
+    url: "api/channels",
+    data: channel
   });
 };
 
@@ -50647,6 +50685,200 @@ var ChannelListItem = function ChannelListItem(_ref) {
 };
 
 exports.default = ChannelListItem;
+
+/***/ }),
+/* 402 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(16);
+
+var _channel_actions = __webpack_require__(398);
+
+var _new_channel_form = __webpack_require__(403);
+
+var _new_channel_form2 = _interopRequireDefault(_new_channel_form);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  //
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+  return {
+    createChannel: function createChannel(channel) {
+      return dispatch((0, _channel_actions.createChannel)(channel));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_new_channel_form2.default);
+
+/***/ }),
+/* 403 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(34);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NewChannelForm = function (_React$Component) {
+  _inherits(NewChannelForm, _React$Component);
+
+  function NewChannelForm(props) {
+    _classCallCheck(this, NewChannelForm);
+
+    return _possibleConstructorReturn(this, (NewChannelForm.__proto__ || Object.getPrototypeOf(NewChannelForm)).call(this, props));
+  }
+
+  _createClass(NewChannelForm, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'h1',
+        null,
+        'This is the new channel form'
+      );
+    }
+  }]);
+
+  return NewChannelForm;
+}(_react2.default.Component);
+
+exports.default = NewChannelForm;
+//   empty (type) {
+//     return (e) => {
+//       e.preventDefault();
+//       if (e.currentTarget.value === "name" ||
+//           e.currentTarget.value === "usernames"){
+//             this.setState({[type]:''});
+//           }
+//     };
+//   }
+//   // componentWillReceiveProps(nextProps) {
+//   //   if (nextProps.loggedIn) {
+//   //     this.props.history.push('/channel');
+//   //   }
+//   // }
+//
+//   update(field) {
+//     return e => this.setState({
+//       [field]: e.currentTarget.value
+//     });
+//   }
+//
+//   handleSubmit(e) {
+//     e.preventDefault();
+//     const channel = this.state;
+//     this.props.createChannel({channel});
+//     // if (this.props.type === "login"){
+//     //   this.props.login({user}).then(() => { this.props.history.push('/messages');
+//     // });
+//     // } else {
+//     //   this.props.signup({user}).then(() => { this.props.history.push('/messages');
+//     // });
+//     // }
+//
+//
+//
+//
+//   }
+//
+//   // navLink() {
+//   //   if (this.props.type === 'login') {
+//   //     return <Link to="/signup">sign up instead</Link>;
+//   //   } else {
+//   //     return <Link to="/login">log in instead</Link>;
+//   //   }
+//   // }
+//
+//   renderErrors() {
+//     //
+//     return(
+//       <ul>
+//         {this.props.errors.map((error, i) => (
+//           <li key={`error-${i}`}>
+//             {error}
+//           </li>
+//         ))}
+//       </ul>
+//     );
+//   }
+//
+//   render() {
+//     // let message;
+//     // if (this.props.type === "login") {
+//     //   message = "Login";
+//     // } else {
+//     //   message = "Sign up";
+//     // }
+//     //
+//     return (
+//       <div className="">
+//         <form onSubmit={this.handleSubmit} className="">
+//           <br/>
+//           <div className="">
+//             <div className="">
+//               Make a channel.
+//             </div>
+//             <div className="">
+//               {this.renderErrors()}
+//               <br/>
+//                 Enter a channel name and its participants.
+//               </div>
+//           </div>
+//           <div className="">
+//             <br/>
+//               <input type=""
+//                 className=""
+//                 value={this.state.username}
+//                 onClick={this.empty("name")}
+//                 onChange={this.update('name')}
+//               />
+//             <br/>
+//               <input type="password"
+//                 className=""
+//                 value={this.state.password}
+//                 onClick={this.empty("friends")}
+//                 onChange={this.update('friends')}
+//               />
+//             <br/>
+//             <input className="" type="submit" value={this.props.type} />
+//           </div>
+//         </form>
+//       </div>
+//     );
+//   }
+// }
+//
+// export default withRouter(NewChannelForm);
 
 /***/ })
 /******/ ]);

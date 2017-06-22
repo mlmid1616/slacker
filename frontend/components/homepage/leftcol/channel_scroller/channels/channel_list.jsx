@@ -1,6 +1,8 @@
 import React from 'react';
+import Modal from 'react-modal';
 
 import ChannelListItem from './channel_list_item';
+import NewFormContainer from './new_channel_form_container';
 
 class ChannelList extends React.Component {
   constructor(props){
