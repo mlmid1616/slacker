@@ -32,7 +32,7 @@ class Navbar extends React.Component {
   }
 
   handleClick(type) {
-    // debugger
+    //
     return (e) => {
       if (type === "login"){
         this.props.loginForm();
@@ -47,7 +47,7 @@ class Navbar extends React.Component {
   }
 
   handleModal(e){
-    // debugger
+    //
    if (e.currentTarget.textContent === 'Login' ){
      this.props.loginForm();
    } else if (e.currentTarget.textContent === 'Sign Up'){

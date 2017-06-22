@@ -12,15 +12,14 @@
   background-image: url("yosemite.jpeg");
   background-size: 1920px 1080px;
   font-family: 'Nunito', sans-serif;
+  height: 100vh;
 }
 
-// html {
-//   background-image: url("yosemite.jpeg");
-//   background-size: 1920px 1080px;
-//   font-family: 'Nunito', sans-serif;
-  // opacity: 0.5;
-  // filter: alpha(opacity=50);
-// }
+html {
+  height: 100vh;
+}
+
+
 
 .nav {
   display: flex;
@@ -49,27 +48,51 @@
 }
 
 .submit {
-  margin: 10px;
-  background-color: blue;
-  background-repeat: blue;
+  margin-top: 10px;
+  margin-right: 20px;
+  background-color: #2ab27b;
+  background-repeat: #2ab27b;
   border: none;
   overflow: hidden;
   outline: none;
-  cursor:pointer;
+  cursor: pointer;
   font-size: 18px;
   color: white;
   opacity: .99;
   color: white;
+  width: 407px;
+  justify-content: center;
+  font-family: 'Nunito', sans-serif;
+  height: 38px;
 }
 
 .auth-input {
   width: 400px;
+  height: 30px;
   margin-top: 15px;
   color: lightgray;
+  font-size: 18px;
+  font-family: 'Nunito', sans-serif;
 }
 
 .auth-input:focus{
   color: black;
+}
+
+.entry-message {
+  font-size: 14px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.entry-greeting {
+  margin-bottom: 6px;
+  font-size: 24px;
+  font-family: 'Nunito', sans-serif;
+}
+
+.whole-greeting {
+  justify-content: center;
+  text-align: center;
 }
 
 

@@ -1,11 +1,13 @@
 import React from 'react';
 
-class Homepage extends React.Component {
-  render(){
-    return(
-      <h1>welcome slacker</h1>
-    );
-  }
-}
+import LeftCol from './leftcol/leftcol';
+import SelectedChannel from './selected_channel/selected_channel';
 
-export default Homepage; 
+const Homepage = () => (
+  <div>
+    <LeftCol />
+    <SelectedChannel />
+  </div>
+);
+
+export default Homepage;

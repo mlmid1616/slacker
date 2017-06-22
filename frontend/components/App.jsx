@@ -18,7 +18,7 @@ const App = () => (
   <div>
     <header>
       <Route exact path="/" component={LandingPage} />
-      <Route path="/homepage" component={HomePage} />
+      <ProtectedRoute path="/messages" component={HomePage} />
     </header>
   </div>
 );

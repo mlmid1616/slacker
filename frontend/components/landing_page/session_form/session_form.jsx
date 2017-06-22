@@ -35,14 +35,17 @@ class SessionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger
     e.preventDefault();
     const user = this.state;
     if (this.props.type === "login"){
-      this.props.login({user});
+      this.props.login({user}).then(() => { this.props.history.push('/messages');
+    });
     } else {
-      this.props.signup({user});
+      this.props.signup({user}).then(() => { this.props.history.push('/messages');
+    });
     }
+
+
 
 
   }
@@ -56,7 +59,7 @@ class SessionForm extends React.Component {
   // }
 
   renderErrors() {
-    //
+    // debugger
     return(
       <ul>
         {this.props.errors.map((error, i) => (
@@ -69,19 +72,27 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    let alternative;
+    let message;
     if (this.props.type === "login") {
-      alternative = "login";
+      message = "Login";
     } else {
-      alternative = "signup";
+      message = "Sign up";
     }
     // debugger
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
           <br/>
-          Please {this.props.type}.
-          {this.renderErrors()}
+          <div className="whole-greeting">
+            <div className="entry-greeting">
+              {message} to commence Slacking.
+            </div>
+            <div className="entry-message">
+              {this.renderErrors()}
+              <br/>
+                Enter your username and password.
+              </div>
+          </div>
           <div className="login-form">
             <br/>
               <input type="text"
