@@ -1,6 +1,6 @@
 {
   modal : {
-    type: loginForm
+    type: login
   }
   current_channel : {
     name: "MenOfHonor123"

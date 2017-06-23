@@ -11,11 +11,11 @@ export const fetchUserChannels = (user) => {
 };
 
 export const createChannel = (channel) => {
-  return(
+  return (
     $.ajax({
       type: "POST",
       url: "api/channels",
-      data: channel 
+      data: channel
     })
   );
 };

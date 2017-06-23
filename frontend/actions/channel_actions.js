@@ -2,6 +2,7 @@ export const RECEIVE_USER_CHANNELS = "RECEIVE_USER_CHANNELS";
 export const RECEIVE_USER_CHANNEL = "RECEIVE_USER_CHANNEL";
 
 import * as APIUtil from '../util/channel_api_util';
+import { receiveErrors } from './session_actions';
 
 export const receiveUserChannels = (channels) => {
   return({
@@ -24,7 +25,10 @@ export const fetchUserChannels = user => dispatch => {
 };
 
 export const createChannel = channel => dispatch => {
-  APIUtil.createChannel(channel)
+  debugger
+  return APIUtil.createChannel(channel)
   .then(channel => (dispatch(receiveUserChannel(channel))),
   err => (dispatch(receiveErrors(err.responseJSON))));
 };
+
+// channel has channel name and users
