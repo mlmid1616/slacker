@@ -1,3 +1,5 @@
 class Message < ActiveRecord::Base
-  belongs_to :user, :channel 
+  belongs_to :user
+  belongs_to :channel
+
 end

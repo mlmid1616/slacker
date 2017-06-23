@@ -59,16 +59,16 @@ class SessionForm extends React.Component {
   // }
 
   renderErrors() {
-    // 
-    return(
-      <ul>
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
+    //
+    // return(
+    //   <ul>
+    //     {this.props.errors.map((error, i) => (
+    //       <li key={`error-${i}`}>
+    //         {error}
+    //       </li>
+    //     ))}
+    //   </ul>
+    // );
   }
 
   render() {
@@ -78,7 +78,7 @@ class SessionForm extends React.Component {
     } else {
       message = "Sign up";
     }
-    // 
+    //
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">

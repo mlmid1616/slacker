@@ -1,8 +1,9 @@
 class Api::MessagesController < ApplicationController
 
   def index
-    channel = Channel.find_by(id: params[:channel_id])
-    @messages = channel.messages.includes(:emoticons, :user)
+    #  
+    channel = Channel.find_by(id: params[:channel])
+    @messages = channel.messages
     render "api/messages/index"
   end
 
@@ -36,9 +37,7 @@ class Api::MessagesController < ApplicationController
   #       )
   #   end
 
-  end
-
   def message_params
-    params.require(:message).permit(:content, :user_id, :channel_id, :reactions)
+    params.require(:message).permit(:body, :user_id, :channel_id)
   end
 end

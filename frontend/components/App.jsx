@@ -13,6 +13,7 @@ import HomePage from './homepage/homepage';
 import GreetingContainer from './greeting/greeting_container';
 import SessionFormContainer from './landing_page/session_form/session_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import SelectedChannel from './homepage/selected_channel/selected_channel';
 
 const App = () => (
   <div>

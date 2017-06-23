@@ -8,15 +8,11 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack"
+    "postinstall": "webpack"
   },
   "engines": {
-  "node": "6.7.0",
-  "npm": "3.10.7"
-  },
-  "scripts": {
-  "postinstall": "webpack"
+    "node": "6.7.0",
+    "npm": "3.10.7"
   },
   "keywords": [],
   "author": "",

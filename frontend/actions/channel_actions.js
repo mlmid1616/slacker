@@ -2,7 +2,7 @@ export const RECEIVE_USER_CHANNELS = "RECEIVE_USER_CHANNELS";
 export const RECEIVE_USER_CHANNEL = "RECEIVE_USER_CHANNEL";
 
 import * as APIUtil from '../util/channel_api_util';
-import { receiveErrors } from './session_actions';
+// import { receiveErrors } from './session_actions';
 
 export const receiveUserChannels = (channels) => {
   return({
@@ -18,17 +18,21 @@ export const receiveUserChannel = (channel) => {
   });
 };
 
+
 export const fetchUserChannels = user => dispatch => {
     APIUtil.fetchUserChannels(user)
-    .then(channels => (dispatch(receiveUserChannels(channels))),
-    err => (dispatch(receiveErrors(err.responseJSON))));
+    .then(channels => (dispatch(receiveUserChannels(channels))));
+    // err => (dispatch(receiveErrors(err.responseJSON))));
 };
 
+
 export const createChannel = channel => dispatch => {
-  debugger
+
   return APIUtil.createChannel(channel)
-  .then(channel => (dispatch(receiveUserChannel(channel))),
-  err => (dispatch(receiveErrors(err.responseJSON))));
+  .then(channel => (dispatch(receiveUserChannel(channel))));
+  // err => (dispatch(receiveErrors(err.responseJSON))));
 };
+
+
 
 // channel has channel name and users
