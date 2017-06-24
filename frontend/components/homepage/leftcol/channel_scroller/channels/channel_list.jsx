@@ -83,9 +83,9 @@ class ChannelList extends React.Component {
               Make a new channel!
           </button>
           <br />
-          <ul>
+          <ul className="big-text-nav-bar">
+          CHANNELS
             {allChannels}
-            <p>channel list</p>
           </ul>
       </div>
     );

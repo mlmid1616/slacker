@@ -15,7 +15,7 @@ class ColHeader extends React.Component {
     this.props.history.push('/');
   }
   render(){
-    debugger 
+     debugger 
     return (
       <div className="col-header">
         <button className="logout" onClick={this.handleClick}>

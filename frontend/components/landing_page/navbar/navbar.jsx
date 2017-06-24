@@ -46,7 +46,7 @@ class Navbar extends React.Component {
 
   startDemo(){
     const user = {user: {username: "WildernessRulez", password: "password123"}};
-    this.props.login(user).then(() => { this.props.history.push('/messages'); });
+    this.props.login(user).then(() => { this.props.history.push('/messages/1'); });
   }
 
   componentWillMount(){

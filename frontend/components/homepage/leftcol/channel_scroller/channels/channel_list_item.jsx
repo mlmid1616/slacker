@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ChannelListItem = ({ channel }) => {
-  
+
   return(
-    <li>
+    <li className="channel-list-item">
       <Link to={`/messages/${channel.id}`}>
-        {channel.name}
+        #{channel.name}
       </Link>
     </li>
   );

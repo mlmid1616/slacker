@@ -36,10 +36,12 @@ Membership.create(user_id: user_ids[1], channel_id: channel_ids[1])
 
 Message.destroy_all
 
-Message.create(user_id: teddy.id, channel_id: ch1.id, content: "it works bb")
-Message.create(user_id: teddy.id, channel_id: ch1.id, content: "look we are messages")
-Message.create(user_id: teddy.id, channel_id: ch1.id, content: "im teddy roosevelt")
-Message.create(user_id: george.id, channel_id: ch1.id, content: "sup teddy im george")
-Message.create(user_id: george.id, channel_id: ch1.id, content: "this clone is pretty sweet")
-Message.create(user_id: teddy.id, channel_id: ch2.id, content: "channel 2 works as well??")
-Message.create(user_id: george.id, channel_id: ch1.id, content: "yeah pretty rad")
+Message.create(user_id: george.id, channel_id: ch1.id, content: "it's g washington is anyone here?")
+Message.create(user_id: lincoln.id, channel_id: ch1.id, content: "im here what's up?")
+Message.create(user_id: kennedy.id, channel_id: ch1.id, content: "yooooo")
+Message.create(user_id: george.id, channel_id: ch1.id, content: "my boyz are all here!")
+Message.create(user_id: george.id, channel_id: ch1.id, content: "who wants to talk common sense?")
+
+
+Message.create(user_id: george.id, channel_id: ch2.id, content: "10 wooden teeth says you won't work in score to your next speech")
+Message.create(user_id: lincoln.id, channel_id: ch2.id, content: "you're on. ill lead with it")

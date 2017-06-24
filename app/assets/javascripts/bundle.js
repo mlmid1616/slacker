@@ -45590,14 +45590,14 @@ var App = function App() {
       'header',
       null,
       _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _landing_page2.default }),
-      _react2.default.createElement(_route_util.ProtectedRoute, { path: '/messages', component: _homepage2.default })
+      _react2.default.createElement(_route_util.ProtectedRoute, { exact: true, path: '/messages', component: _homepage2.default })
     )
   );
 };
 
 exports.default = App;
+// <ProtectedRoute exact path="/messages/:id" component={HomePage} />
 
-// <ProtectedRoute path="/messages/:id" component={HomePage} />
 // <div>
 // <header>
 // <LandingPage />
@@ -45855,7 +45855,7 @@ var Navbar = function (_React$Component) {
 
       var user = { user: { username: "WildernessRulez", password: "password123" } };
       this.props.login(user).then(function () {
-        _this3.props.history.push('/messages');
+        _this3.props.history.push('/messages/1');
       });
     }
   }, {
@@ -47279,13 +47279,9 @@ var ChannelList = function (_React$Component) {
         _react2.default.createElement('br', null),
         _react2.default.createElement(
           'ul',
-          null,
-          allChannels,
-          _react2.default.createElement(
-            'p',
-            null,
-            'channel list'
-          )
+          { className: 'big-text-nav-bar' },
+          'CHANNELS',
+          allChannels
         )
       );
     }
@@ -47321,10 +47317,11 @@ var ChannelListItem = function ChannelListItem(_ref) {
 
   return _react2.default.createElement(
     'li',
-    null,
+    { className: 'channel-list-item' },
     _react2.default.createElement(
       _reactRouterDom.Link,
       { to: '/messages/' + channel.id },
+      '#',
       channel.name
     )
   );

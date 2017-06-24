@@ -5,5 +5,19 @@
 
 .new-channel-form {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
+}
+
+.channel-list-item a {
+  color: #ab9ba9;
+  border-bottom: none;
+  text-decoration:none;
+  font-size: 15px;
+  padding-left: 8px;
+  margin-top:5px;
+}
+
+.big-text-nav-bar {
+  font-size: 13px;
+  color: #ab9ba9;
 }
