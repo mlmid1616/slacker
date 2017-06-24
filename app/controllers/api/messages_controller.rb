@@ -1,7 +1,6 @@
 class Api::MessagesController < ApplicationController
 
   def index
-    #  
     channel = Channel.find_by(id: params[:channel])
     @messages = channel.messages
     render "api/messages/index"
@@ -38,6 +37,6 @@ class Api::MessagesController < ApplicationController
   #   end
 
   def message_params
-    params.require(:message).permit(:body, :user_id, :channel_id)
+    params.require(:message).permit(:content, :user_id, :channel_id)
   end
 end

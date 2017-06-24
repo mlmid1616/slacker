@@ -26,8 +26,12 @@ class SelectedInput extends React.Component {
     });
   }
 
-  handleSubmit(){
-    altert("i work");
+  handleSubmit(e){
+    e.preventDefault();
+    // debugger
+    const message = {content: this.state.message, user_id: this.props.user_id, channel_id: this.props.channel_id};
+    this.props.createSelectedMessage(message);
+    // alert("hmm");
   }
 
   render(){
@@ -39,6 +43,8 @@ class SelectedInput extends React.Component {
           onClick={this.empty("message")}
           onChange={this.update("message")}
           />
+
+        <input type="submit" value="Send Message" />
       </form>
     );
   }

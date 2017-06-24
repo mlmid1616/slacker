@@ -2,7 +2,7 @@ import React from 'react';
 
 import SelectedHeader from './selected_header/selected_header';
 import SelectedMessageListContainer from './selected_messages/selected_message_list_container';
-import SelectedInput from './selected_input/selected_input';
+import SelectedInputContainer from './selected_input/selected_input_container';
 
 
 const SelectedChannel = (props) => {
@@ -12,7 +12,7 @@ const SelectedChannel = (props) => {
     <div>
       <SelectedHeader />
       <SelectedMessageListContainer channel={id} />
-      <SelectedInput />
+      <SelectedInputContainer channel={id}/>
     </div>
   );
 };

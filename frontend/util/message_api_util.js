@@ -9,11 +9,12 @@
   };
 
   export const createSelectedMessage = message => {
+    //
     return(
       $.ajax({
         type:"POST",
-        url:"api/message",
-        data: message
+        url:"api/messages",
+        data: {message: message}
       })
     );
   };

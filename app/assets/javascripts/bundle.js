@@ -47472,9 +47472,9 @@ var _selected_message_list_container = __webpack_require__(404);
 
 var _selected_message_list_container2 = _interopRequireDefault(_selected_message_list_container);
 
-var _selected_input = __webpack_require__(326);
+var _selected_input_container = __webpack_require__(409);
 
-var _selected_input2 = _interopRequireDefault(_selected_input);
+var _selected_input_container2 = _interopRequireDefault(_selected_input_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47486,7 +47486,7 @@ var SelectedChannel = function SelectedChannel(props) {
     null,
     _react2.default.createElement(_selected_header2.default, null),
     _react2.default.createElement(_selected_message_list_container2.default, { channel: id }),
-    _react2.default.createElement(_selected_input2.default, null)
+    _react2.default.createElement(_selected_input_container2.default, { channel: id })
   );
 };
 
@@ -47595,17 +47595,22 @@ var SelectedMessageList = function (_React$Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
-      if (nextProps.channel !== this.props.channel) {
+      if (nextProps.messages.slice(-1).id !== this.props.messages.slice(-1).id || nextProps.channel !== this.props.channel) {
         var channel = this.props.channel;
         this.props.fetchSelectedMessages(channel);
       }
     }
+
+    // if (nextProps.channel !== this.props.channel){
+    //   const channel = this.props.channel;
+    //   this.props.fetchSelectedMessages(channel);
+    // }
+
   }, {
     key: 'render',
     value: function render() {
       var that = this;
       var allMessages = this.props.messages.map(function (message, idx) {
-        //  
         if (message.channel_id === parseInt(that.props.channel)) {
           return _react2.default.createElement(_selected_message_item2.default, { message: message, key: idx });
         }
@@ -47691,8 +47696,12 @@ var SelectedInput = function (_React$Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit() {
-      altert("i work");
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      // debugger
+      var message = { content: this.state.message, user_id: this.props.user_id, channel_id: this.props.channel_id };
+      this.props.createSelectedMessage(message);
+      // alert("hmm");
     }
   }, {
     key: "render",
@@ -47705,7 +47714,8 @@ var SelectedInput = function (_React$Component) {
           value: this.state.message,
           onClick: this.empty("message"),
           onChange: this.update("message")
-        })
+        }),
+        _react2.default.createElement("input", { type: "submit", value: "Send Message" })
       );
     }
   }]);
@@ -48240,6 +48250,7 @@ var fetchSelectedMessages = exports.fetchSelectedMessages = function fetchSelect
 
 var createSelectedMessage = exports.createSelectedMessage = function createSelectedMessage(message) {
   return function (dispatch) {
+
     return APIUtil.createSelectedMessage(message).then(function (message) {
       return dispatch(receiveSelectedMessage(message));
     });
@@ -48265,10 +48276,11 @@ var fetchSelectedMessages = exports.fetchSelectedMessages = function fetchSelect
 };
 
 var createSelectedMessage = exports.createSelectedMessage = function createSelectedMessage(message) {
+  //
   return $.ajax({
     type: "POST",
-    url: "api/message",
-    data: message
+    url: "api/messages",
+    data: { message: message }
   });
 };
 
@@ -48315,6 +48327,8 @@ var _lodash = __webpack_require__(147);
 
 var _message_actions = __webpack_require__(405);
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var default_state = {};
 
 var MessageReducer = function MessageReducer() {
@@ -48327,7 +48341,7 @@ var MessageReducer = function MessageReducer() {
       newState = (0, _lodash.merge)({}, state, action.messages);
       return newState;
     case _message_actions.RECEIVE_SELECTED_MESSAGE:
-      newState = (0, _lodash.merge)({}, state, action.message);
+      newState = (0, _lodash.merge)({}, state, _defineProperty({}, action.message.id, action.message));
       return newState;
     default:
       return state;
@@ -48335,6 +48349,46 @@ var MessageReducer = function MessageReducer() {
 };
 
 exports.default = MessageReducer;
+
+/***/ }),
+/* 409 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(13);
+
+var _selected_input = __webpack_require__(326);
+
+var _selected_input2 = _interopRequireDefault(_selected_input);
+
+var _message_actions = __webpack_require__(405);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  // debugger
+  return {
+    user_id: state.session.currentUser.id,
+    channel_id: parseInt(ownProps.channel)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+
+  return {
+    createSelectedMessage: function createSelectedMessage(message) {
+      return dispatch((0, _message_actions.createSelectedMessage)(message));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_selected_input2.default);
 
 /***/ })
 /******/ ]);

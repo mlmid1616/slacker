@@ -10,8 +10,8 @@ const MessageReducer = (state = default_state, action) => {
       newState = merge({}, state, action.messages);
       return newState;
     case RECEIVE_SELECTED_MESSAGE:
-      newState = merge({}, state, action.message);
-      return newState;   
+      newState = merge({}, state, {[action.message.id]:action.message});
+      return newState;
     default:
       return state;
   }

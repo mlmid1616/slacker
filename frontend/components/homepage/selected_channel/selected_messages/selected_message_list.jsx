@@ -14,17 +14,21 @@ class SelectedMessageList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if (nextProps.channel !== this.props.channel){
+    if (nextProps.messages.slice(-1).id !== this.props.messages.slice(-1).id ||
+        nextProps.channel !== this.props.channel ) {
       const channel = this.props.channel;
       this.props.fetchSelectedMessages(channel);
     }
   }
 
+  // if (nextProps.channel !== this.props.channel){
+  //   const channel = this.props.channel;
+  //   this.props.fetchSelectedMessages(channel);
+  // }
 
   render(){
     const that = this;
     const allMessages = this.props.messages.map( (message, idx) => {
-      //  
         if (message.channel_id === parseInt(that.props.channel)) {
           return <SelectedMessageItem message={message} key={idx}/> ;
         }
