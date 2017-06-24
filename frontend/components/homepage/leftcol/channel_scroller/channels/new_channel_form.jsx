@@ -8,7 +8,7 @@ class NewChannelForm extends React.Component {
 
     this.state = {
       name: "Channel Name",
-      users: "Filter by username"
+      user_ids: "Filter by username"
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,6 +42,7 @@ class NewChannelForm extends React.Component {
   }
 
   handleSubmit(channel) {
+    
     let that = this;
     return (e) => {
       e.preventDefault();

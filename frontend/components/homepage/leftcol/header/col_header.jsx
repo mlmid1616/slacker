@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class ColHeader extends React.Component {
 
@@ -14,6 +15,7 @@ class ColHeader extends React.Component {
     this.props.history.push('/');
   }
   render(){
+    debugger 
     return (
       <div className="col-header">
         <button className="logout" onClick={this.handleClick}>
@@ -25,4 +27,4 @@ class ColHeader extends React.Component {
   }
 }
 
-export default ColHeader;
+export default withRouter(ColHeader);

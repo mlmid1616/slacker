@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import { logout } from '../../../../actions/session_actions';
 import ColHeader from './col_header';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return (
-    {}
+    {
+      channel_id: ownProps.channel_id
+    }
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return({
     logout: () => dispatch(logout())
   });

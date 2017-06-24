@@ -4,7 +4,7 @@ import { createSelectedMessage } from '../../../../actions/message_actions';
 
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
+  // 
   return {
     user_id: state.session.currentUser.id,
     channel_id: parseInt(ownProps.channel)

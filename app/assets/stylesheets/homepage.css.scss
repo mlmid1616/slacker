@@ -1,6 +1,6 @@
 .homepage {
   display: flex;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', sans-serif; 
 }
 
 
@@ -20,5 +20,11 @@
 
 .selected-header {
   height: 61px;
+}
 
+.selected-channel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
 }

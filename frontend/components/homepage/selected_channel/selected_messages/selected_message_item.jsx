@@ -1,9 +1,9 @@
 import React from 'react';
 
 const SelectedMessageItem = (message) => {
-  // 
+  //
   return(
-    <li>
+    <li className="selected-message-item">
       {message.message.content}
     </li>
   );

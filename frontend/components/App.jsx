@@ -26,6 +26,7 @@ const App = () => (
 
 export default App;
 
+// <ProtectedRoute path="/messages/:id" component={HomePage} />
 // <div>
 // <header>
 // <LandingPage />

@@ -9,9 +9,9 @@ const SelectedChannel = (props) => {
   const id = props.match.params.id;
 
   return (
-    <div>
+    <div className="selected-channel">
       <SelectedHeader />
-      <SelectedMessageListContainer channel={id} />
+      <SelectedMessageListContainer className="selected-message-list" channel={id} />
       <SelectedInputContainer channel={id}/>
     </div>
   );

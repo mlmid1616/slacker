@@ -1,0 +1,17 @@
+.selected-message-item {
+  background-color: white;
+  height: 45px;
+  width: 1200px;
+}
+
+.selected-message-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.unordered-message-list {
+  overflow: scroll;
+  /* overflow-y: hidden; */
+  /* overflow-x: hidden; */
+  max-height: 100%;
+}
