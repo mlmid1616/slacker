@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import Modal from 'react-modal';
 import SessionFormContainer from '../session_form/session_form_container';
+import { Link, withRouter } from 'react-router-dom';
 
 class Navbar extends React.Component {
   constructor(props){
@@ -9,6 +10,7 @@ class Navbar extends React.Component {
 
     this.state = { isOpen: false};
 
+    this.startDemo = this.startDemo.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -40,6 +42,11 @@ class Navbar extends React.Component {
         this.props.signupForm();
       }
     };
+  }
+
+  startDemo(){
+    const user = {user: {username: "WildernessRulez", password: "password123"}};
+    this.props.login(user).then(() => { this.props.history.push('/messages'); });
   }
 
   componentWillMount(){
@@ -106,6 +113,9 @@ class Navbar extends React.Component {
               Login
             </button>
 
+            <button className="auth" onClick={this.startDemo}>
+              Demo
+            </button>
         </div>
       );
     }
@@ -113,7 +123,7 @@ class Navbar extends React.Component {
 
 
 
-export default Navbar;
+export default withRouter(Navbar);
 
 
 // <div>

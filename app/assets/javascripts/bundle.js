@@ -45628,6 +45628,8 @@ var _reactRedux = __webpack_require__(13);
 
 var _modal_actions = __webpack_require__(128);
 
+var _session_actions = __webpack_require__(36);
+
 var _navbar = __webpack_require__(301);
 
 var _navbar2 = _interopRequireDefault(_navbar);
@@ -45647,6 +45649,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     loginForm: function loginForm() {
       return dispatch((0, _modal_actions.loginForm)());
+    },
+    login: function login(user) {
+      return dispatch((0, _session_actions.login)(user));
     }
   };
 };
@@ -45680,6 +45685,8 @@ var _session_form_container = __webpack_require__(131);
 
 var _session_form_container2 = _interopRequireDefault(_session_form_container);
 
+var _reactRouterDom = __webpack_require__(26);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -45698,6 +45705,7 @@ var Navbar = function (_React$Component) {
 
     _this.state = { isOpen: false };
 
+    _this.startDemo = _this.startDemo.bind(_this);
     _this.handleClick = _this.handleClick.bind(_this);
     _this.openModal = _this.openModal.bind(_this);
     _this.closeModal = _this.closeModal.bind(_this);
@@ -45735,6 +45743,16 @@ var Navbar = function (_React$Component) {
           _this2.props.signupForm();
         }
       };
+    }
+  }, {
+    key: 'startDemo',
+    value: function startDemo() {
+      var _this3 = this;
+
+      var user = { user: { username: "WildernessRulez", password: "password123" } };
+      this.props.login(user).then(function () {
+        _this3.props.history.push('/messages');
+      });
     }
   }, {
     key: 'componentWillMount',
@@ -45810,6 +45828,11 @@ var Navbar = function (_React$Component) {
           'button',
           { className: 'auth', onClick: this.handleModal },
           'Login'
+        ),
+        _react2.default.createElement(
+          'button',
+          { className: 'auth', onClick: this.startDemo },
+          'Demo'
         )
       );
     }
@@ -45818,7 +45841,7 @@ var Navbar = function (_React$Component) {
   return Navbar;
 }(_react2.default.Component);
 
-exports.default = Navbar;
+exports.default = (0, _reactRouterDom.withRouter)(Navbar);
 
 // <div>
 // <h1>Slack image here</h1>
