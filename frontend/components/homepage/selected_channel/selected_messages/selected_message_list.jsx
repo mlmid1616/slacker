@@ -22,7 +22,7 @@ class SelectedMessageList extends React.Component {
 
 
   componentDidMount() {
-    const channel = this.props.channel;
+    let channel = this.props.channel;
     this.props.fetchSelectedMessages(channel);
   }
 
@@ -32,6 +32,12 @@ class SelectedMessageList extends React.Component {
       const channel = this.props.channel;
       this.props.fetchSelectedMessages(channel);
     }
+    
+  }
+
+  componentDidUpdate() {
+    this.bottom.scrollIntoView();
+
   }
 
   // if (nextProps.channel !== this.props.channel){
@@ -51,6 +57,7 @@ class SelectedMessageList extends React.Component {
     return(
       <ul className="unordered-message-list">
         {allMessages}
+        <div ref={el => this.bottom = el}></div>
       </ul>
     );
   }

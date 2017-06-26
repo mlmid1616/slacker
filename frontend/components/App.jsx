@@ -19,7 +19,7 @@ const App = () => (
   <div>
     <header>
       <Route exact path="/" component={LandingPage} />
-      <ProtectedRoute exact path="/messages" component={HomePage} />
+      <ProtectedRoute path="/messages/:id" component={HomePage} />
     </header>
   </div>
 );

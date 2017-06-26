@@ -19,3 +19,13 @@ export const createChannel = (channel) => {
     })
   );
 };
+
+export const fetchCurrentChannel = (channel_id) => {
+  return(
+    $.ajax({
+      type: "GET",
+      url: `api/channels/${channel_id}`,
+      data: {channel: channel_id}
+    })
+  );
+};

@@ -15,16 +15,21 @@ class ColHeader extends React.Component {
     this.props.history.push('/');
   }
   render(){
-     debugger 
+    // let channel_id = this.props.channel_id;
+    // let currentChannel = this.props.fetchCurrentChannel(channel_id);
+
+    let channel_name = this.props.channel_name.name;
+
     return (
       <div className="col-header">
         <button className="logout" onClick={this.handleClick}>
         Logout
         </button>
         <h1>Hi from col header</h1>
+        <p>{channel_name}</p>
       </div>
     );
   }
 }
 
-export default withRouter(ColHeader);
+export default ColHeader;

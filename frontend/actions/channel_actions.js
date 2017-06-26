@@ -33,6 +33,9 @@ export const createChannel = channel => dispatch => {
   // err => (dispatch(receiveErrors(err.responseJSON))));
 };
 
+export const fetchCurrentChannel = (channel_id) => dispatch => {
+  return APIUtil.fetchCurrentChannel(channel_id);
+};
 
 
 // channel has channel name and users

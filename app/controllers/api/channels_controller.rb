@@ -19,11 +19,16 @@ class Api::ChannelsController < ApplicationController
       end
   end
 
-  # def show
-  #   channel = Channel.find_by(name: channel_params[:name])
-  #   @messages = channel.messages
-  #   render "api/channels/show"
-  # end
+  def show
+    
+    @channel = Channel.find_by(id: channel_params[:channel])
+    if @channel
+       
+      render "api/channels/show"
+    else
+      render json: @channel.errors.full_messages, status: 422
+    end
+  end
 
   def destroy
 
@@ -31,7 +36,7 @@ class Api::ChannelsController < ApplicationController
 
 
   def channel_params
-    params.require(:channel).permit(:name, :private, :user_ids)
+    params.require(:channel).permit(:name, :private, :user_ids, :channel_id)
   end
 
 end

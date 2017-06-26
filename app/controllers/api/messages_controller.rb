@@ -7,6 +7,7 @@ class Api::MessagesController < ApplicationController
   end
 
   def create
+      
     @message = Message.new(message_params)
     if @message.save
       render "api/messages/show"
