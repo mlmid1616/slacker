@@ -7553,7 +7553,7 @@ var matchPath = function matchPath(pathname) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.fetchCurrentChannel = exports.createChannel = exports.fetchUserChannels = exports.receiveUserChannel = exports.receiveUserChannels = exports.RECEIVE_USER_CHANNEL = exports.RECEIVE_USER_CHANNELS = undefined;
+exports.fetchCurrentChannel = exports.fetchUserChannels = exports.receiveUserChannel = exports.receiveUserChannels = exports.RECEIVE_USER_CHANNEL = exports.RECEIVE_USER_CHANNELS = undefined;
 
 var _channel_api_util = __webpack_require__(291);
 
@@ -7584,16 +7584,6 @@ var fetchUserChannels = exports.fetchUserChannels = function fetchUserChannels(u
   return function (dispatch) {
     APIUtil.fetchUserChannels(user).then(function (channels) {
       return dispatch(receiveUserChannels(channels));
-    });
-    // err => (dispatch(receiveErrors(err.responseJSON))));
-  };
-};
-
-var createChannel = exports.createChannel = function createChannel(channel) {
-  return function (dispatch) {
-
-    return APIUtil.createChannel(channel).then(function (channel) {
-      return dispatch(receiveUserChannel(channel));
     });
     // err => (dispatch(receiveErrors(err.responseJSON))));
   };
@@ -45752,7 +45742,7 @@ var login = exports.login = function login(user) {
 var signup = exports.signup = function signup(user) {
   return $.ajax({
     method: 'POST',
-    url: '/api/user',
+    url: '/api/users',
     data: user
   });
 };
@@ -47143,6 +47133,8 @@ var _reactRedux = __webpack_require__(11);
 
 var _channel_actions = __webpack_require__(68);
 
+var _user_actions = __webpack_require__(316);
+
 var _channel_list = __webpack_require__(292);
 
 var _channel_list2 = _interopRequireDefault(_channel_list);
@@ -47163,6 +47155,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchUserChannels: function fetchUserChannels(user) {
       return dispatch((0, _channel_actions.fetchUserChannels)(user));
+    },
+    fetchAllUsers: function fetchAllUsers() {
+      return dispatch((0, _user_actions.fetchAllUsers)());
     }
   };
 };
@@ -47184,14 +47179,6 @@ var fetchUserChannels = exports.fetchUserChannels = function fetchUserChannels(u
     type: "GET",
     url: "api/channels",
     data: user
-  });
-};
-
-var createChannel = exports.createChannel = function createChannel(channel) {
-  return $.ajax({
-    type: "POST",
-    url: "api/channels",
-    data: channel
   });
 };
 
@@ -47290,7 +47277,9 @@ var ChannelList = function (_React$Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
+
       this.props.fetchUserChannels(this.props.currentUser);
+      this.props.fetchAllUsers();
     }
   }, {
     key: 'render',
@@ -47302,15 +47291,17 @@ var ChannelList = function (_React$Component) {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(50, 50, 50, 0.50)'
+          backgroundColor: 'rgba(400, 400, 500, 1)'
         },
         content: {
-          top: '50%',
+          top: '40%',
           left: '50%',
           right: 'auto',
           bottom: 'auto',
           marginRight: '-50%',
-          transform: 'translate(-50%, -50%)'
+          transform: 'translate(-50%, -50%)',
+          outline: 'none',
+          border: '0px'
         }
       };
       var allChannels = this.props.channels.map(function (channel, idx) {
@@ -47401,6 +47392,8 @@ var _reactRedux = __webpack_require__(11);
 
 var _channel_actions = __webpack_require__(68);
 
+var _membership_actions = __webpack_require__(318);
+
 var _new_channel_form = __webpack_require__(295);
 
 var _new_channel_form2 = _interopRequireDefault(_new_channel_form);
@@ -47409,13 +47402,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state) {
   //
-  return {};
+  return {
+    users: Object.keys(state.users).map(function (key) {
+      return state.users[key];
+    })
+  };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    createChannel: function createChannel(channel) {
-      return dispatch((0, _channel_actions.createChannel)(channel));
+    createMembership: function createMembership(membership) {
+      return dispatch((0, _membership_actions.createMembership)(membership));
     }
   };
 };
@@ -47461,7 +47458,8 @@ var NewChannelForm = function (_React$Component) {
 
     _this.state = {
       name: "Channel Name",
-      user_ids: "Filter by username"
+      usernames: "Filter by username",
+      secret: false
     };
 
     _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -47502,13 +47500,10 @@ var NewChannelForm = function (_React$Component) {
     }
   }, {
     key: 'handleSubmit',
-    value: function handleSubmit(channel) {
-
-      var that = this;
-      return function (e) {
-        e.preventDefault();
-        that.props.createChannel(that.state);
-      };
+    value: function handleSubmit(e) {
+      debugger;
+      e.preventDefault();
+      this.props.createMembership(this.state);
     }
   }, {
     key: 'render',
@@ -47528,6 +47523,7 @@ var NewChannelForm = function (_React$Component) {
             'div',
             null,
             _react2.default.createElement('input', { type: 'text',
+              className: 'channel-form-input',
               value: this.state.name,
               onClick: this.empty("name"),
               onChange: this.update("name")
@@ -47537,12 +47533,13 @@ var NewChannelForm = function (_React$Component) {
             'div',
             null,
             _react2.default.createElement('input', { type: 'text',
-              value: this.state.users,
-              onClick: this.empty("users"),
-              onChange: this.update("users")
+              className: 'channel-form-input',
+              value: this.state.usernames,
+              onClick: this.empty("usernames"),
+              onChange: this.update("usernames")
             })
           ),
-          _react2.default.createElement('input', { className: 'submit', type: 'submit',
+          _react2.default.createElement('input', { className: 'channel-submit', type: 'submit',
             value: 'Create Channel' })
         )
       );
@@ -48256,13 +48253,18 @@ var _message_reducer = __webpack_require__(314);
 
 var _message_reducer2 = _interopRequireDefault(_message_reducer);
 
+var _user_reducer = __webpack_require__(315);
+
+var _user_reducer2 = _interopRequireDefault(_user_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var RootReducer = (0, _redux.combineReducers)({
   session: _session_reducer2.default,
   modal: _modal_reducer2.default,
   channels: _channel_reducer2.default,
-  messages: _message_reducer2.default
+  messages: _message_reducer2.default,
+  users: _user_reducer2.default
 });
 
 exports.default = RootReducer;
@@ -48354,6 +48356,8 @@ var _lodash = __webpack_require__(70);
 
 var _channel_actions = __webpack_require__(68);
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var default_state = {};
 var ChannelReducer = function ChannelReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : default_state;
@@ -48365,7 +48369,7 @@ var ChannelReducer = function ChannelReducer() {
       newState = (0, _lodash.merge)({}, state, action.channels);
       return newState;
     case _channel_actions.RECEIVE_USER_CHANNEL:
-      newState = (0, _lodash.merge)({}, state, action.channel);
+      newState = (0, _lodash.merge)({}, state, _defineProperty({}, action.channel.id, action.channel));
       return newState;
     default:
       return state;
@@ -48411,6 +48415,138 @@ var MessageReducer = function MessageReducer() {
 };
 
 exports.default = MessageReducer;
+
+/***/ }),
+/* 315 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _user_actions = __webpack_require__(316);
+
+var _lodash = __webpack_require__(70);
+
+var UserReducer = function UserReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var action = arguments[1];
+
+  var newState = void 0;
+  switch (action.type) {
+    case _user_actions.RECEIVE_ALL_USERS:
+      newState = (0, _lodash.merge)({}, state, action.users);
+      return newState;
+    default:
+      return state;
+  }
+};
+
+exports.default = UserReducer;
+
+/***/ }),
+/* 316 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.fetchAllUsers = exports.receiveAllUsers = exports.RECEIVE_ALL_USERS = undefined;
+
+var _user_api_util = __webpack_require__(317);
+
+var APIUtil = _interopRequireWildcard(_user_api_util);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var RECEIVE_ALL_USERS = exports.RECEIVE_ALL_USERS = 'RECEIVE_ALL_USERS';
+var receiveAllUsers = exports.receiveAllUsers = function receiveAllUsers(users) {
+  return {
+    type: RECEIVE_ALL_USERS,
+    users: users
+  };
+};
+
+var fetchAllUsers = exports.fetchAllUsers = function fetchAllUsers() {
+  return function (dispatch) {
+    APIUtil.fetchAllUsers().then(function (users) {
+      return dispatch(receiveAllUsers(users));
+    });
+    // err => (dispatch(receiveErrors(err.responseJSON))));
+  };
+};
+
+/***/ }),
+/* 317 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var fetchAllUsers = exports.fetchAllUsers = function fetchAllUsers() {
+  return $.ajax({
+    type: "GET",
+    url: "api/users"
+  });
+};
+
+/***/ }),
+/* 318 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createMembership = undefined;
+
+var _membership_api_util = __webpack_require__(319);
+
+var APIUtil = _interopRequireWildcard(_membership_api_util);
+
+var _channel_actions = __webpack_require__(68);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var createMembership = exports.createMembership = function createMembership(membership) {
+  return function (dispatch) {
+    return APIUtil.createMembership(membership).then(function (channel) {
+      return dispatch((0, _channel_actions.receiveUserChannel)(channel));
+    });
+    // err => (dispatch(receiveErrors(err.responseJSON))));
+  };
+};
+
+/***/ }),
+/* 319 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var createMembership = exports.createMembership = function createMembership(membership) {
+  debugger;
+  return $.ajax({
+    type: "POST",
+    url: "api/memberships",
+    data: { channel: { name: membership.name, secret: membership.secret },
+      user_ids: membership.usernames }
+  });
+};
 
 /***/ })
 /******/ ]);

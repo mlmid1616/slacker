@@ -10,15 +10,7 @@ export const fetchUserChannels = (user) => {
   );
 };
 
-export const createChannel = (channel) => {
-  return (
-    $.ajax({
-      type: "POST",
-      url: "api/channels",
-      data: channel
-    })
-  );
-};
+
 
 export const fetchCurrentChannel = (channel_id) => {
   return(

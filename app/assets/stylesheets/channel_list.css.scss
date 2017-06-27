@@ -4,8 +4,31 @@
 }
 
 .new-channel-form {
+  justify-content: center;
   display: flex;
   flex-direction: column;
+  width: 500px;
+  font-size: 29px;
+  border: none;
+  outline: none;
+  font-family: 'Nunito', sans-serif;
+}
+
+.channel-form-input {
+  color: #eee;
+  width: 430px;
+  height: 48px;
+  border-radius: 10px;
+  border: 2px solid;
+  padding: 5px;
+  margin-top: 16px;
+  font-size: 26px;
+  padding-left: 10px;
+  outline: none;
+}
+
+.channel-form-input:focus{
+  color: black;
 }
 
 .channel-list-item a {
@@ -20,4 +43,24 @@
 .big-text-nav-bar {
   font-size: 13px;
   color: #ab9ba9;
+}
+
+.channel-submit {
+  margin-top: 10px;
+  margin-right: 20px;
+  background-color: #2ab27b;
+  background-repeat: #2ab27b;
+  border: none;
+  overflow: hidden;
+  outline: none;
+  cursor: pointer;
+  font-size: 26px;
+  color: white;
+  opacity: .99;
+  color: white;
+  width: 448px;
+  justify-content: center;
+  font-family: 'Nunito', sans-serif;
+  height: 64px;
+  border-radius: 7px;
 }

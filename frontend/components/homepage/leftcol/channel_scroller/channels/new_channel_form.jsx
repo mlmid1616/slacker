@@ -8,7 +8,8 @@ class NewChannelForm extends React.Component {
 
     this.state = {
       name: "Channel Name",
-      user_ids: "Filter by username"
+      usernames: "Filter by username",
+      secret: false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,14 +42,12 @@ class NewChannelForm extends React.Component {
     });
   }
 
-  handleSubmit(channel) {
-    
-    let that = this;
-    return (e) => {
+  handleSubmit(e) {
+    debugger
       e.preventDefault();
-      that.props.createChannel(that.state);
-    };
-  }
+      this.props.createMembership(this.state);
+    }
+
 
   render(){
     return(
@@ -60,6 +59,7 @@ class NewChannelForm extends React.Component {
 
           <div>
             <input type="text"
+              className="channel-form-input"
               value={this.state.name}
               onClick={this.empty("name")}
               onChange={this.update("name")}
@@ -68,14 +68,15 @@ class NewChannelForm extends React.Component {
 
           <div>
             <input type="text"
-              value={this.state.users}
-              onClick={this.empty("users")}
-              onChange={this.update("users")}
+              className="channel-form-input"
+              value={this.state.usernames}
+              onClick={this.empty("usernames")}
+              onChange={this.update("usernames")}
               />
           </div>
 
 
-          <input className="submit" type="submit"
+          <input className="channel-submit" type="submit"
             value="Create Channel" />
         </form>
 
