@@ -32,7 +32,7 @@ class SelectedMessageList extends React.Component {
       const channel = this.props.channel;
       this.props.fetchSelectedMessages(channel);
     }
-    
+
   }
 
   componentDidUpdate() {
@@ -46,21 +46,20 @@ class SelectedMessageList extends React.Component {
   // }
 
   render(){
-    const that = this;
-    const allMessages = this.props.messages.map( (message, idx) => {
-        if (message.channel_id === parseInt(that.props.channel)) {
-          return <SelectedMessageItem message={message} key={idx}/> ;
-        }
-      }
-    );
-
-    return(
-      <ul className="unordered-message-list">
-        {allMessages}
-        <div ref={el => this.bottom = el}></div>
-      </ul>
-    );
-  }
+     const that = this;
+     const allMessages = this.props.messages.map( (message, idx) => {
+         if (message.channel_id === parseInt(that.props.channel)) {
+           return <SelectedMessageItem message={message} key={idx}/> ;
+         }
+       }
+     );
+     return(
+       <ul className="unordered-message-list">
+         {allMessages}
+         <div ref={el => this.bottom = el}></div>
+       </ul>
+     );
+   }
 }
 
 export default withRouter(SelectedMessageList);

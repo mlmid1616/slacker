@@ -43,7 +43,7 @@ class NewChannelForm extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger
+
       e.preventDefault();
       this.props.createMembership(this.state);
     }

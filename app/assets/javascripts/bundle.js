@@ -47304,9 +47304,19 @@ var ChannelList = function (_React$Component) {
           border: '0px'
         }
       };
+
       var allChannels = this.props.channels.map(function (channel, idx) {
         return _react2.default.createElement(_channel_list_item2.default, { channel: channel, key: idx });
       });
+
+      // let allDirectMessages = this.props.channels.map(
+      //   (channel,idx) => {
+      //     if (channel.private === false){
+      //       <DirectMessageItem dmessage={dmessage} key={idx}/>;
+      //     }
+      //   });
+
+
       return _react2.default.createElement(
         'div',
         { className: 'channel-list' },
@@ -47501,7 +47511,7 @@ var NewChannelForm = function (_React$Component) {
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
-      debugger;
+
       e.preventDefault();
       this.props.createMembership(this.state);
     }
@@ -47790,7 +47800,6 @@ var SelectedMessageList = function (_React$Component) {
           return _react2.default.createElement(_selected_message_item2.default, { message: message, key: idx });
         }
       });
-
       return _react2.default.createElement(
         'ul',
         { className: 'unordered-message-list' },
@@ -48539,7 +48548,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var createMembership = exports.createMembership = function createMembership(membership) {
-  debugger;
+
   return $.ajax({
     type: "POST",
     url: "api/memberships",

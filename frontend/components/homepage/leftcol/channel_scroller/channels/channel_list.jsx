@@ -73,7 +73,20 @@ class ChannelList extends React.Component {
       border                : '0px'
   }
   };
-    let allChannels = this.props.channels.map( (channel,idx) => <ChannelListItem channel={channel} key={idx}/>);
+
+    let allChannels = this.props.channels.map(
+      (channel,idx) => {
+          return <ChannelListItem channel={channel} key={idx}/>;
+      });
+
+    // let allDirectMessages = this.props.channels.map(
+    //   (channel,idx) => {
+    //     if (channel.private === false){
+    //       <DirectMessageItem dmessage={dmessage} key={idx}/>;
+    //     }
+    //   });
+
+
     return(
       <div className="channel-list">
           <Modal
