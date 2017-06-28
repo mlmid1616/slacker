@@ -100,23 +100,32 @@ class ChannelList extends React.Component {
 
     return(
       <div className="channel-list">
-          <Modal
-            onRequestClose={this.closeModal}
-             isOpen={this.state.isOpen}
-             contentLabel="Modal"
-             style={customStyles} >
-            <NewChannelFormContainer  />
-          </Modal>
-            <button className="" onClick={this.handleModal}>
-              Make a new channel!
-          </button>
-          <br />
+        <div>
+          <div className="channel-and-form">
+            <Modal
+              onRequestClose={this.closeModal}
+              isOpen={this.state.isOpen}
+              contentLabel="Modal"
+              style={customStyles} >
+              <NewChannelFormContainer  />
+            </Modal>
+
+              <span className="channel-label">
+                CHANNELS
+              </span>
+              <span className="button">
+                <i className="fa fa-plus-circle"
+                  aria-hidden="true"
+                  onClick={this.handleModal}></i>
+              </span>
+          </div>
+        </div>
+
           <ul className="big-text-nav-bar">
 
-          CHANNELS
-          <div className="open-channel">
-            {allChannels}
-          </div>
+            <div className="open-channel">
+              {allChannels}
+            </div>
           </ul>
 
 
@@ -127,15 +136,22 @@ class ChannelList extends React.Component {
              style={customStyles} >
             <NewDirectMessageFormContainer  />
           </Modal>
-            <button className="" onClick={this.handleModal}>
-              Make a direct message!
-          </button>
+
 
           <ul className="big-text-nav-bar">
-          DIRECT MESSAGES
-          <div className="closed-channel">
-            {allDirectMessages}
-          </div>  
+            <div className="channel-and-form">
+              <span>
+                DIRECT MESSAGES
+              </span>
+              <span className="button">
+                <i className="fa fa-plus-circle"
+                  aria-hidden="true"
+                  onClick={this.handleModal}></i>
+              </span>
+            </div>
+            <div className="closed-channel">
+              {allDirectMessages}
+            </div>
           </ul>
       </div>
     );
@@ -143,3 +159,15 @@ class ChannelList extends React.Component {
 }
 
 export default ChannelList;
+
+
+
+
+
+
+
+
+
+// <button className="" onClick={this.handleModal}>
+//   make channel
+// </button>

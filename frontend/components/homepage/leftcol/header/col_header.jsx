@@ -17,16 +17,18 @@ class ColHeader extends React.Component {
   render(){
     // let channel_id = this.props.channel_id;
     // let currentChannel = this.props.fetchCurrentChannel(channel_id);
-    
-    let channel_name = this.props.channel_name.name;
 
+    let channel_name = this.props.channel_name.name;
+    let current_user = this.props.current_user;
     return (
       <div className="col-header">
         <button className="logout" onClick={this.handleClick}>
         Logout
         </button>
-        <h1>Hi from col header</h1>
-        <p>{channel_name}</p>
+        <h4>slacker</h4>
+        <div className="current-user-greeting">
+          <p>{current_user}</p>
+        </div>
       </div>
     );
   }

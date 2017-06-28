@@ -75,3 +75,17 @@
   height: 64px;
   border-radius: 7px;
 }
+
+.channel-and-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.channel-label {
+  font-size:12px;
+}
+
+.button {
+  padding-right: 9px;
+}

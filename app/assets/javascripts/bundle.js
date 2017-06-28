@@ -47084,9 +47084,10 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     channel_id = parseInt(ownProps.match.params.id);
     channel_name = state.channels[channel_id];
   }
-
+  debugger;
   return {
-    channel_name: channel_name
+    channel_name: channel_name,
+    current_user: state.session.currentUser.username
   };
 };
 
@@ -47182,7 +47183,7 @@ var ColHeader = function (_React$Component) {
       // let currentChannel = this.props.fetchCurrentChannel(channel_id);
 
       var channel_name = this.props.channel_name.name;
-
+      var current_user = this.props.current_user;
       return _react2.default.createElement(
         'div',
         { className: 'col-header' },
@@ -47192,14 +47193,18 @@ var ColHeader = function (_React$Component) {
           'Logout'
         ),
         _react2.default.createElement(
-          'h1',
+          'h4',
           null,
-          'Hi from col header'
+          'slacker'
         ),
         _react2.default.createElement(
-          'p',
-          null,
-          channel_name
+          'div',
+          { className: 'current-user-greeting' },
+          _react2.default.createElement(
+            'p',
+            null,
+            current_user
+          )
         )
       );
     }
@@ -47475,24 +47480,37 @@ var ChannelList = function (_React$Component) {
         'div',
         { className: 'channel-list' },
         _react2.default.createElement(
-          _reactModal2.default,
-          {
-            onRequestClose: this.closeModal,
-            isOpen: this.state.isOpen,
-            contentLabel: 'Modal',
-            style: customStyles },
-          _react2.default.createElement(_new_channel_form_container2.default, null)
+          'div',
+          null,
+          _react2.default.createElement(
+            'div',
+            { className: 'channel-and-form' },
+            _react2.default.createElement(
+              _reactModal2.default,
+              {
+                onRequestClose: this.closeModal,
+                isOpen: this.state.isOpen,
+                contentLabel: 'Modal',
+                style: customStyles },
+              _react2.default.createElement(_new_channel_form_container2.default, null)
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'channel-label' },
+              'CHANNELS'
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'button' },
+              _react2.default.createElement('i', { className: 'fa fa-plus-circle',
+                'aria-hidden': 'true',
+                onClick: this.handleModal })
+            )
+          )
         ),
-        _react2.default.createElement(
-          'button',
-          { className: '', onClick: this.handleModal },
-          'Make a new channel!'
-        ),
-        _react2.default.createElement('br', null),
         _react2.default.createElement(
           'ul',
           { className: 'big-text-nav-bar' },
-          'CHANNELS',
           _react2.default.createElement(
             'div',
             { className: 'open-channel' },
@@ -47509,14 +47527,24 @@ var ChannelList = function (_React$Component) {
           _react2.default.createElement(_new_direct_message_form_container2.default, null)
         ),
         _react2.default.createElement(
-          'button',
-          { className: '', onClick: this.handleModal },
-          'Make a direct message!'
-        ),
-        _react2.default.createElement(
           'ul',
           { className: 'big-text-nav-bar' },
-          'DIRECT MESSAGES',
+          _react2.default.createElement(
+            'div',
+            { className: 'channel-and-form' },
+            _react2.default.createElement(
+              'span',
+              null,
+              'DIRECT MESSAGES'
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'button' },
+              _react2.default.createElement('i', { className: 'fa fa-plus-circle',
+                'aria-hidden': 'true',
+                onClick: this.handleModal })
+            )
+          ),
           _react2.default.createElement(
             'div',
             { className: 'closed-channel' },
@@ -47531,6 +47559,10 @@ var ChannelList = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = ChannelList;
+
+// <button className="" onClick={this.handleModal}>
+//   make channel
+// </button>
 
 /***/ }),
 /* 297 */

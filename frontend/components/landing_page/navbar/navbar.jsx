@@ -100,7 +100,7 @@ class Navbar extends React.Component {
           </Modal>
             <button className="auth" onClick={this.handleModal}>
               Sign Up
-          </button>
+            </button>
 
           <Modal
             onRequestClose={this.closeModal}
