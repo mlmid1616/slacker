@@ -1,11 +1,13 @@
 .selected-message-item {
   background-color: white;
   height: 45px;
+  margin-left: 27px;
+  margin-top: 5px;
 }
 
 .selected-message-list {
-  display: flex;
-  flex-direction: column;
+  background-color: white;
+  height: 45px;
 }
 
 .unordered-message-list {
@@ -13,4 +15,16 @@
   /* overflow-y: hidden; */
   /* overflow-x: hidden; */
   max-height: 100%;
+}
+
+.authorPic {
+  height: 40px;
+  width: 40px;
+  border-radius: 3px;
+  margin-right: 7px;
+}
+
+.selected-message-item-div {
+  display: flex;
+
 }

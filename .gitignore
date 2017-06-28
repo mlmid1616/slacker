@@ -17,3 +17,6 @@ node_modules/
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore application configuration
+/config/application.yml

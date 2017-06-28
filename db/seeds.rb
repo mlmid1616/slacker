@@ -6,16 +6,32 @@
 #   movies = Movie.123create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.destroy_all
+# User.destroy_all
+# pic = File.open('app/assets/images/jfk.jpeg')
+#
+# teddy = User.create!(username:"WildernessRulez", password: "password123", avatar: pic)
+# george = User.create!(username:"RevolutionRinger", password: "password123", avatar: pic)
+# lincoln = User.create!(username:"TopHatKing", password: "password123", avatar: pic)
+# hoover = User.create!(username:"DamBuilder", password: "password123", avatar: pic)
+# kennedy = User.create!(username:"MoonOrBust", password: "password123", avatar: pic)
+# obama = User.create!(username:"BarrackObama3456", password: "password123", avatar: pic)
 
-teddy = User.create(username:"WildernessRulez", password: "password123")
-george = User.create(username:"RevolutionRinger", password: "password123")
-lincoln = User.create(username:"TopHatKing", password: "password123")
-hoover = User.create(username:"DamBuilder", password: "password123")
-kennedy = User.create(username:"MoonOrBust", password: "password123")
-obama = User.create(username:"BarrackObama3456", password: "password123")
+User.destroy_all
+# pic = File.open('app/assets/images/jfk.jpeg')
+
+teddy = User.create!(username:"WildernessRulez", password: "password123", avatar: File.open('app/assets/images/teddy.jpg'))
+george = User.create!(username:"RevolutionRinger", password: "password123", avatar: File.open('app/assets/images/george.jpg'))
+lincoln = User.create!(username:"TopHatKing", password: "password123", avatar: File.open('app/assets/images/lincoln.jpeg'))
+hoover = User.create!(username:"DamBuilder", password: "password123", avatar: File.open('app/assets/images/hoover.jpg'))
+kennedy = User.create!(username:"MoonOrBust", password: "password123", avatar: File.open('app/assets/images/jfk.jpeg'))
+obama = User.create!(username:"BarrackObama3456", password: "password123", avatar: File.open('app/assets/images/obama.jpeg'))
 
 user_ids = [teddy.id, george.id, lincoln.id, hoover.id, kennedy.id, obama.id]
+
+# users = [teddy, george, lincoln, hoover, kennedy, obama]
+
+
+
 
 
 Channel.destroy_all

@@ -1,12 +1,18 @@
 import React from 'react';
 
-const SelectedMessageItem = (message) => {
-  //
+const SelectedMessageItem = ({ message }) => {
+  debugger
   return(
     <li className="selected-message-item">
-      {message.message.content}
+      <div className="selected-message-item-div">
+        <img className="authorPic" src={message.authorPic} />
+        {message.authorName}
+        <br />
+        {message.content}
+      </div>
     </li>
   );
 };
+// <img src={message.authorPic} />
 
 export default SelectedMessageItem;
