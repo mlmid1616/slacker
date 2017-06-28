@@ -32,17 +32,28 @@
 }
 
 .channel-list-item a {
-  color: #ab9ba9;
   border-bottom: none;
   text-decoration:none;
-  font-size: 15px;
   padding-left: 8px;
   margin-top:5px;
+  color: inherit;
+  size: inherit;
+}
+
+.open-channel {
+  color: white;
+  font-size: 14px;
+}
+
+.closed-channel {
+  color: #9e8e9c;
+  font-size: 12px;
 }
 
 .big-text-nav-bar {
   font-size: 13px;
   color: #ab9ba9;
+  margin-left: 5px;
 }
 
 .channel-submit {

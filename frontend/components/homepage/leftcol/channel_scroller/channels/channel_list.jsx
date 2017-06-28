@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 
 import ChannelListItem from './channel_list_item';
 import NewChannelFormContainer from './new_channel_form_container';
+import NewDirectMessageFormContainer from './new_direct_message_form_container';
 
 class ChannelList extends React.Component {
   constructor(props){
@@ -111,10 +112,30 @@ class ChannelList extends React.Component {
           </button>
           <br />
           <ul className="big-text-nav-bar">
+
           CHANNELS
+          <div className="open-channel">
             {allChannels}
+          </div>
+          </ul>
+
+
+          <Modal
+            onRequestClose={this.closeModal}
+             isOpen={this.state.isOpen}
+             contentLabel="Modal"
+             style={customStyles} >
+            <NewDirectMessageFormContainer  />
+          </Modal>
+            <button className="" onClick={this.handleModal}>
+              Make a direct message!
+          </button>
+
+          <ul className="big-text-nav-bar">
           DIRECT MESSAGES
+          <div className="closed-channel">
             {allDirectMessages}
+          </div>  
           </ul>
       </div>
     );

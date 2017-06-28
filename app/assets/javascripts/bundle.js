@@ -47328,6 +47328,10 @@ var _new_channel_form_container = __webpack_require__(297);
 
 var _new_channel_form_container2 = _interopRequireDefault(_new_channel_form_container);
 
+var _new_direct_message_form_container = __webpack_require__(321);
+
+var _new_direct_message_form_container2 = _interopRequireDefault(_new_direct_message_form_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -47456,9 +47460,35 @@ var ChannelList = function (_React$Component) {
           'ul',
           { className: 'big-text-nav-bar' },
           'CHANNELS',
-          allChannels,
+          _react2.default.createElement(
+            'div',
+            { className: 'open-channel' },
+            allChannels
+          )
+        ),
+        _react2.default.createElement(
+          _reactModal2.default,
+          {
+            onRequestClose: this.closeModal,
+            isOpen: this.state.isOpen,
+            contentLabel: 'Modal',
+            style: customStyles },
+          _react2.default.createElement(_new_direct_message_form_container2.default, null)
+        ),
+        _react2.default.createElement(
+          'button',
+          { className: '', onClick: this.handleModal },
+          'Make a direct message!'
+        ),
+        _react2.default.createElement(
+          'ul',
+          { className: 'big-text-nav-bar' },
           'DIRECT MESSAGES',
-          allDirectMessages
+          _react2.default.createElement(
+            'div',
+            { className: 'closed-channel' },
+            allDirectMessages
+          )
         )
       );
     }
@@ -48635,6 +48665,171 @@ var UserReducer = function UserReducer() {
 };
 
 exports.default = UserReducer;
+
+/***/ }),
+/* 321 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(11);
+
+var _channel_actions = __webpack_require__(33);
+
+var _membership_actions = __webpack_require__(298);
+
+var _new_direct_message_form = __webpack_require__(322);
+
+var _new_direct_message_form2 = _interopRequireDefault(_new_direct_message_form);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  //
+  return {
+    users: Object.keys(state.users).map(function (key) {
+      return state.users[key];
+    })
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createMembership: function createMembership(membership) {
+      return dispatch((0, _membership_actions.createMembership)(membership));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_new_direct_message_form2.default);
+
+/***/ }),
+/* 322 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(3);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(16);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NewDirectMessageForm = function (_React$Component) {
+  _inherits(NewDirectMessageForm, _React$Component);
+
+  function NewDirectMessageForm(props) {
+    _classCallCheck(this, NewDirectMessageForm);
+
+    var _this = _possibleConstructorReturn(this, (NewDirectMessageForm.__proto__ || Object.getPrototypeOf(NewDirectMessageForm)).call(this, props));
+
+    _this.state = {
+      name: "",
+      usernames: "Filter by usernames",
+      secret: true
+    };
+
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.empty = _this.empty.bind(_this);
+    return _this;
+  }
+
+  // empty (type) {
+  //   return (e) => {
+  //     e.preventDefault();
+  //     if (e.currentTarget.value === "Channel Name" ||
+  //         e.currentTarget.value === "Filter by username"){
+  //           this.setState({[type]:''});
+  //         }
+  //   };
+  // }
+
+  _createClass(NewDirectMessageForm, [{
+    key: 'empty',
+    value: function empty(type) {
+      var _this2 = this;
+
+      return function (e) {
+        e.preventDefault();
+        if (e.currentTarget.value === "Filter by username") {
+          _this2.setState(_defineProperty({}, type, ''));
+        }
+      };
+    }
+  }, {
+    key: 'update',
+    value: function update(field) {
+      var _this3 = this;
+
+      return function (e) {
+        return _this3.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: 'handleSubmit',
+    value: function handleSubmit(e) {
+      debugger;
+      e.preventDefault();
+      this.setState({ name: this.state.usernames });
+      this.props.createMembership(this.state);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'new-channel-form' },
+        _react2.default.createElement(
+          'form',
+          { onSubmit: this.handleSubmit },
+          _react2.default.createElement(
+            'div',
+            null,
+            'Enter the usernames.'
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement('input', { type: 'text',
+              className: 'channel-form-input',
+              value: this.state.usernames,
+              onClick: this.empty("usernames"),
+              onChange: this.update("usernames")
+            })
+          ),
+          _react2.default.createElement('input', { className: 'channel-submit', type: 'submit',
+            value: 'Create Channel' })
+        )
+      );
+    }
+  }]);
+
+  return NewDirectMessageForm;
+}(_react2.default.Component);
+
+exports.default = NewDirectMessageForm;
 
 /***/ })
 /******/ ]);
