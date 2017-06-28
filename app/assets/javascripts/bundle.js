@@ -47189,24 +47189,26 @@ var ColHeader = function (_React$Component) {
         'div',
         { className: 'col-header' },
         _react2.default.createElement(
-          'button',
-          { className: 'logout', onClick: this.handleClick },
-          'Logout'
-        ),
-        _react2.default.createElement(
-          'h4',
-          null,
-          'slacker'
-        ),
-        _react2.default.createElement(
           'div',
-          { className: 'current-user-greeting' },
+          { className: 'col-greeting' },
           _react2.default.createElement(
-            'p',
+            'h4',
             null,
-            current_user
+            'slacker'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'current-user-greeting' },
+            _react2.default.createElement(
+              'p',
+              null,
+              current_user
+            )
           )
-        )
+        ),
+        _react2.default.createElement('i', { className: 'fa fa-sign-out',
+          'aria-hidden': 'true',
+          onClick: this.handleClick })
       );
     }
   }]);
@@ -47215,6 +47217,10 @@ var ColHeader = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = ColHeader;
+
+// <button className="logout" onClick={this.handleClick}>
+//   logout
+// </button>
 
 /***/ }),
 /* 293 */

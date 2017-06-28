@@ -22,16 +22,24 @@ class ColHeader extends React.Component {
     let current_user = this.props.current_user;
     return (
       <div className="col-header">
-        <button className="logout" onClick={this.handleClick}>
-        Logout
-        </button>
-        <h4>slacker</h4>
-        <div className="current-user-greeting">
-          <p>{current_user}</p>
+        <div className="col-greeting">
+          <h4>slacker</h4>
+          <div className="current-user-greeting">
+            <p>{current_user}</p>
+          </div>
         </div>
+        <i className="fa fa-sign-out"
+           aria-hidden="true"
+           onClick={this.handleClick}></i>
       </div>
     );
   }
 }
 
 export default ColHeader;
+
+
+
+// <button className="logout" onClick={this.handleClick}>
+//   logout
+// </button>

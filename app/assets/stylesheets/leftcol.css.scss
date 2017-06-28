@@ -6,11 +6,43 @@
 }
 
 .col-header {
+  display: flex;
+  flex-direction: row;
   margin-bottom: 10px;
 }
+
 .current-user-greeting {
   font-size: 13px;
   color: #a291a0;
+}
+
+.logout {
+    outline: none;
+    border: 1px solid;
+    background: #4d394b;
+    color: #aa9aa8;
+    border-radius: 5px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    height: 25px;
+    align-items: center;
+    position: relative;
+    left: 22px;
+    top: 3px;
+    justify-content: center;
+    padding-bottom: 6px;
+}
+
+.fa-sign-out:hover {
+    cursor: pointer;
+}
+
+.fa-sign-out {
+  // font-size:12px;
+  color: white;
+  position: relative;
+  left: 65px;
+  top: 5px;
 }
 
 // .total-left-col {
