@@ -42,7 +42,7 @@ class NewDirectMessageForm extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger
+    
       e.preventDefault();
       this.setState({name:this.state.usernames});
       this.props.createMembership(this.state);

@@ -1,6 +1,6 @@
 .homepage {
   display: flex;
-  font-family: 'Nunito', sans-serif; 
+  font-family: 'Nunito', sans-serif;
 }
 
 
@@ -20,6 +20,14 @@
 
 .selected-header {
   height: 61px;
+  position: absolute;
+  position: absolute;
+  left: 200px;
+  top: 0px;
+  width: 100%;
+  height: 61px;
+  background: white;
+  border-bottom: 1px solid;
 }
 
 .selected-channel {
@@ -27,4 +35,17 @@
   flex-direction: column;
   justify-content: flex-end;
   width: 100%;
+}
+
+.header-message-list {
+  justify-content: space-between;
+}
+
+.selected-channel-header {
+  z-index: 50;
+}
+
+.selected-header-text {
+  padding-top: 20px;
+  padding-left: 5px;
 }

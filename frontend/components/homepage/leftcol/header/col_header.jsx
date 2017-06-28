@@ -17,7 +17,7 @@ class ColHeader extends React.Component {
   render(){
     // let channel_id = this.props.channel_id;
     // let currentChannel = this.props.fetchCurrentChannel(channel_id);
-
+    
     let channel_name = this.props.channel_name.name;
 
     return (
