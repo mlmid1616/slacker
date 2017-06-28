@@ -24728,6 +24728,7 @@ var receiveSelectedMessage = exports.receiveSelectedMessage = function receiveSe
 
 var fetchSelectedMessages = exports.fetchSelectedMessages = function fetchSelectedMessages(channel_id) {
   return function (dispatch) {
+    debugger;
     return APIUtil.fetchSelectedMessages(channel_id).then(function (messages) {
       return dispatch(receiveSelectedMessages(messages));
     });
@@ -47236,10 +47237,6 @@ var _channel_list_container = __webpack_require__(294);
 
 var _channel_list_container2 = _interopRequireDefault(_channel_list_container);
 
-var _direct_message_list = __webpack_require__(303);
-
-var _direct_message_list2 = _interopRequireDefault(_direct_message_list);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -47247,6 +47244,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import DirectMessageList from './direct_messages/direct_message_list';
 
 var ChannelScroller = function (_React$Component) {
   _inherits(ChannelScroller, _React$Component);
@@ -47263,8 +47262,7 @@ var ChannelScroller = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'channel-scroller' },
-        _react2.default.createElement(_channel_list_container2.default, null),
-        _react2.default.createElement(_direct_message_list2.default, null)
+        _react2.default.createElement(_channel_list_container2.default, null)
       );
     }
   }]);
@@ -47370,6 +47368,10 @@ var _new_direct_message_form_container = __webpack_require__(301);
 
 var _new_direct_message_form_container2 = _interopRequireDefault(_new_direct_message_form_container);
 
+var _direct_message_list = __webpack_require__(324);
+
+var _direct_message_list2 = _interopRequireDefault(_direct_message_list);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -47442,7 +47444,8 @@ var ChannelList = function (_React$Component) {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(400, 400, 500, 1)'
+          backgroundColor: 'rgba(400, 400, 500, 1)',
+          zIndex: 2
         },
         content: {
           top: '40%',
@@ -47517,40 +47520,7 @@ var ChannelList = function (_React$Component) {
             allChannels
           )
         ),
-        _react2.default.createElement(
-          _reactModal2.default,
-          {
-            onRequestClose: this.closeModal,
-            isOpen: this.state.isOpen,
-            contentLabel: 'Modal',
-            style: customStyles },
-          _react2.default.createElement(_new_direct_message_form_container2.default, null)
-        ),
-        _react2.default.createElement(
-          'ul',
-          { className: 'big-text-nav-bar' },
-          _react2.default.createElement(
-            'div',
-            { className: 'channel-and-form' },
-            _react2.default.createElement(
-              'span',
-              null,
-              'DIRECT MESSAGES'
-            ),
-            _react2.default.createElement(
-              'span',
-              { className: 'button' },
-              _react2.default.createElement('i', { className: 'fa fa-plus-circle',
-                'aria-hidden': 'true',
-                onClick: this.handleModal })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'closed-channel' },
-            allDirectMessages
-          )
-        )
+        _react2.default.createElement(_direct_message_list2.default, { allDirectMessages: allDirectMessages })
       );
     }
   }]);
@@ -47586,14 +47556,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var ChannelListItem = function ChannelListItem(_ref) {
   var channel = _ref.channel;
 
-
+  debugger;
+  var pretext = void 0;
+  if (channel.private) {
+    pretext = _react2.default.createElement('i', { className: 'fa fa-circle', 'aria-hidden': 'true' });
+  } else {
+    pretext = "#";
+  }
   return _react2.default.createElement(
     'li',
     { className: 'channel-list-item' },
     _react2.default.createElement(
       _reactRouterDom.Link,
       { to: '/messages/' + channel.id },
-      '#',
+      pretext,
       channel.name
     )
   );
@@ -47961,56 +47937,7 @@ var NewDirectMessageForm = function (_React$Component) {
 exports.default = NewDirectMessageForm;
 
 /***/ }),
-/* 303 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var DirectMessageList = function (_React$Component) {
-  _inherits(DirectMessageList, _React$Component);
-
-  function DirectMessageList() {
-    _classCallCheck(this, DirectMessageList);
-
-    return _possibleConstructorReturn(this, (DirectMessageList.__proto__ || Object.getPrototypeOf(DirectMessageList)).apply(this, arguments));
-  }
-
-  _createClass(DirectMessageList, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'h1',
-        null,
-        'Hi from DMList'
-      );
-    }
-  }]);
-
-  return DirectMessageList;
-}(_react2.default.Component);
-
-exports.default = DirectMessageList;
-
-/***/ }),
+/* 303 */,
 /* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -48047,7 +47974,12 @@ var SelectedHeader = function (_React$Component) {
   _createClass(SelectedHeader, [{
     key: "render",
     value: function render() {
-
+      var pretext = void 0;
+      if (this.props.channel_name.private) {
+        pretext = "@";
+      } else {
+        pretext = "#";
+      }
       var channel_name = this.props.channel_name.name;
       return _react2.default.createElement(
         "div",
@@ -48058,6 +47990,7 @@ var SelectedHeader = function (_React$Component) {
           _react2.default.createElement(
             "h2",
             null,
+            pretext,
             channel_name
           )
         )
@@ -48094,7 +48027,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var mapStateToProps = function mapStateToProps(state, _ref) {
   var channel_id = _ref.channel_id;
 
-
+  debugger;
   return {
     channel: channel_id,
     messages: Object.keys(state.messages).map(function (key) {
@@ -48108,7 +48041,7 @@ var mapStateToProps = function mapStateToProps(state, _ref) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchSelectedMessages: function fetchSelectedMessages(channel) {
-      return dispatch((0, _message_actions.fetchSelectedMessages)(channel));
+      debugger;return dispatch((0, _message_actions.fetchSelectedMessages)(channel));
     }
   };
 };
@@ -48201,6 +48134,7 @@ var SelectedMessageList = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      debugger;
       var that = this;
       var allMessages = this.props.messages.map(function (message, idx) {
         if (message.channel_id === parseInt(that.props.channel)) {
@@ -48247,13 +48181,21 @@ var SelectedMessageItem = function SelectedMessageItem(_ref) {
   return _react2.default.createElement(
     "li",
     { className: "selected-message-item" },
+    _react2.default.createElement("img", { className: "authorPic", src: message.authorPic }),
     _react2.default.createElement(
       "div",
       { className: "selected-message-item-div" },
-      _react2.default.createElement("img", { className: "authorPic", src: message.authorPic }),
-      message.authorName,
+      _react2.default.createElement(
+        "div",
+        { className: "message-author-name" },
+        message.authorName
+      ),
       _react2.default.createElement("br", null),
-      message.content
+      _react2.default.createElement(
+        "div",
+        { className: "message-content" },
+        message.content
+      )
     )
   );
 };
@@ -48830,6 +48772,7 @@ var MessageReducer = function MessageReducer() {
   var newState = void 0;
   switch (action.type) {
     case _message_actions.RECEIVE_SELECTED_MESSAGES:
+      debugger;
       newState = (0, _lodash.merge)({}, state, action.messages);
       return newState;
     case _message_actions.RECEIVE_SELECTED_MESSAGE:
@@ -48925,6 +48868,171 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 };
 
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_selected_header2.default));
+
+/***/ }),
+/* 324 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactModal = __webpack_require__(118);
+
+var _reactModal2 = _interopRequireDefault(_reactModal);
+
+var _channel_list_item = __webpack_require__(297);
+
+var _channel_list_item2 = _interopRequireDefault(_channel_list_item);
+
+var _new_direct_message_form_container = __webpack_require__(301);
+
+var _new_direct_message_form_container2 = _interopRequireDefault(_new_direct_message_form_container);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DirectMessageList = function (_React$Component) {
+  _inherits(DirectMessageList, _React$Component);
+
+  function DirectMessageList(props) {
+    _classCallCheck(this, DirectMessageList);
+
+    var _this = _possibleConstructorReturn(this, (DirectMessageList.__proto__ || Object.getPrototypeOf(DirectMessageList)).call(this, props));
+
+    _this.state = { isOpen: false };
+    _this.handleClick = _this.handleClick.bind(_this);
+    _this.openModal = _this.openModal.bind(_this);
+    _this.closeModal = _this.closeModal.bind(_this);
+    _this.handleModal = _this.handleModal.bind(_this);
+    return _this;
+  }
+
+  _createClass(DirectMessageList, [{
+    key: 'closeModal',
+    value: function closeModal(e) {
+      if (this.state.isOpen) {
+        $('.transform').toggleClass('transform-active');
+      }
+      // this.props.clearErrors();
+      var that = this;
+      setTimeout(function () {
+        that.setState({ isOpen: false });
+      }, 300);
+    }
+  }, {
+    key: 'openModal',
+    value: function openModal() {
+      this.setState({ isOpen: true });
+    }
+  }, {
+    key: 'handleModal',
+    value: function handleModal(e) {
+      //
+      this.openModal();
+    }
+  }, {
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      _reactModal2.default.setAppElement('body');
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick() {}
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+
+      // this.props.fetchUserChannels(this.props.currentUser);
+      // this.props.fetchAllUsers();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var customStyles = {
+        overlay: {
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(400, 400, 500, 1)',
+          zIndex: 2
+        },
+        content: {
+          top: '40%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+          outline: 'none',
+          border: '0px'
+        }
+      };
+
+      var allDirectMessages = this.props.allDirectMessages;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'channel-list' },
+        _react2.default.createElement(
+          _reactModal2.default,
+          {
+            onRequestClose: this.closeModal,
+            isOpen: this.state.isOpen,
+            contentLabel: 'Modal',
+            style: customStyles },
+          _react2.default.createElement(_new_direct_message_form_container2.default, null)
+        ),
+        _react2.default.createElement(
+          'ul',
+          { className: 'big-text-nav-bar' },
+          _react2.default.createElement(
+            'div',
+            { className: 'channel-and-form' },
+            _react2.default.createElement(
+              'span',
+              null,
+              'DIRECT MESSAGES'
+            ),
+            _react2.default.createElement(
+              'span',
+              { className: 'button' },
+              _react2.default.createElement('i', { className: 'fa fa-plus-circle',
+                'aria-hidden': 'true',
+                onClick: this.handleModal,
+                value: 'direct_message' })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'closed-channel' },
+            allDirectMessages
+          )
+        )
+      );
+    }
+  }]);
+
+  return DirectMessageList;
+}(_react2.default.Component);
+
+exports.default = DirectMessageList;
 
 /***/ })
 /******/ ]);

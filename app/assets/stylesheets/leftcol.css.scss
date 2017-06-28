@@ -1,11 +1,13 @@
 
-.col-header {
+.col-header h4 {
   color: white;
   font-size: 28px;
   font-style: oblique;
-  font-size: 18px;
 }
 
+.col-header {
+  margin-bottom: 10px;
+}
 .current-user-greeting {
   font-size: 13px;
   color: #a291a0;

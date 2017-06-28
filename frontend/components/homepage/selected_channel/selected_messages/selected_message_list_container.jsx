@@ -3,7 +3,7 @@ import SelectedMessageList from './selected_message_list';
 import { fetchSelectedMessages } from '../../../../actions/message_actions';
 
 const mapStateToProps = (state, { channel_id }) => {
-
+  debugger
   return ({
     channel: channel_id,
     messages: Object.keys(state.messages).map(
@@ -19,7 +19,7 @@ const mapStateToProps = (state, { channel_id }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return({
-    fetchSelectedMessages: (channel) => dispatch(fetchSelectedMessages(channel))
+    fetchSelectedMessages: (channel) => {debugger; return dispatch(fetchSelectedMessages(channel))}
   });
 };
 

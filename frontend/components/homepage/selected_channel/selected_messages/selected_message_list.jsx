@@ -46,6 +46,7 @@ class SelectedMessageList extends React.Component {
   // }
 
   render(){
+    debugger
      const that = this;
      const allMessages = this.props.messages.map( (message, idx) => {
          if (message.channel_id === parseInt(that.props.channel)) {

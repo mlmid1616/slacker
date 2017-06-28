@@ -3,6 +3,7 @@
   height: 45px;
   margin-left: 27px;
   margin-top: 5px;
+  display: flex;
 }
 
 .selected-message-list {
@@ -26,5 +27,18 @@
 
 .selected-message-item-div {
   display: flex;
+  flex-direction: column;
+}
 
+.message-author-name {
+  font-weight: bold;
+  font-size:14px;
+}
+
+.message-content {
+  font-size: 14px;
+    font-style: oblique;
+    margin-bottom: 12px;
+    position: relative;
+    bottom: 11px;
 }
