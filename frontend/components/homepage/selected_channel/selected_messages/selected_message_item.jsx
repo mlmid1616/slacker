@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SelectedMessageItem = ({ message }) => {
-  debugger
+  
   return(
     <li className="selected-message-item">
       <div className="selected-message-item-div">

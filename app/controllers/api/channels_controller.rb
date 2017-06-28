@@ -3,12 +3,11 @@ class Api::ChannelsController < ApplicationController
   def index
     user_id = current_user.id
     user = User.find_by(id: user_id)
-    @channels = user.channels #i get through the has_many association
+    @channels = user.channels
     render "api/channels/index"
   end
 
   def create
-
       @channel = Channel.new(channel_params)
       user_ids = params[:channel][:user_ids]
       if @channel.save
@@ -20,10 +19,10 @@ class Api::ChannelsController < ApplicationController
   end
 
   def show
-    
+
     @channel = Channel.find_by(id: channel_params[:channel])
     if @channel
-       
+
       render "api/channels/show"
     else
       render json: @channel.errors.full_messages, status: 422

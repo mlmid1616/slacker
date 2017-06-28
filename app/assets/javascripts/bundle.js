@@ -47415,7 +47415,15 @@ var ChannelList = function (_React$Component) {
       };
 
       var allChannels = this.props.channels.map(function (channel, idx) {
-        return _react2.default.createElement(_channel_list_item2.default, { channel: channel, key: idx });
+        if (!channel.private) {
+          return _react2.default.createElement(_channel_list_item2.default, { channel: channel, key: idx });
+        }
+      });
+
+      var allDirectMessages = this.props.channels.map(function (channel, idx) {
+        if (!!channel.private) {
+          return _react2.default.createElement(_channel_list_item2.default, { channel: channel, key: idx });
+        }
       });
 
       // let allDirectMessages = this.props.channels.map(
@@ -47448,7 +47456,9 @@ var ChannelList = function (_React$Component) {
           'ul',
           { className: 'big-text-nav-bar' },
           'CHANNELS',
-          allChannels
+          allChannels,
+          'DIRECT MESSAGES',
+          allDirectMessages
         )
       );
     }
@@ -47996,7 +48006,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var SelectedMessageItem = function SelectedMessageItem(_ref) {
   var message = _ref.message;
 
-  debugger;
+
   return _react2.default.createElement(
     "li",
     { className: "selected-message-item" },

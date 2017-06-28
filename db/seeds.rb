@@ -38,17 +38,23 @@ Channel.destroy_all
 
 ch1 = Channel.create(name:"MenOfHonor123", private: false)
 ch2 = Channel.create(name:"DemocracyEnthusiasts", private: false)
+ch3 = Channel.create(name:"george, TopHatKing", private: true)
 
-channel_ids = [ch1.id, ch2.id]
+channel_ids = [ch1.id, ch2.id, ch3.id]
 
 
 Membership.destroy_all
 
-Membership.create(user_id: user_ids[0], channel_id: channel_ids[0])
-Membership.create(user_id: user_ids[1], channel_id: channel_ids[0])
-Membership.create(user_id: user_ids[2], channel_id: channel_ids[1])
-Membership.create(user_id: user_ids[0], channel_id: channel_ids[1])
-Membership.create(user_id: user_ids[1], channel_id: channel_ids[1])
+Membership.create!(user_id: user_ids[0], channel_id: channel_ids[0])
+Membership.create!(user_id: user_ids[1], channel_id: channel_ids[0])
+
+Membership.create!(user_id: user_ids[2], channel_id: channel_ids[1])
+Membership.create!(user_id: user_ids[0], channel_id: channel_ids[1])
+Membership.create!(user_id: user_ids[1], channel_id: channel_ids[1])
+
+Membership.create!(user_id: user_ids[0], channel_id: channel_ids[2])
+Membership.create!(user_id: user_ids[1], channel_id: channel_ids[2])
+Membership.create!(user_id: user_ids[2], channel_id: channel_ids[2])
 
 Message.destroy_all
 
@@ -61,3 +67,8 @@ Message.create(user_id: george.id, channel_id: ch1.id, content: "who wants to ta
 
 Message.create(user_id: george.id, channel_id: ch2.id, content: "10 wooden teeth says you won't work in score to your next speech")
 Message.create(user_id: lincoln.id, channel_id: ch2.id, content: "you're on. ill lead with it")
+
+Message.create(user_id: george.id, channel_id: ch3.id, content: "how did hoover make this list?")
+Message.create(user_id: lincoln.id, channel_id: ch3.id, content: "THANK YOU")
+Message.create(user_id: lincoln.id, channel_id: ch3.id, content: "it's like, we get it, you built a dam")
+Message.create(user_id: lincoln.id, channel_id: ch3.id, content: "so glad we can gab about this is private")

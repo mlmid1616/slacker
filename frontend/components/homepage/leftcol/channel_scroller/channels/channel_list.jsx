@@ -76,8 +76,18 @@ class ChannelList extends React.Component {
 
     let allChannels = this.props.channels.map(
       (channel,idx) => {
+        if (!channel.private) {
           return <ChannelListItem channel={channel} key={idx}/>;
+        }
       });
+
+      let allDirectMessages = this.props.channels.map(
+        (channel, idx) => {
+          if (!!channel.private) {
+            return <ChannelListItem channel={channel} key={idx} />;
+          }
+        }
+      );
 
     // let allDirectMessages = this.props.channels.map(
     //   (channel,idx) => {
@@ -103,6 +113,8 @@ class ChannelList extends React.Component {
           <ul className="big-text-nav-bar">
           CHANNELS
             {allChannels}
+          DIRECT MESSAGES
+            {allDirectMessages}
           </ul>
       </div>
     );

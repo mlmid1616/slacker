@@ -12,6 +12,8 @@ export const fetchUserChannels = (user) => {
 
 
 
+
+
 export const fetchCurrentChannel = (channel_id) => {
   return(
     $.ajax({

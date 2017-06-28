@@ -2,12 +2,13 @@ class Api::MessagesController < ApplicationController
 
   def index
     channel = Channel.find_by(id: params[:channel])
+     
     @messages = channel.messages
     render "api/messages/index"
   end
 
   def create
-      
+
     @message = Message.new(message_params)
     if @message.save
       render "api/messages/show"
