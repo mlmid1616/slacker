@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const ChannelListItem = ({ channel }) => {
 
@@ -11,9 +11,9 @@ const ChannelListItem = ({ channel }) => {
   }
   return(
     <li className="channel-list-item">
-      <Link to={`/messages/${channel.id}`}>
+      <NavLink activeClassName="selector" exact to={`/messages/${channel.id}`}>
         {pretext}{channel.name}
-      </Link>
+      </NavLink>
     </li>
   );
 };

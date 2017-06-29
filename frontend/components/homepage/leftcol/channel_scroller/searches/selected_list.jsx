@@ -7,13 +7,12 @@ class SelectedList extends React.Component {
   }
 
   render(props){
+    const moveUser = this.props.moveUser;
 
-    let allSelectedUsers = this.props.selected.map(
+    const allSelectedUsers = this.props.selected.map(
       user => <SearchListItem moveUser={moveUser} user={user}/>
-  );
+    );
 
-    let moveUser = this.props.moveUser;
-    let users = this.props.selected;
     return (
       <ul>
         {allSelectedUsers}

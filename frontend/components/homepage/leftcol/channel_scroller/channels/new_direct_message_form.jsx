@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import SelectedList from '../searches/selected_list';
+import UnselectedList from '../searches/unselected_list';
 
 
 class NewDirectMessageForm extends React.Component {
@@ -8,8 +10,9 @@ class NewDirectMessageForm extends React.Component {
 
     this.state = {
       name: "",
-      usernames: "Filter by usernames",
-      secret: true
+      secret: true,
+      selected:[],
+      unselected: [...this.props.users]
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,10 +45,33 @@ class NewDirectMessageForm extends React.Component {
   }
 
   handleSubmit(e) {
-    
-      e.preventDefault();
-      this.setState({name:this.state.usernames});
-      this.props.createMembership(this.state);
+    e.preventDefault();
+    const name_array = this.state.selected.map( (user) => user.username )
+    const name_string = name_array.toString();
+
+    const user_ids = this.state.selected.map( (user) => user.id )
+    this.setState({name: name_string, selected: user_ids},
+      ()=>{this.props.createMembership(this.state)}
+    );
+  }
+
+  moveUser(origin, destination) {
+      return (clicked_user) => {
+        return () => {
+        const oldOrigin = this.state[origin];
+        const oldDestination = this.state[destination];
+
+        if (origin){
+          const newOrigin = oldOrigin.filter( (user) => user.id !== clicked_user.id  );
+          const newDestination = [...oldDestination, clicked_user];
+
+          this.setState({
+            [origin]: newOrigin,
+            [destination]: newDestination,
+          });
+          }
+        }
+      }
     }
 
 
@@ -54,21 +80,27 @@ class NewDirectMessageForm extends React.Component {
       <div className="new-channel-form">
         <form onSubmit={this.handleSubmit}>
           <div>
-            Enter the usernames.
           </div>
 
-          <div>
-            <input type="text"
-              className="channel-form-input"
-              value={this.state.usernames}
-              onClick={this.empty("usernames")}
-              onChange={this.update("usernames")}
-              />
+          <div className="selected-users-box">
+            <div className="selecting-users-label">
+              SELECTED USERS
+            </div>
+            <SelectedList moveUser={this.moveUser("selected", "unselected")}
+              selected={this.state.selected}/>
+          </div>
+
+          <div className="unselected-users-box">
+            <div className="selecting-users-label">
+              UNSELECTED USERS
+            </div>
+            <UnselectedList moveUser={this.moveUser("unselected", "selected")}
+              unselected={this.state.unselected} />
           </div>
 
 
           <input className="channel-submit" type="submit"
-            value="Create Channel" />
+            value="Create Direct Message" />
         </form>
 
       </div>

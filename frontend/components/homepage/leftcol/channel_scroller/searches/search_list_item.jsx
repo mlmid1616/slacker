@@ -1,12 +1,14 @@
 import React from 'react';
 
-const SearchListItem = (props) => {
+const SearchListItem = ({user, moveUser}) => {
 
-  let user = props.user;
   return (
-    <li onClick={props.moveUser(user)}>
-      {user.name}
-    </li>
+    <div className="search-list-item">
+      <li onClick={moveUser(user)}>
+        <img className="authorPic" src={user.avatar_url} />
+        {user.username}
+      </li>
+    </div>
   );
 };
 

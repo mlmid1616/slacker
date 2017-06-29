@@ -7,9 +7,10 @@ class SearchList extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = {selected:[],
-    unselected: this.props.users};
-
+    this.state = {
+      selected:[],
+      unselected: [...this.props.users]
+    };
   }
 
   // this.state = {
@@ -19,20 +20,26 @@ class SearchList extends React.Component {
   // };
 
   moveUser(origin, destination, clicked_user) {
+    const oldOrigin = this.state[origin];
+    const oldDestination = this.state[destination];
+
     if (origin){
-      let newOrigin = origin.filter( (user) => user.username !== user.username  );
-      origin = newOrigin;
-      debugger
-      destination.concat(clicked_user);
+      const newOrigin = oldOrigin.filter( (user) => user.id !== clicked_user.id  );
+      const newDestination = [...oldDestination, clicked_user];
+
+      this.setState({
+        [origin]: newOrigin,
+        [destination]: newDestination,
+      });
     }
   }
 
   render(){
     return(
       <div>
-        <SelectedList moveUser={this.moveUser.bind(this.state.selected, this.state.unselected)}
+        <SelectedList moveUser={this.moveUser.bind(this, "selected", "unselected")}
           selected={this.state.selected}/>
-        <UnselectedList moveUser={this.moveUser.bind(this.state.unselected, this.state.selected)}
+        <UnselectedList moveUser={this.moveUser.bind(this, "unselected", "selected")}
           unselected={this.state.unselected} />
       </div>
     );
