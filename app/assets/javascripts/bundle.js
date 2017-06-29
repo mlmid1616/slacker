@@ -30082,7 +30082,7 @@ exports.default = ChannelListItem;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+   value: true
 });
 exports.createMembership = undefined;
 
@@ -30095,13 +30095,13 @@ var _channel_actions = __webpack_require__(22);
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var createMembership = exports.createMembership = function createMembership(membership) {
-  return function (dispatch) {
-    debugger;
-    return APIUtil.createMembership(membership).then(function (channel) {
-      return dispatch((0, _channel_actions.receiveUserChannel)(channel));
-    });
-    // err => (dispatch(receiveErrors(err.responseJSON))));
-  };
+   return function (dispatch) {
+
+      return APIUtil.createMembership(membership).then(function (channel) {
+         return dispatch((0, _channel_actions.receiveUserChannel)(channel));
+      });
+      // err => (dispatch(receiveErrors(err.responseJSON))));
+   };
 };
 
 /***/ }),
@@ -47725,7 +47725,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var createMembership = exports.createMembership = function createMembership(membership) {
-  debugger;
+
   return $.ajax({
     type: "POST",
     url: "api/memberships",
@@ -47783,7 +47783,6 @@ var NewChannelForm = function (_React$Component) {
 
     _this.state = {
       name: "Channel Name",
-      usernames: "Filter by username",
       secret: false,
       selected: [],
       unselected: [].concat(_toConsumableArray(_this.props.users))
@@ -47829,29 +47828,35 @@ var NewChannelForm = function (_React$Component) {
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
-      debugger;
+      var _this4 = this;
+
       e.preventDefault();
-      this.props.createMembership(this.state);
+      var user_ids = this.state.selected.map(function (user) {
+        return user.id;
+      });
+      this.setState({ selected: user_ids }, function () {
+        _this4.props.createMembership(_this4.state);
+      });
     }
   }, {
     key: 'moveUser',
     value: function moveUser(origin, destination) {
-      var _this4 = this;
+      var _this5 = this;
 
       return function (clicked_user) {
         return function () {
-          var oldOrigin = _this4.state[origin];
-          var oldDestination = _this4.state[destination];
+          var oldOrigin = _this5.state[origin];
+          var oldDestination = _this5.state[destination];
 
           if (origin) {
-            var _this4$setState;
+            var _this5$setState;
 
             var newOrigin = oldOrigin.filter(function (user) {
               return user.id !== clicked_user.id;
             });
             var newDestination = [].concat(_toConsumableArray(oldDestination), [clicked_user]);
 
-            _this4.setState((_this4$setState = {}, _defineProperty(_this4$setState, origin, newOrigin), _defineProperty(_this4$setState, destination, newDestination), _this4$setState));
+            _this5.setState((_this5$setState = {}, _defineProperty(_this5$setState, origin, newOrigin), _defineProperty(_this5$setState, destination, newDestination), _this5$setState));
           }
         };
       };

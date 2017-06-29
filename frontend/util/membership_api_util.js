@@ -2,7 +2,7 @@
 
 
 export const createMembership = (membership) => {
-  debugger
+  
   return (
     $.ajax({
       type: "POST",

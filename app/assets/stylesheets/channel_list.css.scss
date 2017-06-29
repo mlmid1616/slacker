@@ -38,8 +38,8 @@
   text-decoration: none;
   color: inherit;
   size: inherit;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 3px;
+  padding-bottom: 2px;
   text-overflow: ellipsis;
   height: 14px;
   width: -1px;
@@ -50,6 +50,7 @@
   background-color: #4c9689;
   // color: white;
   color: white !important;
+  border-radius: 5px !important;
 }
 
 

@@ -9,7 +9,6 @@ class NewChannelForm extends React.Component {
 
     this.state = {
       name: "Channel Name",
-      usernames: "Filter by username",
       secret: false,
       selected:[],
       unselected: [...this.props.users]
@@ -47,9 +46,10 @@ class NewChannelForm extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger
       e.preventDefault();
-      this.props.createMembership(this.state);
+      const user_ids = this.state.selected.map( (user) => user.id );
+      this.setState({selected: user_ids},
+        ()=>{this.props.createMembership(this.state)})
     }
 
   moveUser(origin, destination) {

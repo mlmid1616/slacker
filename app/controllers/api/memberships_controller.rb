@@ -1,6 +1,7 @@
 class Api::MembershipsController < ApplicationController
 
   def create
+    
     @channel = Channel.create(name: params[:channel][:name],
     private:params[:channel][:secret])
     arr = params[:user_ids].split(",")
