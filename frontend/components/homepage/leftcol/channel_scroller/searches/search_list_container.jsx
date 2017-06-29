@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import SearchList from './search_list'
+import SearchList from './search_list';
 
 const mapStateToProps = (state) => {
   return ({
@@ -16,5 +16,5 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect (
   mapStateToProps,
-  mapDispatchToProps
-)(SearchList)
+  null
+)(SearchList);

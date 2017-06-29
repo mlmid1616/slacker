@@ -7,13 +7,28 @@ class SelectedList extends React.Component {
   }
 
   render(props){
+
+    let allSelectedUsers = this.props.selected.map(
+      user => <SearchListItem moveUser={moveUser} user={user}/>
+  );
+
     let moveUser = this.props.moveUser;
     let users = this.props.selected;
-    users.map(
-      user => <SearchListItem moveUser={moveUser} user={user}/>
+    return (
+      <ul>
+        {allSelectedUsers}
+      </ul>
     );
-
   }
 }
 
-export default SelectedList; 
+export default SelectedList;
+
+
+// let allDirectMessages = this.props.channels.map(
+//   (channel, idx) => {
+//     if (!!channel.private) {
+//       return <ChannelListItem channel={channel} key={idx} />;
+//     }
+//   }
+// );

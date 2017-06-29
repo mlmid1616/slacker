@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-
+import SearchListContainer from '../searches/search_list_container';
 
 class NewChannelForm extends React.Component {
   constructor(props) {
@@ -75,6 +75,8 @@ class NewChannelForm extends React.Component {
               />
           </div>
 
+
+          <SearchListContainer />
 
           <input className="channel-submit" type="submit"
             value="Create Channel" />

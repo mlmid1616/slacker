@@ -45,6 +45,11 @@
   margin-bottom:10px;
   color: #9e8e9c;
   font-size: 14px;
+  text-overflow: ellipsis;
+}
+
+channel-list-item:hover{
+  color: #555459;
 }
 
 .open-channel {

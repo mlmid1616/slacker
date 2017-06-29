@@ -13,7 +13,7 @@ const mapStateToProps = (state, ownProps) => {
     channel_id = parseInt(ownProps.match.params.id);
     channel_name = state.channels[channel_id];
   }
-   debugger
+
   return (
     {
       channel_name: channel_name,

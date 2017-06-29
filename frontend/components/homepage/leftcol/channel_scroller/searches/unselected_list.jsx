@@ -8,9 +8,18 @@ class UnselectedList extends React.Component {
 
   render(props){
     let moveUser = this.props.moveUser;
-    let users = this.props.unselected;
-    users.map(
-      user => <SearchListItem moveUser={moveUser} user={user}/>
+    let allUnselectedUsers = this.props.unselected.map(
+      function (user, index){
+        return(
+          <SearchListItem key={index} moveUser={moveUser} user={user}/>
+        );
+      }
+    );
+
+    return(
+      <ul>
+        {allUnselectedUsers}
+      </ul>
     );
 
   }

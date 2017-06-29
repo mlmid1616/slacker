@@ -20,7 +20,7 @@ export const receiveSelectedMessage = message => {
 };
 
 export const fetchSelectedMessages = channel_id => dispatch => {
-  debugger
+
   return APIUtil.fetchSelectedMessages(channel_id)
     .then(messages => dispatch(receiveSelectedMessages(messages)));
 };

@@ -1,12 +1,13 @@
 import React from 'react';
 
 const SearchListItem = (props) => {
-  let user = this.props.user;
-  render(
-    <li onClick={this.props.moveUser(user)}>
+
+  let user = props.user;
+  return (
+    <li onClick={props.moveUser(user)}>
       {user.name}
     </li>
   );
 };
 
-export default SearchListItem; 
+export default SearchListItem;

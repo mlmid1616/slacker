@@ -1,4 +1,6 @@
 import React from 'react';
+import SelectedList from './selected_list';
+import UnselectedList from './unselected_list';
 
 class SearchList extends React.Component {
 
@@ -17,19 +19,24 @@ class SearchList extends React.Component {
   // };
 
   moveUser(origin, destination, clicked_user) {
-    let newOrigin = from.filter( (user) => user.username !== user.username  );
-    origin = newOrigin;
-    destination.concat(clicked_user);
+    if (origin){
+      let newOrigin = origin.filter( (user) => user.username !== user.username  );
+      origin = newOrigin;
+      debugger
+      destination.concat(clicked_user);
+    }
   }
 
   render(){
     return(
       <div>
-        <SelectedList moveUser={this.moveUser.bind(this.selected, this.unselected)}
+        <SelectedList moveUser={this.moveUser.bind(this.state.selected, this.state.unselected)}
           selected={this.state.selected}/>
-        <UnselectedList moveUSer={this.moveUSer.bind(this.state.unselected, this.state.selected)}
+        <UnselectedList moveUser={this.moveUser.bind(this.state.unselected, this.state.selected)}
           unselected={this.state.unselected} />
       </div>
     );
   }
 }
+
+export default SearchList;

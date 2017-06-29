@@ -7,7 +7,7 @@ const MessageReducer = (state = default_state, action) => {
   let newState;
   switch (action.type){
     case RECEIVE_SELECTED_MESSAGES:
-    debugger
+
       newState = merge({}, state, action.messages);
       return newState;
     case RECEIVE_SELECTED_MESSAGE:

@@ -101,6 +101,21 @@ Message.create(user_id: george.id, channel_id: ch1.id, content: "who wants to ta
 Message.create(user_id: george.id, channel_id: ch2.id, content: "10 wooden teeth says you won't work in score to your next speech")
 Message.create(user_id: lincoln.id, channel_id: ch2.id, content: "you're on. ill lead with it")
 
+Message.create(user_id: kennedy.id, channel_id: ch3.id, content: "is anyone in boston this weekend")
+Message.create(user_id: hoover.id, channel_id: ch3.id, content: "yeah I think I'll be flying. should we get chowder or is it too soon?")
+Message.create(user_id: lincoln.id, channel_id: ch3.id, content: "it's like, we get it, you built a dam")
+Message.create(user_id: lincoln.id, channel_id: ch3.id, content: "so glad we can gab about this is private")
+
+Message.create(user_id: george.id, channel_id: ch5.id, content: "how did hoover make this list?")
+Message.create(user_id: lincoln.id, channel_id: ch5.id, content: "THANK YOU")
+Message.create(user_id: lincoln.id, channel_id: ch5.id, content: "it's like, we get it, you built a dam")
+Message.create(user_id: lincoln.id, channel_id: ch5.id, content: "so glad we can gab about this is private")
+
+Message.create(user_id: george.id, channel_id: ch5.id, content: "how did hoover make this list?")
+Message.create(user_id: lincoln.id, channel_id: ch5.id, content: "THANK YOU")
+Message.create(user_id: lincoln.id, channel_id: ch5.id, content: "it's like, we get it, you built a dam")
+Message.create(user_id: lincoln.id, channel_id: ch5.id, content: "so glad we can gab about this is private")
+
 Message.create(user_id: george.id, channel_id: ch5.id, content: "how did hoover make this list?")
 Message.create(user_id: lincoln.id, channel_id: ch5.id, content: "THANK YOU")
 Message.create(user_id: lincoln.id, channel_id: ch5.id, content: "it's like, we get it, you built a dam")
