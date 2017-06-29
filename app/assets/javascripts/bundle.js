@@ -30096,6 +30096,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var createMembership = exports.createMembership = function createMembership(membership) {
   return function (dispatch) {
+    debugger;
     return APIUtil.createMembership(membership).then(function (channel) {
       return dispatch((0, _channel_actions.receiveUserChannel)(channel));
     });
@@ -47724,12 +47725,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var createMembership = exports.createMembership = function createMembership(membership) {
-
+  debugger;
   return $.ajax({
     type: "POST",
     url: "api/memberships",
     data: { channel: { name: membership.name, secret: membership.secret },
-      user_ids: membership.usernames }
+      user_ids: membership.selected }
   });
 };
 
