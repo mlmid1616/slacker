@@ -47728,7 +47728,7 @@ var createMembership = exports.createMembership = function createMembership(memb
 
   return $.ajax({
     type: "POST",
-    url: "api/memberships",
+    url: "api/channels",
     data: { channel: { name: membership.name, secret: membership.secret },
       user_ids: membership.selected }
   });
@@ -48585,7 +48585,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* globals pusher */
+
 
 var SelectedMessageList = function (_React$Component) {
   _inherits(SelectedMessageList, _React$Component);
@@ -48611,8 +48612,21 @@ var SelectedMessageList = function (_React$Component) {
   _createClass(SelectedMessageList, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      var channel = this.props.channel;
-      this.props.fetchSelectedMessages(channel);
+      var _this2 = this;
+
+      var current_channel = this.props.channel;
+      this.props.fetchSelectedMessages(current_channel);
+
+      var pusher = new Pusher('7ed0f023347152a1d1c7', {
+        cluster: 'us2',
+        encrypted: true
+      });
+
+      var channel = pusher.subscribe('channel_' + current_channel);
+      channel.bind('message_published', function (data) {
+
+        _this2.props.fetchSelectedMessages(current_channel);
+      });
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -48636,7 +48650,7 @@ var SelectedMessageList = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var that = this;
       var allMessages = this.props.messages.map(function (message, idx) {
@@ -48649,7 +48663,7 @@ var SelectedMessageList = function (_React$Component) {
         { className: 'unordered-message-list' },
         allMessages,
         _react2.default.createElement('div', { ref: function ref(el) {
-            return _this2.bottom = el;
+            return _this3.bottom = el;
           } })
       );
     }

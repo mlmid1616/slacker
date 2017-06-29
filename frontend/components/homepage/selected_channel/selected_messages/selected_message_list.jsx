@@ -1,3 +1,4 @@
+/* globals pusher */
 import React from 'react';
 import { withRouter } from 'react-router';
 import SelectedMessageItem from './selected_message_item';
@@ -22,8 +23,19 @@ class SelectedMessageList extends React.Component {
 
 
   componentDidMount() {
-    let channel = this.props.channel;
-    this.props.fetchSelectedMessages(channel);
+    let current_channel = this.props.channel;
+    this.props.fetchSelectedMessages(current_channel);
+
+    var pusher = new Pusher('7ed0f023347152a1d1c7', {
+      cluster: 'us2',
+      encrypted: true
+    });
+
+    var channel = pusher.subscribe('channel_' + current_channel);
+    channel.bind('message_published', (data) => {
+
+      this.props.fetchSelectedMessages(current_channel);
+    });
   }
 
   componentWillReceiveProps(nextProps){

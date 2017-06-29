@@ -2,15 +2,16 @@ class Api::MessagesController < ApplicationController
 
   def index
     channel = Channel.find_by(id: params[:channel])
-     
+
     @messages = channel.messages
     render "api/messages/index"
   end
 
   def create
-
     @message = Message.new(message_params)
+    channel = @message.channel
     if @message.save
+      Pusher.trigger('channel_' + channel.id.to_s, 'message_published', {})
       render "api/messages/show"
     else
       render json: @message.errors.full_messages, status: 422
