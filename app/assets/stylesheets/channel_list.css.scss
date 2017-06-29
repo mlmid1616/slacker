@@ -119,12 +119,32 @@ channel-list-item:hover{
 .channel-label {
   font-size:14px;
   color: #9e8e9c;
+  font-size: 14px;
+  color: #9e8e9c;
+  position: relative;
+  left: 13px;
+  margin-bottom: 4px;
+}
+
+.direct-message-label {
+  position: relative;
+  left: 9px;
+}
+
+.whole-direct-message-list {
+  margin-top: 22px;
 }
 
 .button {
   padding-right: 11px;
-  font-size: 18px;
+  font-size: 16px;
   color: #9e8e9c;
+  position: relative;
+  bottom: 3px;
+}
+
+.button:hover {
+  cursor: pointer;
 }
 
 .fa-circle {

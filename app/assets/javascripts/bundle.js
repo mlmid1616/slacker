@@ -30223,7 +30223,7 @@ var SelectedChannel = function SelectedChannel(props, ownProps) {
       { className: 'selected-channel-header' },
       _react2.default.createElement(_selected_header_container2.default, null)
     ),
-    _react2.default.createElement(_selected_message_list_container2.default, { className: 'selected-message-list', channel_id: channel_id }),
+    _react2.default.createElement(_selected_message_list_container2.default, { className: 'selected-message-list', channelId: channel_id }),
     _react2.default.createElement(_selected_input_container2.default, { channel_id: channel_id })
   );
 };
@@ -47331,6 +47331,7 @@ var ColHeader = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'current-user-greeting' },
+            _react2.default.createElement('i', { className: 'fa fa-circle', 'aria-hidden': 'true' }),
             _react2.default.createElement(
               'p',
               null,
@@ -48354,29 +48355,33 @@ var DirectMessageList = function (_React$Component) {
           _react2.default.createElement(_new_direct_message_form_container2.default, null)
         ),
         _react2.default.createElement(
-          'ul',
-          { className: 'big-text-nav-bar' },
+          'div',
+          { className: 'whole-direct-message-list' },
           _react2.default.createElement(
-            'div',
-            { className: 'channel-and-form' },
+            'ul',
+            { className: 'big-text-nav-bar' },
             _react2.default.createElement(
-              'span',
-              null,
-              'DIRECT MESSAGES'
+              'div',
+              { className: 'channel-and-form' },
+              _react2.default.createElement(
+                'span',
+                { className: 'direct-message-label' },
+                'DIRECT MESSAGES'
+              ),
+              _react2.default.createElement(
+                'span',
+                { className: 'button' },
+                _react2.default.createElement('i', { className: 'fa fa-plus-circle',
+                  'aria-hidden': 'true',
+                  onClick: this.handleModal,
+                  value: 'direct_message' })
+              )
             ),
             _react2.default.createElement(
-              'span',
-              { className: 'button' },
-              _react2.default.createElement('i', { className: 'fa fa-plus-circle',
-                'aria-hidden': 'true',
-                onClick: this.handleModal,
-                value: 'direct_message' })
+              'div',
+              { className: 'closed-channel' },
+              allDirectMessages
             )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'closed-channel' },
-            allDirectMessages
           )
         )
       );
@@ -48529,11 +48534,11 @@ var _message_actions = __webpack_require__(71);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, _ref) {
-  var channel_id = _ref.channel_id;
+  var channelId = _ref.channelId;
 
 
   return {
-    channel: channel_id,
+    channel: channelId,
     messages: Object.keys(state.messages).map(function (key) {
       var message = state.messages[key];
       var author = state.users[message.user_id];
@@ -48631,8 +48636,9 @@ var SelectedMessageList = function (_React$Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
+      debugger;
       if (nextProps.messages.slice(-1).id !== this.props.messages.slice(-1).id || nextProps.channel !== this.props.channel) {
-        var channel = this.props.channel;
+        var channel = nextProps.channel;
         this.props.fetchSelectedMessages(channel);
       }
     }
@@ -48655,6 +48661,7 @@ var SelectedMessageList = function (_React$Component) {
       var that = this;
       var allMessages = this.props.messages.map(function (message, idx) {
         if (message.channel_id === parseInt(that.props.channel)) {
+
           return _react2.default.createElement(_selected_message_item2.default, { message: message, key: idx });
         }
       });

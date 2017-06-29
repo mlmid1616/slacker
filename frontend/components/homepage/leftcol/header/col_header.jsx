@@ -25,7 +25,7 @@ class ColHeader extends React.Component {
         <div className="col-greeting">
           <h4>slacker</h4>
           <div className="current-user-greeting">
-            <p>{current_user}</p>
+            <i className="fa fa-circle" aria-hidden="true"></i><p>{current_user}</p>
           </div>
         </div>
         <i className="fa fa-sign-out"

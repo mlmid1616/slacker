@@ -14,7 +14,7 @@ const SelectedChannel = (props, ownProps) => {
       <div className="selected-channel-header">
         <SelectedHeaderContainer />
       </div>
-      <SelectedMessageListContainer className="selected-message-list" channel_id={channel_id} />
+      <SelectedMessageListContainer className="selected-message-list" channelId={channel_id} />
       <SelectedInputContainer channel_id={channel_id}/>
     </div>
   );

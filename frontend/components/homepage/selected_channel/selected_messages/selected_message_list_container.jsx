@@ -2,10 +2,10 @@ import { connect } from 'react-redux';
 import SelectedMessageList from './selected_message_list';
 import { fetchSelectedMessages } from '../../../../actions/message_actions';
 
-const mapStateToProps = (state, { channel_id }) => {
+const mapStateToProps = (state, { channelId }) => {
 
   return ({
-    channel: channel_id,
+    channel: channelId,
     messages: Object.keys(state.messages).map(
       (key) => {
         const message = state.messages[key];

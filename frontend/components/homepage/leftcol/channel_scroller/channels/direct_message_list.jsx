@@ -90,10 +90,10 @@ class DirectMessageList extends React.Component {
             <NewDirectMessageFormContainer  />
           </Modal>
 
-
+        <div className="whole-direct-message-list">
           <ul className="big-text-nav-bar">
             <div className="channel-and-form">
-              <span>
+              <span className="direct-message-label">
                 DIRECT MESSAGES
               </span>
               <span className="button">
@@ -107,6 +107,7 @@ class DirectMessageList extends React.Component {
               {allDirectMessages}
             </div>
           </ul>
+        </div>
       </div>
     );
   }

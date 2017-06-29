@@ -13,9 +13,8 @@
 
 .unordered-message-list {
   overflow: scroll;
-  /* overflow-y: hidden; */
-  /* overflow-x: hidden; */
   max-height: 100%;
+  white-space: pre-wrap;
 }
 
 .authorPic {
@@ -31,8 +30,9 @@
 }
 
 .message-author-name {
+  font-size: 14px;
   font-weight: bold;
-  font-size:14px;
+  font-family: sans-serif;
 }
 
 .message-content {
