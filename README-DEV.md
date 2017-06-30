@@ -1,21 +1,23 @@
-# Slacker
+# Slacker Development
 
-## README
-Slacker is a collaborative live messaging platform inspired by Slack and was built end-to-end in 2 weeks.
+## Minimum Viable Product
+Slacker is a web application using Ruby on Rails and React/Redux. By the end of Week 9, this app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation, adequate seed data and sufficient CSS styling:
 
-## Implementation
+- Channels
+- Direct Message
+- Live chat
+- Teams or multi-person DM
+- Bonus: Search Messages
+- Bonus: Notifications
 
-Slacker's UI and single-page architecture were built with React.js and Ruby on Rails. Messaging data is stored in a Postgres database, while AWS hosts all user images.
-
-In addition, the app also utilizes the following technologies:
-
-Redux
-BCrypt
-Pusher
-Figaro
-Paperclip
-jBuilder
-react-modal
+## Proposal
+- MVP
+- Wireframes
+- React Components
+- Static State
+- DB Schema
+- API Endpoints
+- Timeline
 
 
 ## Implementation Timeline

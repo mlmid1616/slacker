@@ -1,68 +1,49 @@
-# Slacker Development
+# Slacker
 
-## Minimum Viable Product
-Slacker is a web application using Ruby on Rails and React/Redux. By the end of Week 9, this app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation, adequate seed data and sufficient CSS styling:
+## README
+Slacker is a collaborative live messaging platform inspired by Slack and was built end-to-end in 2 weeks.
 
-- Channels
-- Direct Message
-- Live chat
-- Teams or multi-person DM
-- Bonus: Search Messages
-- Bonus: Notifications
+## Implementation
 
-## Proposal
-- MVP
-- Wireframes
-- React Components
-- Static State
-- DB Schema
-- API Endpoints
-- Timeline
+Slacker's UI and single-page architecture were built with React.js and Ruby on Rails. Messaging data is stored in a Postgres database, while AWS hosts all user images.
+
+In addition, the app also utilizes the following technologies:
+
+Redux
+BCrypt
+Pusher
+Figaro
+Paperclip
+jBuilder
+react-modal
 
 
-## Implementation Timeline
+## Features
 
-### Phase 1: Backend setup and Front End User Authentication (2 days)
+The application is composed of the following features.
 
-**Objectives:** Create a functioning rails project as well as front end authentication.
+## Authentication
 
-### Phase 2: Login Page (1 day)
+Slacker has both front-end and back-end authentication. On the backend, Slacker uses BCrypt by hashing user passwords and saving only the encrypted user-data to the database. A cookie storing a hashed token keeps track of the user's current session. If there is not a matching session token then the user is redirected to the login page for authentication.
 
-**Objectives:** Create and style a login page.
+## Real-time Messaging
 
-### Phase 3: Channel Model, API, and components (1.5 days)
+The app leverages the Pusher API in order to maintain a WebSocket and TCP-based protocol connection. These enable bi-directional communication between the server and the client.
 
-**Objectives:** Channels can be created, read,
-edited, and destroyed through the API. The channels will be created on a separate page.
+When a client selects a channel to view, they become subscribed to a unique connection through pusher. The connections means that they are subscribed for any update to the channel.
 
-### Phase 4: Styling Channels (0.5 days)
+## Channels
 
-**Objectives:** Style channels on the homepage.
+Slacker allows users to create public channels by entering a name and then selecting the users they wish to be in the channel. Channels are accessible by any user.
 
-### Phase 5: Messages (1.5 days)
+## Direct Messages
 
-**Objectives:** Fill in the channels with messages that can also be created, read, edited, and destroyed through the API.
+Slacker allows users to create private channels by simply selecting the users they wish to be in their channel. Unlike public channels these are not accessible by any user.
 
-### Phase 6: Styling Messages (0.5 days)
+## Future Production
 
-**Objectives:** Style messages on the homepage.
+Slacker will always be improving. The next features I plan to implement are:
 
-### Phase 7: Direct Messages (1.5 days)
-
-**Objectives:** Add private and direct messaging.
-
-### Phase 8: Style Direct Message (0.5 days)
-
-**Objectives:** Style direct messaging on the homepage.
-
-### Phase 9: Multi-Person Direct Messages (1.5 days)
-
-**Objectives:** Creation of direct messages to multiple recipients; a channel is created with those people as members.
-
-### Phase 10: Style Complete Homepage (0.5 days)
-
-**Objectives:** Ensure the styling on the homepage is seamless.
-
-##  Phase 11: Due Diligence (1 day)
-
-**Objectives:** Ensure the application is seamless.
+1. Notifications
+2. Channel Search
+3. Emoticons
