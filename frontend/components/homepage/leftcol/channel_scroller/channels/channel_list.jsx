@@ -66,7 +66,7 @@ class ChannelList extends React.Component {
         zIndex: 2
       },
       content : {
-      top                   : '40%',
+      top                   : '50%',
       left                  : '50%',
       right                 : 'auto',
       bottom                : 'auto',
@@ -109,7 +109,7 @@ class ChannelList extends React.Component {
               isOpen={this.state.isOpen}
               contentLabel="Modal"
               style={customStyles} >
-              <NewChannelFormContainer  />
+              <NewChannelFormContainer closeModal={this.closeModal.bind(this)} />
             </Modal>
 
               <span className="channel-label">
@@ -130,7 +130,7 @@ class ChannelList extends React.Component {
           </ul>
 
 
-          <DirectMessageList allDirectMessages={allDirectMessages} />
+          <DirectMessageList closeModal={this.closeModal.bind(this)} allDirectMessages={allDirectMessages} />
       </div>
     );
   }

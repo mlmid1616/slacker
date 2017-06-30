@@ -50,6 +50,7 @@ class NewChannelForm extends React.Component {
       const user_ids = this.state.selected.map( (user) => user.id );
       this.setState({selected: user_ids},
         ()=>{this.props.createMembership(this.state)})
+      this.props.closeModal()  
     }
 
   moveUser(origin, destination) {

@@ -87,7 +87,7 @@ class DirectMessageList extends React.Component {
              isOpen={this.state.isOpen}
              contentLabel="Modal"
              style={customStyles} >
-            <NewDirectMessageFormContainer  />
+            <NewDirectMessageFormContainer closeModal={this.closeModal.bind(this)} />
           </Modal>
 
         <div className="whole-direct-message-list">

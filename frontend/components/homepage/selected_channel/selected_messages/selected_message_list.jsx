@@ -39,7 +39,7 @@ class SelectedMessageList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps){
-    debugger
+
     if (nextProps.messages.slice(-1).id !== this.props.messages.slice(-1).id ||
         nextProps.channel !== this.props.channel ) {
       const channel = nextProps.channel;

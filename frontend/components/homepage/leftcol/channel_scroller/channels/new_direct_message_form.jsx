@@ -53,6 +53,8 @@ class NewDirectMessageForm extends React.Component {
     this.setState({name: name_string, selected: user_ids},
       ()=>{this.props.createMembership(this.state)}
     );
+
+    this.props.closeModal()
   }
 
   moveUser(origin, destination) {
