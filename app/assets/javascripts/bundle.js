@@ -63082,7 +63082,9 @@ var Navbar = function (_React$Component) {
 
     _this.state = { isOpen: false };
 
-    _this.startDemo = _this.startDemo.bind(_this);
+    _this.startDemo1 = _this.startDemo1.bind(_this);
+    _this.startDemo2 = _this.startDemo2.bind(_this);
+
     _this.handleClick = _this.handleClick.bind(_this);
     _this.openModal = _this.openModal.bind(_this);
     _this.closeModal = _this.closeModal.bind(_this);
@@ -63122,13 +63124,23 @@ var Navbar = function (_React$Component) {
       };
     }
   }, {
-    key: 'startDemo',
-    value: function startDemo() {
+    key: 'startDemo1',
+    value: function startDemo1() {
       var _this3 = this;
 
       var user = { user: { username: "WildernessRulez", password: "password123" } };
       this.props.login(user).then(function () {
-        _this3.props.history.push('/messages/1');
+        _this3.props.history.push('/messages/11');
+      });
+    }
+  }, {
+    key: 'startDemo2',
+    value: function startDemo2() {
+      var _this4 = this;
+
+      var user = { user: { username: "RevolutionRinger", password: "password123" } };
+      this.props.login(user).then(function () {
+        _this4.props.history.push('/messages/5');
       });
     }
   }, {
@@ -63208,8 +63220,13 @@ var Navbar = function (_React$Component) {
         ),
         _react2.default.createElement(
           'button',
-          { className: 'auth', onClick: this.startDemo },
-          'Demo'
+          { className: 'auth', onClick: this.startDemo1 },
+          'Demo:Teddy'
+        ),
+        _react2.default.createElement(
+          'button',
+          { className: 'auth', onClick: this.startDemo2 },
+          'Demo:G Washington'
         )
       );
     }

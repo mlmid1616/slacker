@@ -10,7 +10,9 @@ class Navbar extends React.Component {
 
     this.state = { isOpen: false};
 
-    this.startDemo = this.startDemo.bind(this);
+    this.startDemo1 = this.startDemo1.bind(this);
+    this.startDemo2 = this.startDemo2.bind(this);
+
     this.handleClick = this.handleClick.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -44,9 +46,13 @@ class Navbar extends React.Component {
     };
   }
 
-  startDemo(){
+  startDemo1(){
     const user = {user: {username: "WildernessRulez", password: "password123"}};
-    this.props.login(user).then(() => { this.props.history.push('/messages/1'); });
+    this.props.login(user).then(() => { this.props.history.push('/messages/11'); });
+  }
+  startDemo2(){
+    const user = {user: {username: "RevolutionRinger", password: "password123"}};
+    this.props.login(user).then(() => { this.props.history.push('/messages/5'); });
   }
 
   componentWillMount(){
@@ -113,8 +119,12 @@ class Navbar extends React.Component {
               Login
             </button>
 
-            <button className="auth" onClick={this.startDemo}>
-              Demo
+            <button className="auth" onClick={this.startDemo1}>
+              Demo:Teddy
+            </button>
+
+            <button className="auth" onClick={this.startDemo2}>
+              Demo:G Washington
             </button>
         </div>
       );
