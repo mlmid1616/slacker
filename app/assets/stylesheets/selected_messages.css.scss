@@ -16,8 +16,20 @@
   max-height: 100%;
   white-space: pre-wrap;
   padding-top: 63px;
-
 }
+
+// .unordered-message-list {
+//     overflow: scroll;
+//     max-height: 100%;
+//     white-space: pre-wrap;
+//     padding-top: 63px;
+//     height: calc(100vh - 124px);
+//     overflow: hidden;
+//     overflow-y: scroll;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-end;
+// }
 
 .authorPic {
   height: 40px;
