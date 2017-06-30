@@ -38,10 +38,10 @@ class SessionForm extends React.Component {
     e.preventDefault();
     const user = this.state;
     if (this.props.type === "login"){
-      this.props.login({user}).then(() => { this.props.history.push('/messages');
+      this.props.login({user}).then(() => { this.props.history.push('/messages/9');
     });
     } else {
-      this.props.signup({user}).then(() => { this.props.history.push('/messages');
+      this.props.signup({user}).then(() => { this.props.history.push('/messages/9');
     });
     }
 

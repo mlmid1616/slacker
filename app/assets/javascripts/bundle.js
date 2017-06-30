@@ -34144,11 +34144,11 @@ var SessionForm = function (_React$Component) {
       var user = this.state;
       if (this.props.type === "login") {
         this.props.login({ user: user }).then(function () {
-          _this4.props.history.push('/messages');
+          _this4.props.history.push('/messages/9');
         });
       } else {
         this.props.signup({ user: user }).then(function () {
-          _this4.props.history.push('/messages');
+          _this4.props.history.push('/messages/9');
         });
       }
     }
@@ -63130,7 +63130,7 @@ var Navbar = function (_React$Component) {
 
       var user = { user: { username: "WildernessRulez", password: "password123" } };
       this.props.login(user).then(function () {
-        _this3.props.history.push('/messages/11');
+        _this3.props.history.push('/messages/9');
       });
     }
   }, {
@@ -63140,7 +63140,7 @@ var Navbar = function (_React$Component) {
 
       var user = { user: { username: "RevolutionRinger", password: "password123" } };
       this.props.login(user).then(function () {
-        _this4.props.history.push('/messages/5');
+        _this4.props.history.push('/messages/9');
       });
     }
   }, {
