@@ -120,11 +120,11 @@ class Navbar extends React.Component {
             </button>
 
             <button className="auth" onClick={this.startDemo1}>
-              Demo:Teddy
+              Demo Teddy
             </button>
 
             <button className="auth" onClick={this.startDemo2}>
-              Demo:G Washington
+              Demo Washington
             </button>
         </div>
       );

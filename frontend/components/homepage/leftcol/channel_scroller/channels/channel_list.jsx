@@ -63,7 +63,7 @@ class ChannelList extends React.Component {
         right             : 0,
         bottom            : 0,
         backgroundColor   : 'rgba(400, 400, 500, 1)',
-        zIndex: 2
+        zIndex: 4
       },
       content : {
       top                   : '50%',
