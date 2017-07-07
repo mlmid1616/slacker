@@ -3,7 +3,7 @@
 ## README
 Slacker is a collaborative live messaging platform inspired by Slack and was built end-to-end in 2 weeks.
 
-Live: https://fullstackslacker.herokuapp.com/#/ (works best in chorme)
+Live: https://fullstackslacker.herokuapp.com/#/ (works best in chrome)
 
 ## Implementation
 
