@@ -20,4 +20,3 @@ node_modules/
 
 # Ignore application configuration
 /config/application.yml
-/config/secrets.yml
