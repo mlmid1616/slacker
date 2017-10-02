@@ -46172,7 +46172,7 @@ var Navbar = function (_React$Component) {
 
       var user = { user: { username: "WildernessRulez", password: "password123" } };
       this.props.login(user).then(function () {
-        _this3.props.history.push('/messages/9');
+        _this3.props.history.push('/messages/19');
       });
     }
   }, {
@@ -46182,7 +46182,7 @@ var Navbar = function (_React$Component) {
 
       var user = { user: { username: "RevolutionRinger", password: "password123" } };
       this.props.login(user).then(function () {
-        _this4.props.history.push('/messages/9');
+        _this4.props.history.push('/messages/19');
       });
     }
   }, {

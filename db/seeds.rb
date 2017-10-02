@@ -30,10 +30,6 @@ user_ids = [teddy.id, george.id, lincoln.id, hoover.id, kennedy.id, obama.id]
 
 # users = [teddy, george, lincoln, hoover, kennedy, obama]
 
-
-
-
-
 Channel.destroy_all
 
 ch1 = Channel.create(name:"MenOfHonor123", private: false)
@@ -98,10 +94,62 @@ Message.create(user_id: lincoln.id, channel_id: ch1.id, content: "im here what's
 Message.create(user_id: kennedy.id, channel_id: ch1.id, content: "yooooo")
 Message.create(user_id: george.id, channel_id: ch1.id, content: "my boyz are all here!")
 Message.create(user_id: george.id, channel_id: ch1.id, content: "who wants to talk common sense?")
+Message.create(user_id: kennedy.id, channel_id: ch1.id, content: "I could talk a little common sense")
+Message.create(user_id: george.id, channel_id: ch1.id, content: "How do you get a one-armed redcoat out of a tree? ")
+Message.create(user_id: lincoln.id, channel_id: ch1.id, content: "how?")
+Message.create(user_id: george.id, channel_id: ch1.id, content: "you wave to him..")
+Message.create(user_id: lincoln.id, channel_id: ch1.id, content: "boo")
+Message.create(user_id: kennedy.id, channel_id: ch1.id, content: "Jacky just told me a good one")
+Message.create(user_id: george.id, channel_id: ch1.id, content: "let me hear it")
+Message.create(user_id: kennedy.id, channel_id: ch1.id, content: "I don't think Lincoln would approve")
+Message.create(user_id: lincoln.id, channel_id: ch1.id, content: "I love jokes!")
+Message.create(user_id: kennedy.id, channel_id: ch1.id, content: "Did you hear they shut down the British National Library? Someone stole the book")
+Message.create(user_id: lincoln.id, channel_id: ch1.id, content: "meh")
+Message.create(user_id: george.id, channel_id: ch1.id, content: "5/10")
+Message.create(user_id: lincoln.id, channel_id: ch1.id, content: "What's the smallest room in the world?")
+Message.create(user_id: george.id, channel_id: ch1.id, content: "??")
+Message.create(user_id: lincoln.id, channel_id: ch1.id, content: "the british hall of fame!")
+Message.create(user_id: george.id, channel_id: ch1.id, content: "maybe we ought to stick to politics")
+Message.create(user_id: kennedy.id, channel_id: ch1.id, content: "It's true we are upstanding gentlemen")
+Message.create(user_id: george.id, channel_id: ch1.id, content: "** says the bootlegger **")
+Message.create(user_id: lincoln.id, channel_id: ch1.id, content: "ZING")
+Message.create(user_id: kennedy.id, channel_id: ch1.id, content: "That was like 100 years ago and abe no one says zing anymore")
+
+
+
+
 
 
 Message.create(user_id: george.id, channel_id: ch2.id, content: "10 wooden teeth says you won't work in score to your next speech")
 Message.create(user_id: lincoln.id, channel_id: ch2.id, content: "you're on. ill lead with it")
+Message.create(user_id: george.id, channel_id: ch2.id, content: "you better")
+Message.create(user_id: lincoln.id, channel_id: ch2.id, content: "been meaning ot ask...have you started expanding west at all?")
+Message.create(user_id: george.id, channel_id: ch2.id, content: "not really, is it good?")
+Message.create(user_id: lincoln.id, channel_id: ch2.id, content: "Beautiful. Mountains, Rivers, Lakes like nothing in the old world")
+Message.create(user_id: george.id, channel_id: ch2.id, content: "have you been?")
+Message.create(user_id: lincoln.id, channel_id: ch2.id, content: "No, but these two explorers named Lewis and Clark took a group out to see chart the land")
+Message.create(user_id: george.id, channel_id: ch2.id, content: "have you been?")
+Message.create(user_id: teddy.id, channel_id: ch2.id, content: "I once said, the badlands is where the love of my life began")
+Message.create(user_id: george.id, channel_id: ch2.id, content: "when did you go?")
+Message.create(user_id: teddy.id, channel_id: ch2.id, content: "My wife alice passed away and I found solace in the wild wild west that was Chicago")
+Message.create(user_id: lincoln.id, channel_id: ch2.id, content: "represent!")
+Message.create(user_id: george.id, channel_id: ch2.id, content: "I'm gonna go")
+Message.create(user_id: teddy.id, channel_id: ch2.id, content: "You need to go far out. So far that civilization is an after thought. The west...it's where you learn to be a man")
+Message.create(user_id: lincoln.id, channel_id: ch2.id, content: "That's what we say out here in ILLinois")
+Message.create(user_id: teddy.id, channel_id: ch2.id, content: "Sorry when I say west I mean my West...like definitely NOT Illinois, you can just go right through there")
+Message.create(user_id: lincoln.id, channel_id: ch2.id, content: "We are the land of lincoln though")
+Message.create(user_id: teddy.id, channel_id: ch2.id, content: "When your 'thing' is one single man it's difficult to make the case you have much..")
+Message.create(user_id: george.id, channel_id: ch2.id, content: "The badlands...is that it?")
+Message.create(user_id: teddy.id, channel_id: ch2.id, content: "Not even close. Keep going west. Past the rockies, to a land called 'Yosemite'")
+Message.create(user_id: george.id, channel_id: ch2.id, content: "what is yosemite like?")
+Message.create(user_id: teddy.id, channel_id: ch2.id, content: "Monoliths and waterfalls that fall thousands of feet into pools of perfectly clear water, paired with fields of rushing rivers and fields of grass")
+Message.create(user_id: lincoln.id, channel_id: ch2.id, content: "*fall thousands of meters")
+Message.create(user_id: teddy.id, channel_id: ch2.id, content: "We actually went back to feet, meters never caught on")
+Message.create(user_id: george.id, channel_id: ch2.id, content: "is there anywhere I should see?")
+Message.create(user_id: teddy.id, channel_id: ch2.id, content: "One monolith that towers over the rest, I called it 'The Half of a Dome'...it's a working title ")
+Message.create(user_id: george.id, channel_id: ch2.id, content: "Great. Once my stallion is done eating we will go")
+
+
 
 Message.create(user_id: kennedy.id, channel_id: ch3.id, content: "is anyone in boston this weekend")
 Message.create(user_id: george.id, channel_id: ch3.id, content: "yeah I think I'll be flying. should we get chowder or is it too soon?")

@@ -7,6 +7,10 @@
     "doc": "docs",
     "test": "test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mlmid1616/slacker.git"
+  },
   "scripts": {
     "postinstall": "webpack"
   },
