@@ -49195,7 +49195,7 @@ var ChannelReducer = function ChannelReducer() {
   var newState = void 0;
   switch (action.type) {
     case _channel_actions.RECEIVE_USER_CHANNELS:
-      newState = (0, _lodash.merge)({}, state, action.channels);
+      newState = (0, _lodash.merge)({}, action.channels);
       return newState;
     case _channel_actions.RECEIVE_USER_CHANNEL:
       newState = (0, _lodash.merge)({}, state, _defineProperty({}, action.channel.id, action.channel));

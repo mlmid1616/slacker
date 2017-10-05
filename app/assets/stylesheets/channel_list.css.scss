@@ -123,12 +123,13 @@ channel-list-item:hover{
   color: #9e8e9c;
   position: relative;
   left: 13px;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 .direct-message-label {
   position: relative;
   left: 9px;
+  margin-bottom: 8px; 
 }
 
 .whole-direct-message-list {
@@ -140,7 +141,7 @@ channel-list-item:hover{
   font-size: 16px;
   color: #9e8e9c;
   position: relative;
-  bottom: 3px;
+  bottom: 7px;
 }
 
 .button:hover {
