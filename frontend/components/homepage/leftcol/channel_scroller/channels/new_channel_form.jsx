@@ -50,7 +50,7 @@ class NewChannelForm extends React.Component {
       const user_ids = this.state.selected.map( (user) => user.id );
       this.setState({selected: user_ids},
         ()=>{this.props.createMembership(this.state)})
-      this.props.closeModal()  
+      this.props.closeModal()
     }
 
   moveUser(origin, destination) {
@@ -76,8 +76,8 @@ class NewChannelForm extends React.Component {
     return(
       <div className="new-channel-form">
         <form onSubmit={this.handleSubmit}>
-          <div>
-            Enter the channel name and select users.
+          <div className="channel-intro">
+            Select users and create a channel name
           </div>
 
           <div>
@@ -100,7 +100,7 @@ class NewChannelForm extends React.Component {
           </div>
 
           <div className="unselected-users-box">
-            <div className="selecting-users-label">
+            <div className="unselecting-users-label">
               UNSELECTED USERS
             </div>
             <UnselectedList moveUser={this.moveUser("unselected", "selected")}

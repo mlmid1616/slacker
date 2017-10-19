@@ -79,9 +79,14 @@ class NewDirectMessageForm extends React.Component {
 
   render(){
     return(
+
       <div className="new-channel-form">
+        <div className="direct-message-intro">
+          Select users to be in your private channel
+        </div>
         <form onSubmit={this.handleSubmit}>
-          <div>
+
+          <div className="direct-message-space-holder">
           </div>
 
           <div className="selected-users-box">
@@ -93,7 +98,7 @@ class NewDirectMessageForm extends React.Component {
           </div>
 
           <div className="unselected-users-box">
-            <div className="selecting-users-label">
+            <div className="unselecting-users-label">
               UNSELECTED USERS
             </div>
             <UnselectedList moveUser={this.moveUser("unselected", "selected")}

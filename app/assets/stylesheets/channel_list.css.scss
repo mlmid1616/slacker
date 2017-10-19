@@ -1,3 +1,12 @@
+.direct-message-space-holder {
+  height: 80px;
+  width: 400px;
+}
+
+.channel-space-holder {
+  height: 20px;
+}
+
 .channel-list {
   display: flex;
   flex-direction: column;
@@ -17,7 +26,7 @@
 
 .channel-form-input {
   color: #eee;
-  width: 430px;
+  width: 480px;
   height: 48px;
   border-radius: 10px;
   border: 2px solid;
@@ -103,7 +112,7 @@ channel-list-item:hover{
   color: white;
   opacity: .99;
   color: white;
-  width: 448px;
+  width: 500px;
   justify-content: center;
   font-family: 'Nunito', sans-serif;
   height: 64px;
@@ -114,6 +123,11 @@ channel-list-item:hover{
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.channel-intro {
+    position: relative;
+    left: 38px;
 }
 
 .channel-label {
@@ -129,7 +143,13 @@ channel-list-item:hover{
 .direct-message-label {
   position: relative;
   left: 9px;
-  margin-bottom: 8px; 
+  margin-bottom: 8px;
+}
+
+.direct-message-intro {
+    position: relative;
+    top: 68px;
+    left: 35px;
 }
 
 .whole-direct-message-list {
@@ -155,21 +175,37 @@ channel-list-item:hover{
 }
 
 .selected-users-box {
-  border-bottom: 1px solid;
-  height: 250px;
-  font-size: 18px;
+    border-bottom: 1px solid;
+    height: 110px;
+    font-size: 18px;
+    overflow-y: scroll;
+    padding-bottom: 50px;
+    margin-top: 30px;
 }
 
 .unselected-users-box {
-  height: 250px;
-  font-size:18px;
+    height: 110px;
+    font-size: 18px;
+    overflow-y: scroll;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    padding-bottom: 30px;
 }
 
 .selecting-users-label {
-  margin-bottom: 10px;
-  position: relative;
-  left: 141px;
-  margin-top: 5px;
+    margin-bottom: 10px;
+    position: fixed;
+    left: 193px;
+    margin-top: 5px;
+    top: 130px;
+}
+
+.unselecting-users-label {
+    margin-bottom: 10px;
+    position: fixed;
+    left: 184px;
+    margin-top: 5px;
+    top: 318px;
 }
 
 .search-list-item {

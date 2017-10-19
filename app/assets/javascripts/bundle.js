@@ -48944,8 +48944,8 @@ var NewChannelForm = function (_React$Component) {
           { onSubmit: this.handleSubmit },
           _react2.default.createElement(
             'div',
-            null,
-            'Enter the channel name and select users.'
+            { className: 'channel-intro' },
+            'Select users and create a channel name'
           ),
           _react2.default.createElement(
             'div',
@@ -48973,7 +48973,7 @@ var NewChannelForm = function (_React$Component) {
             { className: 'unselected-users-box' },
             _react2.default.createElement(
               'div',
-              { className: 'selecting-users-label' },
+              { className: 'unselecting-users-label' },
               'UNSELECTED USERS'
             ),
             _react2.default.createElement(_unselected_list2.default, { moveUser: this.moveUser("unselected", "selected"),
@@ -49131,9 +49131,14 @@ var NewDirectMessageForm = function (_React$Component) {
         'div',
         { className: 'new-channel-form' },
         _react2.default.createElement(
+          'div',
+          { className: 'direct-message-intro' },
+          'Select users to be in your private channel'
+        ),
+        _react2.default.createElement(
           'form',
           { onSubmit: this.handleSubmit },
-          _react2.default.createElement('div', null),
+          _react2.default.createElement('div', { className: 'direct-message-space-holder' }),
           _react2.default.createElement(
             'div',
             { className: 'selected-users-box' },
@@ -49150,7 +49155,7 @@ var NewDirectMessageForm = function (_React$Component) {
             { className: 'unselected-users-box' },
             _react2.default.createElement(
               'div',
-              { className: 'selecting-users-label' },
+              { className: 'unselecting-users-label' },
               'UNSELECTED USERS'
             ),
             _react2.default.createElement(_unselected_list2.default, { moveUser: this.moveUser("unselected", "selected"),
