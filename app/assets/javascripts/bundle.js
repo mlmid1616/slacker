@@ -49655,7 +49655,7 @@ var SelectedMessageItem = function SelectedMessageItem(_ref) {
   var message = _ref.message;
 
 
-  var date = (0, _moment2.default)().format('ddd, MM/DD');
+  var date = (0, _moment2.default)().format('MM/DD');
 
   return _react2.default.createElement(
     'li',

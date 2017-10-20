@@ -5,7 +5,7 @@ import moment from 'moment';
 
 const SelectedMessageItem = ({ message }) => {
 
-  const date = moment().format('ddd, MM/DD');
+  const date = moment().format('MM/DD');
 
 
 
