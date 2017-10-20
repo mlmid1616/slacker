@@ -27,18 +27,19 @@ class Api::MessagesController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @message = Message.find_by(id: params[:id])
-  #   if @message
-  #     @message.destroy
-  #     render json: @message.id
-  #   else
-  #     render(
-  #       json: ["Message not found"],
-  #       status: 404
-  #       )
-  #   end
-
+  def destroy
+    @message = Message.find_by(id: params[:id])
+    if @message
+      @message.destroy
+      render json: @message.id
+    else
+      render(
+        json: ["Message not found"],
+        status: 404
+        )
+    end
+  end
+  
   def message_params
     params.require(:message).permit(:content, :user_id, :channel_id)
   end

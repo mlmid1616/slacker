@@ -45,12 +45,23 @@
   font-size: 12px;
   font-weight: bold;
   font-family: sans-serif;
+  display: flex;
+  flex-direction: row;
 }
 
+// .message-content {
+//   font-size: 14px;
+//     font-style: oblique;
+//     margin-bottom: 12px;
+//     position: relative;
+//     bottom: 11px;
+// }
+
 .message-content {
-  font-size: 14px;
+    font-size: 14px;
     font-style: oblique;
     margin-bottom: 12px;
     position: relative;
     bottom: 11px;
+    margin-top: 12px;
 }

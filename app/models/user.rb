@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 	has_many :memberships
 	has_many :channels, through: :memberships
   has_many :messages
+	has_many :replies 
 
   has_attached_file :avatar
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/

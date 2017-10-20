@@ -190,7 +190,11 @@ Message.create(user_id: obama.id, channel_id: ch5.id, content: "'functiong'")
 Message.create(user_id: hoover.id, channel_id: ch5.id, content: "hey it's pretty cool!!1!")
 Message.create(user_id: obama.id, channel_id: ch5.id, content: "meh")
 Message.create(user_id: kennedy.id, channel_id: ch5.id, content: "The great molasses flood of 1919")
-Message.create(user_id: hoover.id, channel_id: ch5.id, content: "exp?")
+
+sassMessage = Message.create(user_id: hoover.id, channel_id: ch5.id, content: "exp?")
+  Reply.create(user_id: teddy.id, message_id: sassMessage.id, content: "omg read a history book")
+  Reply.create(user_id: obama.id, message_id: sassMessage.id, content: "^^^")
+
 Message.create(user_id: kennedy.id, channel_id: ch5.id, content: "Speaks for itself")
 
 
@@ -224,5 +228,8 @@ Message.create(user_id: obama.id, channel_id: ch7.id, content: "did everyone her
 Message.create(user_id: hoover.id, channel_id: ch7.id, content: "Not me, go Card!!")
 Message.create(user_id: obama.id, channel_id: ch7.id, content: "relax hooves")
 
+
 Message.create(user_id: hoover.id, channel_id: ch8.id, content: "anyone here?")
-Message.create(user_id: obama.id, channel_id: ch8.id, content: "nope")
+repMessage = Message.create(user_id: obama.id, channel_id: ch8.id, content: "nope")
+  Reply.create(user_id: hoover.id, message_id: repMessage.id, content: "very funny")
+  Reply.create(user_id: obama.id, message_id: repMessage.id, content: "tyvm")
