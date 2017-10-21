@@ -7,6 +7,23 @@ const SelectedMessageItem = ({ message }) => {
 
   const date = moment().format('MM/DD');
 
+  let replyOffer;
+
+  if (message.count > 0) {
+    replyOffer =
+    <div className="replies-box">
+        <img className="small-reply-avatar" src={message.replies[0].avatar} />
+        Replies:{message.count}
+    </div>
+  } else {
+    replyOffer =
+    <div className="reply-box">
+      <div className="">Reply</div>
+    </div>
+  };
+
+
+
 
 
 
@@ -26,19 +43,29 @@ const SelectedMessageItem = ({ message }) => {
             {message.content}
           </div>
 
+
+              {replyOffer}
+
+
         </div>
     </li>
   );
 };
 
-// class SelectedMessageItem = ({ message }) => {
+
+// class SelectedMessageItem extends React.Component = {
+//   constructor(props) {
+//     super(props);
+//   }
+//   const date = moment().format('MM/DD');
+//   const message = this.props.message
 //
-//   let date = moment().format('ddd, hh:mm A');
 //
-//
-//
-//   return(
-//     <li className="selected-message-item">
+//   render () {
+//     const date = moment().format('MM/DD');
+//     const message = this.props.message
+//     return(
+//       <li className="selected-message-item">
 //         <img className="authorPic" src={message.authorPic} />
 //         <div className="selected-message-item-div">
 //
@@ -54,8 +81,10 @@ const SelectedMessageItem = ({ message }) => {
 //           </div>
 //
 //         </div>
-//     </li>
-//   );
+//       </li>
+//     );
+//   }
+//
 // };
 
 

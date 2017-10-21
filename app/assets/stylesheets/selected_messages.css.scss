@@ -1,9 +1,74 @@
+// .selected-message-item {
+//   background-color: white;
+//   height: 45px;
+//   margin-left: 27px;
+//   margin-top: 5px;
+//   display: flex;
+// }
+
+.small-reply-avatar {
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
+}
+
+.reply-box {
+  display: none;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  border: 1px solid gray;
+  border-radius: 30px;
+  width: inherit;
+}
+
+.replies-box {
+  display: block;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  border: 1px solid gray;
+  border-radius: 30px;
+  width: inherit;
+}
+
+.selected-message-item:hover .reply-box {
+  display: block;
+}
+
 .selected-message-item {
-  background-color: white;
-  height: 45px;
-  margin-left: 27px;
-  margin-top: 5px;
-  display: flex;
+    background-color: white;
+    /* height: 46px; */
+    margin-left: 27px;
+    margin-top: 5px;
+    display: flex;
+    width: 50%;
+
+      // -moz-transition: padding-left .3s ease-in;
+      //  -o-transition: padding-left  .3s ease-in;
+      //  -webkit-transition: padding-left  .3s ease-in;
+      //  transition: padding-left  .3s ease-in;
+
+      -moz-transition: padding-bottom .15s ease-in;
+       -o-transition: padding-bottom  .15s ease-in;
+       -webkit-transition: padding-bottom  .15s ease-in;
+       transition: padding-bottom  .15s ease-in;
+}
+
+.selected-message-item:hover {
+  background: #f9f9f9;
+  // padding-left:4px;
+  padding-bottom:10px;
+
+
+}
+
+.reply-offer {
+  font-size: 10px;
+}
+
+.selected-message-item-div:hover .reply-box {
+  display: block;
 }
 
 .selected-message-list {
@@ -30,10 +95,15 @@
 // padding-top: 63px;
 
 .authorPic {
-  height: 40px;
-  width: 40px;
+  height: 40px !important;
+  width: 40px !important;
   border-radius: 3px;
   margin-right: 7px;
+}
+
+.search-list-item img {
+  height: 40px !important;
+  width: 40px !important;
 }
 
 .selected-message-item-div {
@@ -49,19 +119,21 @@
   flex-direction: row;
 }
 
+
 // .message-content {
-//   font-size: 14px;
+//     font-size: 14px;
 //     font-style: oblique;
 //     margin-bottom: 12px;
 //     position: relative;
 //     bottom: 11px;
+//     margin-top: 12px;
 // }
 
 .message-content {
     font-size: 14px;
     font-style: oblique;
-    margin-bottom: 12px;
+    margin-bottom: 0px;
     position: relative;
-    bottom: 11px;
-    margin-top: 12px;
+    bottom: 22px;
+    margin-top: 10px;
 }

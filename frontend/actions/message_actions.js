@@ -26,6 +26,12 @@ export const fetchSelectedMessages = channel_id => dispatch => {
 };
 // err => (dispatch(receiveErrors(err.responseJSON))));
 
+export const fetchSelectedMessage = message_id => dispatch => {
+
+  return APIUtil.fetchSelectedMessage(message_id)
+  .then(message => dispatch(receiveSelectedMessage(message)))
+};
+
 export const createSelectedMessage = message  => dispatch => {
 
   return APIUtil.createSelectedMessage(message)

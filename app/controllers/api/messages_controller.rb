@@ -2,9 +2,12 @@ class Api::MessagesController < ApplicationController
 
   def index
     channel = Channel.find_by(id: params[:channel])
-
     @messages = channel.messages
     render "api/messages/index"
+  end
+
+  def show
+    @message = Message.find(params[:id])
   end
 
   def create
@@ -27,19 +30,19 @@ class Api::MessagesController < ApplicationController
     end
   end
 
-  def destroy
-    @message = Message.find_by(id: params[:id])
-    if @message
-      @message.destroy
-      render json: @message.id
-    else
-      render(
-        json: ["Message not found"],
-        status: 404
-        )
-    end
-  end
-  
+  # def destroy
+  #   @message = Message.find_by(id: params[:id])
+  #   if @message
+  #     @message.destroy
+  #     render json: @message.id
+  #   else
+  #     render(
+  #       json: ["Message not found"],
+  #       status: 404
+  #       )
+  #   end
+  # end
+
   def message_params
     params.require(:message).permit(:content, :user_id, :channel_id)
   end
