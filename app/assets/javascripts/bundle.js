@@ -35856,6 +35856,10 @@ var _selected_input_container = __webpack_require__(441);
 
 var _selected_input_container2 = _interopRequireDefault(_selected_input_container);
 
+var _message_replies = __webpack_require__(455);
+
+var _message_replies2 = _interopRequireDefault(_message_replies);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var SelectedChannel = function SelectedChannel(props, ownProps) {
@@ -35871,6 +35875,7 @@ var SelectedChannel = function SelectedChannel(props, ownProps) {
       _react2.default.createElement(_selected_header_container2.default, null)
     ),
     _react2.default.createElement(_selected_message_list_container2.default, { className: 'selected-message-list', channelId: channel_id }),
+    _react2.default.createElement(_message_replies2.default, null),
     _react2.default.createElement(_selected_input_container2.default, { channel_id: channel_id })
   );
 };
@@ -65592,21 +65597,38 @@ var _moment2 = _interopRequireDefault(_moment);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var SelectedMessageItem = function SelectedMessageItem(_ref) {
-  var message = _ref.message;
-
+var SelectedMessageItem = function SelectedMessageItem(props) {
 
   var date = (0, _moment2.default)().format('MM/DD');
-
+  var message = props.message;
   var replyOffer = void 0;
 
-  if (message.count > 0) {
+  if (message.count == 1) {
     replyOffer = _react2.default.createElement(
       'div',
       { className: 'replies-box' },
       _react2.default.createElement('img', { className: 'small-reply-avatar', src: message.replies[0].avatar }),
-      'Replies:',
-      message.count
+      '\xA0',
+      _react2.default.createElement(
+        'span',
+        { className: 'replies-label' },
+        message.count,
+        ' Replies'
+      )
+    );
+  } else if (message.count >= 2) {
+    replyOffer = _react2.default.createElement(
+      'div',
+      { className: 'replies-box' },
+      _react2.default.createElement('img', { className: 'small-reply-avatar', src: message.replies[0].avatar }),
+      _react2.default.createElement('img', { className: 'small-reply-avatar', src: message.replies[1].avatar }),
+      '\xA0',
+      _react2.default.createElement(
+        'span',
+        { className: 'replies-label' },
+        message.count,
+        ' Replies'
+      )
     );
   } else {
     replyOffer = _react2.default.createElement(
@@ -65614,7 +65636,7 @@ var SelectedMessageItem = function SelectedMessageItem(_ref) {
       { className: 'reply-box' },
       _react2.default.createElement(
         'div',
-        { className: '' },
+        { className: 'reply-label' },
         'Reply'
       )
     );
@@ -65652,35 +65674,65 @@ var SelectedMessageItem = function SelectedMessageItem(_ref) {
   );
 };
 
+// i need a HOC bc I need props. Then, I can change the message from there
+// i need to get the replies of this message to the replies component
+// then i need
+
+/*
+1.) make the HOC select message itme work
+2.) in props
+3.)
+*/
+
 // class SelectedMessageItem extends React.Component = {
 //   constructor(props) {
 //     super(props);
 //   }
 //   const date = moment().format('MM/DD');
-//   const message = this.props.message
-//
-//
+//   let message = this.props.message;
 //   render () {
+//     const date = moment().format('MM/DD');
+//     let message = props.message
+//     let replyOffer;
+//
+//     if (message.count > 0) {
+//       replyOffer =
+//       <div className="replies-box">
+//           <img className="small-reply-avatar" src={message.replies[0].avatar} />
+//           Replies:{message.count}
+//       </div>
+//     } else {
+//       replyOffer =
+//       <div className="reply-box">
+//         <div className="">Reply</div>
+//       </div>
+//     };
+//
 //     const date = moment().format('MM/DD');
 //     const message = this.props.message
 //     return(
 //       <li className="selected-message-item">
-//         <img className="authorPic" src={message.authorPic} />
-//         <div className="selected-message-item-div">
+//           <img className="authorPic" src={message.authorPic} />
+//           <div className="selected-message-item-div">
 //
-//           <div className="message-author-name">
-//             <div>{message.authorName}</div>
-//             <div className="time-stamp">{date}</div>
+//             <div className="message-author-name">
+//               <div>{message.authorName}</div>
+//               <div className="time-stamp">{date}</div>
+//             </div>
+//
+//             <br />
+//
+//             <div className="message-content">
+//               {message.content}
+//             </div>
+//
+//             {replyOffer}
+//
 //           </div>
-//
-//           <br />
-//
-//           <div className="message-content">
-//             {message.content}
-//           </div>
-//
-//         </div>
 //       </li>
+//       <div>
+//         hi
+//       </div>
 //     );
 //   }
 //
@@ -66522,11 +66574,11 @@ var MessageReducer = function MessageReducer() {
   var newState = void 0;
   switch (action.type) {
     case _message_actions.RECEIVE_SELECTED_MESSAGES:
-
       newState = (0, _lodash.merge)({}, state, action.messages);
       return newState;
     case _message_actions.RECEIVE_SELECTED_MESSAGE:
       newState = (0, _lodash.merge)({}, state, _defineProperty({}, action.message.id, action.message));
+      // return Object.assign({}, state, {[action.message.id]: action.message});
       return newState;
     default:
       return state;
@@ -66565,6 +66617,87 @@ var UserReducer = function UserReducer() {
 };
 
 exports.default = UserReducer;
+
+/***/ }),
+/* 455 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MessageReplies = function (_React$Component) {
+  _inherits(MessageReplies, _React$Component);
+
+  function MessageReplies(props) {
+    _classCallCheck(this, MessageReplies);
+
+    return _possibleConstructorReturn(this, (MessageReplies.__proto__ || Object.getPrototypeOf(MessageReplies)).call(this, props));
+  }
+
+  _createClass(MessageReplies, [{
+    key: "render",
+    value: function render() {
+      return (
+        // <ul className="message-replies">
+        //   <li>Helloooooo!!!!</li>
+        // </ul>
+        _react2.default.createElement(
+          "div",
+          { className: "big" },
+          "........Reply Thread....."
+        )
+      );
+    }
+  }]);
+
+  return MessageReplies;
+}(_react2.default.Component);
+
+// const mapStateToProps = (state, { channelId }) => {
+//
+//   return ({
+//     channel: channelId,
+//     messages: Object.keys(state.messages).map(
+//       (key) => {
+//         const message = state.messages[key];
+//         const author = state.users[message.user_id];
+//         return Object.assign(message, {authorName: author.username, authorPic: author.avatar_url});
+//       }
+//     )
+//   });
+// };
+//
+//
+// const mapDispatchToProps = (dispatch) => {
+//   return({
+//     fetchSelectedMessages: (channel) => {; return dispatch(fetchSelectedMessages(channel))}
+//   });
+// };
+//
+// export default connect (
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(SelectedMessageList);
+
+exports.default = MessageReplies;
 
 /***/ })
 /******/ ]);

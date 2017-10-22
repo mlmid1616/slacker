@@ -12,14 +12,28 @@
   border-radius: 10px;
 }
 
+.reply-label {
+  color: black;
+  padding-left: 13px;
+}
+
 .reply-box {
   display: none;
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
-  border: 1px solid gray;
+  border: 1px solid black;
   border-radius: 30px;
-  width: inherit;
+  width: 75px;
+}
+
+.reply-box:hover {
+  cursor: pointer;
+}
+
+.replies-label {
+  position: relative;
+  bottom: 3px;
 }
 
 .replies-box {
@@ -29,11 +43,43 @@
   padding-left: 5px;
   border: 1px solid gray;
   border-radius: 30px;
-  width: inherit;
+  width: 120px;
+}
+
+.replies-box:hover {
+  cursor: pointer;
 }
 
 .selected-message-item:hover .reply-box {
   display: block;
+}
+
+// .message-replies {
+//   // display: block;
+//   position: absolute;
+//   z-index: 100;
+//   height: 100px;
+//   background: green;
+//   right: 3px;
+//   width: 30px;
+// }
+
+.big {
+    position: absolute;
+    top: 69px;
+    height: 585px;
+    width: 400px;
+    right: 5px;
+    width: 20%;
+    border-radius: 18px;
+    border: solid 2px gray;
+    background: white;
+}
+
+@media only screen and (max-width: 870px) {
+  .big  {
+    width: 130px;
+  }
 }
 
 .selected-message-item {
