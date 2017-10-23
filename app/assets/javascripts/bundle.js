@@ -65437,7 +65437,8 @@ var mapStateToProps = function mapStateToProps(state, _ref) {
     messages: Object.keys(state.messages).map(function (key) {
       var message = state.messages[key];
       var author = state.users[message.user_id];
-      return Object.assign(message, { authorName: author.username, authorPic: author.avatar_url });
+      var message_id = key;
+      return Object.assign(message, { authorName: author.username, authorPic: author.avatar_url, message_id: key });
     })
   };
 };
@@ -65560,6 +65561,7 @@ var SelectedMessageList = function (_React$Component) {
           return _react2.default.createElement(_selected_message_item2.default, { message: message, key: idx });
         }
       });
+
       return _react2.default.createElement(
         'ul',
         { className: 'unordered-message-list' },
@@ -65587,6 +65589,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
@@ -65595,88 +65599,67 @@ var _moment = __webpack_require__(0);
 
 var _moment2 = _interopRequireDefault(_moment);
 
+var _current_message_actions = __webpack_require__(457);
+
+var _reactRedux = __webpack_require__(11);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var SelectedMessageItem = function SelectedMessageItem(props) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-  var date = (0, _moment2.default)().format('MM/DD');
-  var message = props.message;
-  var replyOffer = void 0;
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-  if (message.count == 1) {
-    replyOffer = _react2.default.createElement(
-      'div',
-      { className: 'replies-box' },
-      _react2.default.createElement('img', { className: 'small-reply-avatar', src: message.replies[0].avatar }),
-      '\xA0',
-      _react2.default.createElement(
-        'span',
-        { className: 'replies-label' },
-        message.count,
-        ' Replies'
-      )
-    );
-  } else if (message.count >= 2) {
-    replyOffer = _react2.default.createElement(
-      'div',
-      { className: 'replies-box' },
-      _react2.default.createElement('img', { className: 'small-reply-avatar', src: message.replies[0].avatar }),
-      _react2.default.createElement('img', { className: 'small-reply-avatar', src: message.replies[1].avatar }),
-      '\xA0',
-      _react2.default.createElement(
-        'span',
-        { className: 'replies-label' },
-        message.count,
-        ' Replies'
-      )
-    );
-  } else {
-    replyOffer = _react2.default.createElement(
-      'div',
-      { className: 'reply-box' },
-      _react2.default.createElement(
-        'div',
-        { className: 'reply-label' },
-        'Reply'
-      )
-    );
-  };
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-  return _react2.default.createElement(
-    'li',
-    { className: 'selected-message-item' },
-    _react2.default.createElement('img', { className: 'authorPic', src: message.authorPic }),
-    _react2.default.createElement(
-      'div',
-      { className: 'selected-message-item-div' },
-      _react2.default.createElement(
-        'div',
-        { className: 'message-author-name' },
-        _react2.default.createElement(
-          'div',
-          null,
-          message.authorName
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'time-stamp' },
-          date
-        )
-      ),
-      _react2.default.createElement('br', null),
-      _react2.default.createElement(
-        'div',
-        { className: 'message-content' },
-        message.content
-      ),
-      replyOffer
-    )
-  );
-};
+// const SelectedMessageItem = (props) => {
+//
+//   const date = moment().format('MM/DD');
+//   let message = props.message
+//   let replyOffer;
+//
+//   if (message.count == 1) {
+//     replyOffer =
+//     <div className="replies-box">
+//         <img className="small-reply-avatar" src={message.replies[0].avatar} />
+//         &nbsp;<span className="replies-label">{message.count} Replies</span>
+//     </div>
+//   } else if (message.count >= 2) {
+//     replyOffer =
+//     <div className="replies-box">
+//         <img className="small-reply-avatar" src={message.replies[0].avatar} />
+//         <img className="small-reply-avatar" src={message.replies[1].avatar} />
+//         &nbsp;<span className="replies-label">{message.count} Replies</span>
+//     </div>
+//   } else {
+//     replyOffer =
+//     <div className="reply-box">
+//       <div className="reply-label">Reply</div>
+//     </div>
+//   };
+//
+//   return(
+//     <li className="selected-message-item">
+//         <img className="authorPic" src={message.authorPic} />
+//         <div className="selected-message-item-div">
+//
+//           <div className="message-author-name">
+//             <div>{message.authorName}</div>
+//             <div className="time-stamp">{date}</div>
+//           </div>
+//
+//           <br />
+//
+//           <div className="message-content">
+//             {message.content}
+//           </div>
+//
+//           {replyOffer}
+//
+//         </div>
+//     </li>
+//   );
+// };
 
-// i need a HOC bc I need props. Then, I can change the message from there
-// i need to get the replies of this message to the replies component
-// then i need
 
 /*
 1.) make the HOC select message itme work
@@ -65684,62 +65667,127 @@ var SelectedMessageItem = function SelectedMessageItem(props) {
 3.)
 */
 
-// class SelectedMessageItem extends React.Component = {
-//   constructor(props) {
-//     super(props);
-//   }
-//   const date = moment().format('MM/DD');
-//   let message = this.props.message;
-//   render () {
-//     const date = moment().format('MM/DD');
-//     let message = props.message
-//     let replyOffer;
-//
-//     if (message.count > 0) {
-//       replyOffer =
-//       <div className="replies-box">
-//           <img className="small-reply-avatar" src={message.replies[0].avatar} />
-//           Replies:{message.count}
-//       </div>
-//     } else {
-//       replyOffer =
-//       <div className="reply-box">
-//         <div className="">Reply</div>
-//       </div>
-//     };
-//
-//     const date = moment().format('MM/DD');
-//     const message = this.props.message
-//     return(
-//       <li className="selected-message-item">
-//           <img className="authorPic" src={message.authorPic} />
-//           <div className="selected-message-item-div">
-//
-//             <div className="message-author-name">
-//               <div>{message.authorName}</div>
-//               <div className="time-stamp">{date}</div>
-//             </div>
-//
-//             <br />
-//
-//             <div className="message-content">
-//               {message.content}
-//             </div>
-//
-//             {replyOffer}
-//
-//           </div>
-//       </li>
-//       <div>
-//         hi
-//       </div>
-//     );
-//   }
+var SelectedMessageItem = function (_React$Component) {
+  _inherits(SelectedMessageItem, _React$Component);
+
+  function SelectedMessageItem(props) {
+    _classCallCheck(this, SelectedMessageItem);
+
+    return _possibleConstructorReturn(this, (SelectedMessageItem.__proto__ || Object.getPrototypeOf(SelectedMessageItem)).call(this, props));
+
+    // this.handleClick = this.handleClick.bind(this);
+  }
+
+  _createClass(SelectedMessageItem, [{
+    key: 'handleClick',
+    value: function handleClick(message) {
+      this.props.receiveCurrentMessage(message);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var date = (0, _moment2.default)().format('MM/DD');
+      var message = this.props.message;
+      var replyOffer = void 0;
+
+      if (message.count == 1) {
+        replyOffer = _react2.default.createElement(
+          'div',
+          { className: 'replies-box', onClick: function onClick() {
+              _this2.props.receiveCurrentMessage(message);
+            } },
+          _react2.default.createElement('img', { className: 'small-reply-avatar', src: message.replies[0].avatar }),
+          '\xA0',
+          _react2.default.createElement(
+            'span',
+            { className: 'replies-label' },
+            message.count,
+            ' Replies'
+          )
+        );
+      } else if (message.count >= 2) {
+        replyOffer = _react2.default.createElement(
+          'div',
+          { className: 'replies-box', onClick: function onClick() {
+              _this2.props.receiveCurrentMessage(message);
+            } },
+          _react2.default.createElement('img', { className: 'small-reply-avatar', src: message.replies[0].avatar }),
+          _react2.default.createElement('img', { className: 'small-reply-avatar', src: message.replies[1].avatar }),
+          '\xA0',
+          _react2.default.createElement(
+            'span',
+            { className: 'replies-label' },
+            message.count,
+            ' Replies'
+          )
+        );
+      } else {
+        replyOffer = _react2.default.createElement(
+          'div',
+          { className: 'reply-box', onClick: function onClick() {
+              _this2.props.receiveCurrentMessage(message);
+            } },
+          _react2.default.createElement(
+            'div',
+            { className: 'reply-label' },
+            'Reply'
+          )
+        );
+      };
+      return _react2.default.createElement(
+        'li',
+        { className: 'selected-message-item' },
+        _react2.default.createElement('img', { className: 'authorPic', src: message.authorPic }),
+        _react2.default.createElement(
+          'div',
+          { className: 'selected-message-item-div' },
+          _react2.default.createElement(
+            'div',
+            { className: 'message-author-name' },
+            _react2.default.createElement(
+              'div',
+              null,
+              message.authorName
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'time-stamp' },
+              date
+            )
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'div',
+            { className: 'message-content' },
+            message.content
+          ),
+          replyOffer
+        )
+      );
+    }
+  }]);
+
+  return SelectedMessageItem;
+}(_react2.default.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    receiveCurrentMessage: function receiveCurrentMessage(message) {
+      return dispatch((0, _current_message_actions.receiveCurrentMessage)(message));
+    }
+  };
+};
+
 //
 // };
 
-
-exports.default = SelectedMessageItem;
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(SelectedMessageItem);
 
 /***/ }),
 /* 439 */
@@ -66029,6 +66077,14 @@ var createSelectedMessage = exports.createSelectedMessage = function createSelec
   return $.ajax({
     type: "POST",
     url: "api/messages",
+    data: { message: message }
+  });
+};
+
+var updateSelectedMessage = exports.updateSelectedMessage = function updateSelectedMessage(message) {
+  return $.ajax({
+    type: "POST",
+    url: "api/message/${message_id}",
     data: { message: message }
   });
 };
@@ -66427,6 +66483,10 @@ var _user_reducer = __webpack_require__(454);
 
 var _user_reducer2 = _interopRequireDefault(_user_reducer);
 
+var _current_message_reducer = __webpack_require__(456);
+
+var _current_message_reducer2 = _interopRequireDefault(_current_message_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var RootReducer = (0, _redux.combineReducers)({
@@ -66434,7 +66494,8 @@ var RootReducer = (0, _redux.combineReducers)({
   modal: _modal_reducer2.default,
   channels: _channel_reducer2.default,
   messages: _message_reducer2.default,
-  users: _user_reducer2.default
+  users: _user_reducer2.default,
+  current_message: _current_message_reducer2.default
 });
 
 exports.default = RootReducer;
@@ -66635,6 +66696,12 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(11);
+
+var _message_reply_item = __webpack_require__(458);
+
+var _message_reply_item2 = _interopRequireDefault(_message_reply_item);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -66653,16 +66720,26 @@ var MessageReplies = function (_React$Component) {
   }
 
   _createClass(MessageReplies, [{
-    key: "render",
+    key: 'render',
     value: function render() {
-      return (
-        // <ul className="message-replies">
-        //   <li>Helloooooo!!!!</li>
-        // </ul>
+      var originalMessage = this.props.current_message.content;
+      var reply1 = "Be the first to reply!";
+      debugger;
+      if (this.props.current_message.count > 0) {
+        reply1 = _react2.default.createElement(_message_reply_item2.default, { reply: this.props.replies[0] });
+      }
+      return _react2.default.createElement(
+        'div',
+        null,
         _react2.default.createElement(
-          "div",
-          { className: "big" },
-          "........Reply Thread....."
+          'div',
+          { className: 'big' },
+          originalMessage
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'big' },
+          reply1
         )
       );
     }
@@ -66671,33 +66748,167 @@ var MessageReplies = function (_React$Component) {
   return MessageReplies;
 }(_react2.default.Component);
 
-// const mapStateToProps = (state, { channelId }) => {
-//
-//   return ({
-//     channel: channelId,
-//     messages: Object.keys(state.messages).map(
-//       (key) => {
-//         const message = state.messages[key];
-//         const author = state.users[message.user_id];
-//         return Object.assign(message, {authorName: author.username, authorPic: author.avatar_url});
-//       }
-//     )
-//   });
-// };
-//
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return({
-//     fetchSelectedMessages: (channel) => {; return dispatch(fetchSelectedMessages(channel))}
-//   });
-// };
-//
-// export default connect (
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(SelectedMessageList);
+var mapStateToProps = function mapStateToProps(state) {
 
-exports.default = MessageReplies;
+  return {
+    current_message: state.current_message,
+    replies: state.current_message.replies
+  };
+};
+
+// return ({
+//   channel: channelId,
+//   messages: Object.keys(state.messages).map(
+//     (key) => {
+//       const message = state.messages[key];
+//       const author = state.users[message.user_id];
+//       return Object.assign(message, {authorName: author.username, authorPic: author.avatar_url});
+//     }
+//   )
+// });
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {};
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MessageReplies);
+
+/***/ }),
+/* 456 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _lodash = __webpack_require__(47);
+
+var _current_message_actions = __webpack_require__(457);
+
+var default_state = {};
+var CurrentMessageReducer = function CurrentMessageReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : default_state;
+  var action = arguments[1];
+
+  var newState = void 0;
+  switch (action.type) {
+    case _current_message_actions.RECEIVE_CURRENT_MESSAGE:
+      newState = (0, _lodash.merge)({}, action.message);
+      return newState;
+    default:
+      return state;
+  }
+};
+
+exports.default = CurrentMessageReducer;
+
+/***/ }),
+/* 457 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var RECEIVE_CURRENT_MESSAGE = exports.RECEIVE_CURRENT_MESSAGE = "RECEIVE_CURRENT_MESSAGE";
+
+var receiveCurrentMessage = exports.receiveCurrentMessage = function receiveCurrentMessage(message) {
+  return {
+    type: RECEIVE_CURRENT_MESSAGE,
+    message: message
+  };
+};
+
+/***/ }),
+/* 458 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _moment = __webpack_require__(0);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _reactRedux = __webpack_require__(11);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import { receiveCurrentMessage } from '../../../../actions/current_message_actions';
+
+
+var MessageReplyItem = function (_React$Component) {
+  _inherits(MessageReplyItem, _React$Component);
+
+  function MessageReplyItem(props) {
+    _classCallCheck(this, MessageReplyItem);
+
+    return _possibleConstructorReturn(this, (MessageReplyItem.__proto__ || Object.getPrototypeOf(MessageReplyItem)).call(this, props));
+  }
+
+  _createClass(MessageReplyItem, [{
+    key: 'render',
+    value: function render() {
+
+      var reply = this.props.reply;
+      var date = (0, _moment2.default)().format('MM/DD');
+
+      return _react2.default.createElement(
+        'li',
+        { className: 'reply-item' },
+        _react2.default.createElement('img', { className: 'reply-pic', src: reply.avatar }),
+        _react2.default.createElement(
+          'div',
+          { className: 'reply-item-div' },
+          _react2.default.createElement(
+            'div',
+            { className: 'reply-author-name' },
+            _react2.default.createElement(
+              'div',
+              null,
+              reply.reply_username
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'reply-time-stamp' },
+              date
+            )
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'div',
+            { className: 'message-content' },
+            reply.reply_content
+          )
+        )
+      );
+    }
+  }]);
+
+  return MessageReplyItem;
+}(_react2.default.Component);
+
+exports.default = MessageReplyItem;
 
 /***/ })
 /******/ ]);

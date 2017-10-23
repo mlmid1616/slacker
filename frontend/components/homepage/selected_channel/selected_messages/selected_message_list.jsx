@@ -67,6 +67,7 @@ class SelectedMessageList extends React.Component {
          }
        }
      );
+
      return(
        <ul className="unordered-message-list">
          {allMessages}

@@ -10,7 +10,8 @@ const mapStateToProps = (state, { channelId }) => {
       (key) => {
         const message = state.messages[key];
         const author = state.users[message.user_id];
-        return Object.assign(message, {authorName: author.username, authorPic: author.avatar_url});
+        const message_id = key;
+        return Object.assign(message, {authorName: author.username, authorPic: author.avatar_url, message_id: key});
       }
     )
   });

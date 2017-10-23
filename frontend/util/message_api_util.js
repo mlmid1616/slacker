@@ -28,3 +28,13 @@
       })
     );
   };
+
+  export const updateSelectedMessage = message => {
+    return(
+      $.ajax({
+        type:"POST",
+        url:"api/message/${message_id}",
+        data: {message: message}
+      })
+    )
+  }
