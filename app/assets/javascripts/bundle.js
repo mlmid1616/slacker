@@ -66831,7 +66831,7 @@ var MessageReplies = function (_React$Component) {
     value: function componentWillReceiveProps(nextProps) {}
 
     // shouldComponentUpdate(nextProps){
-    //   
+    //
     //   if (this.props.current_message.count > 0) {
     //     return nextProps.current_message.replies.slice(-1)[0].reply_content != this.props.current_message.replies.slice(-1)[0].reply_content;
     //   } else {
@@ -66857,8 +66857,28 @@ var MessageReplies = function (_React$Component) {
 
       var current_user_id = this.props.current_user_id;
       var message_id = this.props.current_message.message_id;
-      var originalMessage = this.props.current_message.content;
-      var originalAvatar = this.props.current_message.authorPic;
+
+      var originalMessage = void 0;
+      if (this.props.current_message.content) {
+        originalMessage = this.props.current_message.content;
+      } else {
+        originalMessage = _react2.default.createElement(
+          'div',
+          { className: 'reply-thread-value' },
+          'Reply Thread'
+        );
+      }
+
+      var originalAvatar = void 0;
+      if (this.props.current_message.authorPic) {
+        originalAvatar = _react2.default.createElement('img', { className: 'original-avatar', src: this.props.current_message.authorPic });
+      } else {
+        originalAvatar = "";
+      }
+
+      // let originalAvatar = this.props.current_message.authorPic;
+
+
       var reply1 = "No Replies";
       var allReplies = [];
       var i = 0;
@@ -66888,7 +66908,7 @@ var MessageReplies = function (_React$Component) {
             _react2.default.createElement(
               'div',
               null,
-              _react2.default.createElement('img', { className: 'original-avatar', src: originalAvatar })
+              originalAvatar
             )
           ),
           _react2.default.createElement(

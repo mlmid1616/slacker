@@ -17,7 +17,7 @@ class MessageReplies extends React.Component {
     }
 
     // shouldComponentUpdate(nextProps){
-    //   
+    //
     //   if (this.props.current_message.count > 0) {
     //     return nextProps.current_message.replies.slice(-1)[0].reply_content != this.props.current_message.replies.slice(-1)[0].reply_content;
     //   } else {
@@ -41,8 +41,25 @@ class MessageReplies extends React.Component {
 
       let current_user_id = this.props.current_user_id;
       let message_id = this.props.current_message.message_id;
-      let originalMessage = this.props.current_message.content;
-      let originalAvatar = this.props.current_message.authorPic;
+
+      let originalMessage;
+      if (this.props.current_message.content){
+        originalMessage = this.props.current_message.content;
+      } else {
+        originalMessage = <div className="reply-thread-value">Reply Thread</div>;
+      }
+
+      let originalAvatar;
+      if ( this.props.current_message.authorPic ) {
+        originalAvatar = <img className="original-avatar" src={this.props.current_message.authorPic} />
+      } else {
+        originalAvatar = "";
+      }
+
+      // let originalAvatar = this.props.current_message.authorPic;
+
+
+
       let reply1 = "No Replies"
       let allReplies = [];
       let i = 0;
@@ -54,7 +71,7 @@ class MessageReplies extends React.Component {
       if (this.props.current_message.count > 0) {
         reply1 = <MessageReplyItem reply={this.props.current_message.replies[0]} />
       }
-      
+
         return (
           <div>
             <div className="big">
@@ -63,7 +80,7 @@ class MessageReplies extends React.Component {
                   {originalMessage}
                 </div>
                 <div>
-                  <img className="original-avatar" src={originalAvatar} />
+                  {originalAvatar}
                 </div>
               </div>
               <div>
