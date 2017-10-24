@@ -17,7 +17,7 @@ class MessageReplies extends React.Component {
     }
 
     // shouldComponentUpdate(nextProps){
-    //   debugger
+    //   
     //   if (this.props.current_message.count > 0) {
     //     return nextProps.current_message.replies.slice(-1)[0].reply_content != this.props.current_message.replies.slice(-1)[0].reply_content;
     //   } else {
@@ -54,7 +54,7 @@ class MessageReplies extends React.Component {
       if (this.props.current_message.count > 0) {
         reply1 = <MessageReplyItem reply={this.props.current_message.replies[0]} />
       }
-      debugger
+      
         return (
           <div>
             <div className="big">

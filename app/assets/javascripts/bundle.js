@@ -63062,10 +63062,34 @@ var LandingPage = function (_React$Component) {
           null,
           _react2.default.createElement(_navbar_container2.default, null)
         ),
+        _react2.default.createElement('div', { id: 'rwb-background' }),
         _react2.default.createElement(
-          'p',
-          { id: 'landing-text' },
-          'slack a bit'
+          'div',
+          { className: 'landing-block' },
+          _react2.default.createElement('div', { id: 'background-div' }),
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              'ul',
+              { className: 'landing-intro' },
+              _react2.default.createElement(
+                'li',
+                { className: 'overall-description' },
+                'This is a slack clone for presidents'
+              ),
+              _react2.default.createElement(
+                'li',
+                { className: 'intro-name' },
+                'Where no work happens'
+              ),
+              _react2.default.createElement(
+                'li',
+                { className: 'intro-description' },
+                'When you\'re in charge, life is good. The time for action can wait when you have all your presidential friends to hang out with.'
+              )
+            )
+          )
         )
       );
     }
@@ -66807,7 +66831,7 @@ var MessageReplies = function (_React$Component) {
     value: function componentWillReceiveProps(nextProps) {}
 
     // shouldComponentUpdate(nextProps){
-    //   debugger
+    //   
     //   if (this.props.current_message.count > 0) {
     //     return nextProps.current_message.replies.slice(-1)[0].reply_content != this.props.current_message.replies.slice(-1)[0].reply_content;
     //   } else {
@@ -66846,7 +66870,7 @@ var MessageReplies = function (_React$Component) {
       if (this.props.current_message.count > 0) {
         reply1 = _react2.default.createElement(_message_reply_item2.default, { reply: this.props.current_message.replies[0] });
       }
-      debugger;
+
       return _react2.default.createElement(
         'div',
         null,
@@ -67093,7 +67117,7 @@ var MessageReplyInput = function (_React$Component) {
   }
 
   // componentWillReceiveProps(nextProps) {
-  //   debugger
+  //   
   // }
 
   _createClass(MessageReplyInput, [{
