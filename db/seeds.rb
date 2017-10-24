@@ -38,7 +38,6 @@ ch3 = Channel.create(name:"TurkeyPardonerz", private: false)
 ch4 = Channel.create(name:"mastersoftrivia", private: false)
 ch5 = Channel.create(name:"CantStopWontStop", private: false)
 
-
 ch6 = Channel.create(name:"RevolutionRinger, TopHatKing", private: true)
 ch7 = Channel.create(name:"DamBuilder, BarrackObama3456, MoonOrBust", private: true)
 ch8 = Channel.create(name:"RevolutionRinger, TopHatKing, DamBuilder, MoonOrBust, BarrackObama3456", private: true)

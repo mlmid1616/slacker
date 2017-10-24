@@ -29,6 +29,16 @@
     );
   };
 
+  export const createMessageReply = reply => {
+    return(
+      $.ajax({
+        type:"POST",
+        url:"api/replies",
+        data: {reply: reply}
+      })
+    )
+  }
+
   export const updateSelectedMessage = message => {
     return(
       $.ajax({

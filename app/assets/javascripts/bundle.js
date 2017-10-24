@@ -29526,7 +29526,9 @@ module.exports = exports['default'];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createSelectedMessage = exports.fetchSelectedMessage = exports.fetchSelectedMessages = exports.receiveSelectedMessage = exports.receiveSelectedMessages = exports.RECEIVE_SELECTED_MESSAGE = exports.RECEIVE_SELECTED_MESSAGES = undefined;
+exports.createSelectedMessage = exports.fetchSelectedMessage = exports.fetchSelectedMessages = exports.createMessageReply = exports.receiveSelectedMessage = exports.receiveSelectedMessages = exports.RECEIVE_SELECTED_MESSAGE = exports.RECEIVE_SELECTED_MESSAGES = undefined;
+
+var _current_message_actions = __webpack_require__(457);
 
 var _message_api_util = __webpack_require__(440);
 
@@ -29553,9 +29555,17 @@ var receiveSelectedMessage = exports.receiveSelectedMessage = function receiveSe
   };
 };
 
+var createMessageReply = exports.createMessageReply = function createMessageReply(reply) {
+  return function (dispatch) {
+    return APIUtil.createMessageReply(reply).then(function (message) {
+      dispatch(receiveSelectedMessage(message));
+      dispatch((0, _current_message_actions.receiveCurrentMessage)(message));
+    });
+  };
+};
+
 var fetchSelectedMessages = exports.fetchSelectedMessages = function fetchSelectedMessages(channel_id) {
   return function (dispatch) {
-
     return APIUtil.fetchSelectedMessages(channel_id).then(function (messages) {
       return dispatch(receiveSelectedMessages(messages));
     });
@@ -29565,7 +29575,6 @@ var fetchSelectedMessages = exports.fetchSelectedMessages = function fetchSelect
 
 var fetchSelectedMessage = exports.fetchSelectedMessage = function fetchSelectedMessage(message_id) {
   return function (dispatch) {
-
     return APIUtil.fetchSelectedMessage(message_id).then(function (message) {
       return dispatch(receiveSelectedMessage(message));
     });
@@ -29574,7 +29583,6 @@ var fetchSelectedMessage = exports.fetchSelectedMessage = function fetchSelected
 
 var createSelectedMessage = exports.createSelectedMessage = function createSelectedMessage(message) {
   return function (dispatch) {
-
     return APIUtil.createSelectedMessage(message).then(function (message) {
       return dispatch(receiveSelectedMessage(message));
     });
@@ -35562,37 +35570,101 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(16);
 
+var _reactRedux = __webpack_require__(11);
+
+var _current_message_actions = __webpack_require__(457);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ChannelListItem = function ChannelListItem(_ref) {
-  var channel = _ref.channel;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// const ChannelListItem = ({ channel }) => {
+//
+//   let pretext;
+//   if (channel.private) {
+//     pretext = <i className="fa fa-circle" aria-hidden="true"></i>
+//   } else {
+//     pretext = "#";
+//   }
+//   return(
+//     <li className="channel-list-item">
+//       <NavLink activeClassName="selector" exact to={`/messages/${channel.id}`}>
+//         {pretext}{channel.name}
+//       </NavLink>
+//     </li>
+//   );
+// };
+//
+// export default ChannelListItem;
 
 
-  var pretext = void 0;
-  if (channel.private) {
-    pretext = _react2.default.createElement('i', { className: 'fa fa-circle', 'aria-hidden': 'true' });
-  } else {
-    pretext = "#";
+var ChannelListItem = function (_React$Component) {
+  _inherits(ChannelListItem, _React$Component);
+
+  function ChannelListItem(props) {
+    _classCallCheck(this, ChannelListItem);
+
+    return _possibleConstructorReturn(this, (ChannelListItem.__proto__ || Object.getPrototypeOf(ChannelListItem)).call(this, props));
   }
-  return _react2.default.createElement(
-    'li',
-    { className: 'channel-list-item' },
-    _react2.default.createElement(
-      _reactRouterDom.NavLink,
-      { activeClassName: 'selector', exact: true, to: '/messages/' + channel.id },
-      pretext,
-      channel.name
-    )
-  );
+
+  _createClass(ChannelListItem, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var channel = this.props.channel;
+      var pretext = void 0;
+      if (channel.private) {
+        pretext = _react2.default.createElement('i', { className: 'fa fa-circle', 'aria-hidden': 'true' });
+      } else {
+        pretext = "#";
+      }
+
+      return _react2.default.createElement(
+        'li',
+        { onClick: function onClick() {
+            return _this2.props.receiveCurrentMessage({});
+          }, className: 'channel-list-item' },
+        _react2.default.createElement(
+          _reactRouterDom.NavLink,
+          { activeClassName: 'selector', exact: true, to: '/messages/' + channel.id },
+          pretext,
+          channel.name
+        )
+      );
+    }
+  }]);
+
+  return ChannelListItem;
+}(_react2.default.Component);
+
+;
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {};
 };
 
-exports.default = ChannelListItem;
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    receiveCurrentMessage: function receiveCurrentMessage(message) {
+      return dispatch((0, _current_message_actions.receiveCurrentMessage)(message));
+    }
+  };
+};
+
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ChannelListItem));
 
 /***/ }),
 /* 141 */
@@ -66081,6 +66153,14 @@ var createSelectedMessage = exports.createSelectedMessage = function createSelec
   });
 };
 
+var createMessageReply = exports.createMessageReply = function createMessageReply(reply) {
+  return $.ajax({
+    type: "POST",
+    url: "api/replies",
+    data: { reply: reply }
+  });
+};
+
 var updateSelectedMessage = exports.updateSelectedMessage = function updateSelectedMessage(message) {
   return $.ajax({
     type: "POST",
@@ -66702,6 +66782,10 @@ var _message_reply_item = __webpack_require__(458);
 
 var _message_reply_item2 = _interopRequireDefault(_message_reply_item);
 
+var _message_reply_input = __webpack_require__(459);
+
+var _message_reply_input2 = _interopRequireDefault(_message_reply_input);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -66717,29 +66801,78 @@ var MessageReplies = function (_React$Component) {
     _classCallCheck(this, MessageReplies);
 
     return _possibleConstructorReturn(this, (MessageReplies.__proto__ || Object.getPrototypeOf(MessageReplies)).call(this, props));
+
+    // this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
   }
 
+  // forceUpdateHandler() {
+  //   this.forceUpdate();
+  // };
+
+
   _createClass(MessageReplies, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      // debugger
+    }
+  }, {
     key: 'render',
     value: function render() {
+
+      // let x = !!this.props.replies
+      //
+      // if ( x ) {
+      //     let allReplies = this.props.replies.map(
+      //       (reply,idx) => {
+      //         return <MessageReplyItem reply={reply} key={idx}/>;
+      //       });
+      // } else {
+      //   let allReplies = "no replies"
+      // }
+
+
+      var current_user_id = this.props.current_user_id;
+      var message_id = this.props.current_message.message_id;
       var originalMessage = this.props.current_message.content;
-      var reply1 = "Be the first to reply!";
-      debugger;
+      var originalAvatar = this.props.current_message.authorPic;
+      var reply1 = "No Replies";
+      var allReplies = [];
+      var i = 0;
+      while (i < this.props.current_message.count) {
+        allReplies.push(_react2.default.createElement(_message_reply_item2.default, { reply: this.props.replies[i], key: i }));
+        i += 1;
+      }
+
       if (this.props.current_message.count > 0) {
         reply1 = _react2.default.createElement(_message_reply_item2.default, { reply: this.props.replies[0] });
       }
+      // debugger
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(
           'div',
           { className: 'big' },
-          originalMessage
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'big' },
-          reply1
+          _react2.default.createElement(
+            'div',
+            { className: 'original-thread' },
+            _react2.default.createElement(
+              'div',
+              null,
+              originalMessage
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement('img', { className: 'original-avatar', src: originalAvatar })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            allReplies
+          ),
+          _react2.default.createElement(_message_reply_input2.default, { message_id: message_id, user_id: current_user_id })
         )
       );
     }
@@ -66749,10 +66882,11 @@ var MessageReplies = function (_React$Component) {
 }(_react2.default.Component);
 
 var mapStateToProps = function mapStateToProps(state) {
-
+  debugger;
   return {
     current_message: state.current_message,
-    replies: state.current_message.replies
+    replies: state.current_message.replies,
+    current_user: state.session.currentUser.id
   };
 };
 
@@ -66887,17 +67021,12 @@ var MessageReplyItem = function (_React$Component) {
               'div',
               null,
               reply.reply_username
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'reply-time-stamp' },
-              date
             )
           ),
           _react2.default.createElement('br', null),
           _react2.default.createElement(
             'div',
-            { className: 'message-content' },
+            { className: 'reply-content' },
             reply.reply_content
           )
         )
@@ -66909,6 +67038,125 @@ var MessageReplyItem = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = MessageReplyItem;
+
+// <div className="reply-time-stamp">{date}</div>
+
+/***/ }),
+/* 459 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _message_actions = __webpack_require__(77);
+
+var _reactRedux = __webpack_require__(11);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MessageReplyInput = function (_React$Component) {
+  _inherits(MessageReplyInput, _React$Component);
+
+  function MessageReplyInput(props) {
+    _classCallCheck(this, MessageReplyInput);
+
+    var _this = _possibleConstructorReturn(this, (MessageReplyInput.__proto__ || Object.getPrototypeOf(MessageReplyInput)).call(this, props));
+
+    _this.state = {
+      reply: "Reply"
+    };
+
+    _this.handleSubmit = _this.handleSubmit.bind(_this);
+    _this.empty = _this.empty.bind(_this);
+    return _this;
+  }
+
+  _createClass(MessageReplyInput, [{
+    key: 'empty',
+    value: function empty(type) {
+      var _this2 = this;
+
+      return function (e) {
+        e.preventDefault();
+        if (e.currentTarget.value === "Reply") {
+          _this2.setState(_defineProperty({}, type, ''));
+        }
+      };
+    }
+  }, {
+    key: 'update',
+    value: function update(field) {
+      var _this3 = this;
+
+      return function (e) {
+        return _this3.setState(_defineProperty({}, field, e.currentTarget.value));
+      };
+    }
+  }, {
+    key: 'handleSubmit',
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.setState({ reply: '' });
+      // const reply_obj = {content: this.state.reply, message_id: this.props.message_id};
+      // this.props.createMessageReply(reply_obj);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'reply-input-div' },
+        _react2.default.createElement(
+          'form',
+          { className: 'reply-input-form', onSubmit: this.handleSubmit },
+          _react2.default.createElement('input', {
+            value: this.state.message,
+            onClick: this.empty("reply"),
+            onChange: this.update("reply")
+          })
+        )
+      );
+    }
+  }]);
+
+  return MessageReplyInput;
+}(_react2.default.Component);
+// <input type="submit" value="Send Message" />
+
+var mapStateToProps = function mapStateToProps(state, _ref) {
+  var channelId = _ref.channelId;
+
+  return {};
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createMessageReply: function createMessageReply(reply) {
+      return dispatch((0, _message_actions.createMessageReply)(reply));
+    }
+  };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(MessageReplyInput);
 
 /***/ })
 /******/ ]);
