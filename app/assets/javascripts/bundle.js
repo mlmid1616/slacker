@@ -66913,7 +66913,7 @@ var MessageReplies = function (_React$Component) {
           ),
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'all-replies' },
             allReplies
           ),
           _react2.default.createElement(

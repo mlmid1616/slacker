@@ -83,7 +83,7 @@ class MessageReplies extends React.Component {
                   {originalAvatar}
                 </div>
               </div>
-              <div>
+              <div className="all-replies">
                 {allReplies}
               </div>
               <div>
