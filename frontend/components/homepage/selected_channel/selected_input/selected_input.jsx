@@ -30,10 +30,9 @@ class SelectedInput extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    //
     const message_obj = {content: this.state.message, user_id: this.props.user_id, channel_id: this.props.channel_id};
     this.props.createSelectedMessage(message_obj);
-    // 
+    //
     this.setState({message:''});
   }
 

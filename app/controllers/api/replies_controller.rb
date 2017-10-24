@@ -21,7 +21,7 @@ class Api::RepliesController < ApplicationController
 
 
     def reply_params
-      params.require(:reply).permit(:content, :message_id)
+      params.require(:reply).permit(:content, :message_id, :current_user_avatar)
     end
 
 end

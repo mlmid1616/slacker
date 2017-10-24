@@ -17,7 +17,7 @@ class MessageReplies extends React.Component {
 
 
     componentWillReceiveProps(nextProps) {
-      // debugger
+      //  ""
     }
     render() {
 
@@ -33,7 +33,7 @@ class MessageReplies extends React.Component {
       // }
 
 
-
+      let current_user_avatar = this.props.current_user_avatar;
       let current_user_id = this.props.current_user_id;
       let message_id = this.props.current_message.message_id;
       let originalMessage = this.props.current_message.content;
@@ -49,7 +49,7 @@ class MessageReplies extends React.Component {
       if (this.props.current_message.count > 0) {
         reply1 = <MessageReplyItem reply={this.props.replies[0]} />
       }
-      // debugger
+      //  ""
         return (
           <div>
             <div className="big">
@@ -64,7 +64,7 @@ class MessageReplies extends React.Component {
               <div>
                 {allReplies}
               </div>
-              <MessageReplyInput message_id={message_id} user_id={current_user_id} />
+              <MessageReplyInput current_user_avatar={current_user_avatar} message_id={message_id} user_id={current_user_id}  />
             </div>
           </div>
         );
@@ -73,11 +73,12 @@ class MessageReplies extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  debugger
+
   return ({
     current_message: state.current_message,
     replies: state.current_message.replies,
-    current_user: state.session.currentUser.id
+    current_user: state.session.currentUser.id,
+    current_user_avatar: state.session.currentUser.avatar_url
   })
 
 };
