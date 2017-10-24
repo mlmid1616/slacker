@@ -8,17 +8,24 @@ class MessageReplies extends React.Component {
   constructor(props) {
     super(props);
 
-    // this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
   }
 
-  // forceUpdateHandler() {
-  //   this.forceUpdate();
-  // };
+
 
 
     componentWillReceiveProps(nextProps) {
-      //  ""
     }
+
+    // shouldComponentUpdate(nextProps){
+    //   debugger
+    //   if (this.props.current_message.count > 0) {
+    //     return nextProps.current_message.replies.slice(-1)[0].reply_content != this.props.current_message.replies.slice(-1)[0].reply_content;
+    //   } else {
+    //     return true;
+    //   }
+    // }
+
+
     render() {
 
       // let x = !!this.props.replies
@@ -31,9 +38,8 @@ class MessageReplies extends React.Component {
       // } else {
       //   let allReplies = "no replies"
       // }
+      debugger
 
-
-      let current_user_avatar = this.props.current_user_avatar;
       let current_user_id = this.props.current_user_id;
       let message_id = this.props.current_message.message_id;
       let originalMessage = this.props.current_message.content;
@@ -42,12 +48,12 @@ class MessageReplies extends React.Component {
       let allReplies = [];
       let i = 0;
       while (i < this.props.current_message.count) {
-        allReplies.push(<MessageReplyItem reply={this.props.replies[i]} key={i}/>);
+        allReplies.push(<MessageReplyItem reply={this.props.current_message.replies[i]} key={i}/>);
         i += 1;
       }
 
       if (this.props.current_message.count > 0) {
-        reply1 = <MessageReplyItem reply={this.props.replies[0]} />
+        reply1 = <MessageReplyItem reply={this.props.current_message.replies[0]} />
       }
       //  ""
         return (
@@ -64,7 +70,7 @@ class MessageReplies extends React.Component {
               <div>
                 {allReplies}
               </div>
-              <MessageReplyInput current_user_avatar={current_user_avatar} message_id={message_id} user_id={current_user_id}  />
+              <MessageReplyInput message_id={message_id} user_id={current_user_id}  />
             </div>
           </div>
         );
@@ -76,9 +82,7 @@ const mapStateToProps = (state) => {
 
   return ({
     current_message: state.current_message,
-    replies: state.current_message.replies,
     current_user: state.session.currentUser.id,
-    current_user_avatar: state.session.currentUser.avatar_url
   })
 
 };

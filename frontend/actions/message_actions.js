@@ -22,8 +22,7 @@ export const receiveSelectedMessage = message => {
 export const createMessageReply = reply => dispatch => {
   return APIUtil.createMessageReply(reply)
   .then( message => {
-    debugger
-    dispatch(receiveSelectedMessage(message));
+    // dispatch(receiveSelectedMessage(message));
     dispatch(receiveCurrentMessage(message));
     }
   );

@@ -30,7 +30,6 @@
   };
 
   export const createMessageReply = reply => {
-    debugger
     return(
       $.ajax({
         type:"POST",

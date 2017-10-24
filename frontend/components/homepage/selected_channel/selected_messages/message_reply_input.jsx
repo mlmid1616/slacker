@@ -15,6 +15,10 @@ class MessageReplyInput extends React.Component {
 
 
 
+  // componentWillReceiveProps(nextProps) {
+  //   debugger
+  // }
+
   empty(type) {
     return (e) => {
       e.preventDefault();
@@ -31,11 +35,9 @@ class MessageReplyInput extends React.Component {
   }
 
   handleSubmit(e){
-    debugger
     e.preventDefault();
     this.setState( () => { return {reply:''}  });
     const reply_obj = {content: this.state.reply, message_id: this.props.message_id};
-    debugger
     this.props.createMessageReply(reply_obj);
   }
 

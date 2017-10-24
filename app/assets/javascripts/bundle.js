@@ -29558,8 +29558,7 @@ var receiveSelectedMessage = exports.receiveSelectedMessage = function receiveSe
 var createMessageReply = exports.createMessageReply = function createMessageReply(reply) {
   return function (dispatch) {
     return APIUtil.createMessageReply(reply).then(function (message) {
-      debugger;
-      dispatch(receiveSelectedMessage(message));
+      // dispatch(receiveSelectedMessage(message));
       dispatch((0, _current_message_actions.receiveCurrentMessage)(message));
     });
   };
@@ -66155,7 +66154,6 @@ var createSelectedMessage = exports.createSelectedMessage = function createSelec
 };
 
 var createMessageReply = exports.createMessageReply = function createMessageReply(reply) {
-  debugger;
   return $.ajax({
     type: "POST",
     url: "api/replies",
@@ -66802,20 +66800,22 @@ var MessageReplies = function (_React$Component) {
     _classCallCheck(this, MessageReplies);
 
     return _possibleConstructorReturn(this, (MessageReplies.__proto__ || Object.getPrototypeOf(MessageReplies)).call(this, props));
-
-    // this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
   }
-
-  // forceUpdateHandler() {
-  //   this.forceUpdate();
-  // };
-
 
   _createClass(MessageReplies, [{
     key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      //  ""
-    }
+    value: function componentWillReceiveProps(nextProps) {}
+
+    // shouldComponentUpdate(nextProps){
+    //   debugger
+    //   if (this.props.current_message.count > 0) {
+    //     return nextProps.current_message.replies.slice(-1)[0].reply_content != this.props.current_message.replies.slice(-1)[0].reply_content;
+    //   } else {
+    //     return true;
+    //   }
+    // }
+
+
   }, {
     key: 'render',
     value: function render() {
@@ -66830,9 +66830,8 @@ var MessageReplies = function (_React$Component) {
       // } else {
       //   let allReplies = "no replies"
       // }
+      debugger;
 
-
-      var current_user_avatar = this.props.current_user_avatar;
       var current_user_id = this.props.current_user_id;
       var message_id = this.props.current_message.message_id;
       var originalMessage = this.props.current_message.content;
@@ -66841,12 +66840,12 @@ var MessageReplies = function (_React$Component) {
       var allReplies = [];
       var i = 0;
       while (i < this.props.current_message.count) {
-        allReplies.push(_react2.default.createElement(_message_reply_item2.default, { reply: this.props.replies[i], key: i }));
+        allReplies.push(_react2.default.createElement(_message_reply_item2.default, { reply: this.props.current_message.replies[i], key: i }));
         i += 1;
       }
 
       if (this.props.current_message.count > 0) {
-        reply1 = _react2.default.createElement(_message_reply_item2.default, { reply: this.props.replies[0] });
+        reply1 = _react2.default.createElement(_message_reply_item2.default, { reply: this.props.current_message.replies[0] });
       }
       //  ""
       return _react2.default.createElement(
@@ -66874,7 +66873,7 @@ var MessageReplies = function (_React$Component) {
             null,
             allReplies
           ),
-          _react2.default.createElement(_message_reply_input2.default, { current_user_avatar: current_user_avatar, message_id: message_id, user_id: current_user_id })
+          _react2.default.createElement(_message_reply_input2.default, { message_id: message_id, user_id: current_user_id })
         )
       );
     }
@@ -66887,9 +66886,7 @@ var mapStateToProps = function mapStateToProps(state) {
 
   return {
     current_message: state.current_message,
-    replies: state.current_message.replies,
-    current_user: state.session.currentUser.id,
-    current_user_avatar: state.session.currentUser.avatar_url
+    current_user: state.session.currentUser.id
   };
 };
 
@@ -67092,6 +67089,10 @@ var MessageReplyInput = function (_React$Component) {
     return _this;
   }
 
+  // componentWillReceiveProps(nextProps) {
+  //   debugger
+  // }
+
   _createClass(MessageReplyInput, [{
     key: 'empty',
     value: function empty(type) {
@@ -67116,13 +67117,11 @@ var MessageReplyInput = function (_React$Component) {
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
-      debugger;
       e.preventDefault();
       this.setState(function () {
         return { reply: '' };
       });
       var reply_obj = { content: this.state.reply, message_id: this.props.message_id };
-      debugger;
       this.props.createMessageReply(reply_obj);
     }
   }, {
