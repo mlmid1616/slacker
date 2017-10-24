@@ -38,7 +38,6 @@ class MessageReplies extends React.Component {
       // } else {
       //   let allReplies = "no replies"
       // }
-      debugger
 
       let current_user_id = this.props.current_user_id;
       let message_id = this.props.current_message.message_id;
@@ -55,7 +54,7 @@ class MessageReplies extends React.Component {
       if (this.props.current_message.count > 0) {
         reply1 = <MessageReplyItem reply={this.props.current_message.replies[0]} />
       }
-      //  ""
+      debugger
         return (
           <div>
             <div className="big">
@@ -70,7 +69,9 @@ class MessageReplies extends React.Component {
               <div>
                 {allReplies}
               </div>
-              <MessageReplyInput message_id={message_id} user_id={current_user_id}  />
+              <div>
+                <MessageReplyInput message_id={message_id} user_id={current_user_id}  />
+              </div>
             </div>
           </div>
         );

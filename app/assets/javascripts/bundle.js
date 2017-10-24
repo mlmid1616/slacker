@@ -29558,7 +29558,7 @@ var receiveSelectedMessage = exports.receiveSelectedMessage = function receiveSe
 var createMessageReply = exports.createMessageReply = function createMessageReply(reply) {
   return function (dispatch) {
     return APIUtil.createMessageReply(reply).then(function (message) {
-      // dispatch(receiveSelectedMessage(message));
+      dispatch(receiveSelectedMessage(message));
       dispatch((0, _current_message_actions.receiveCurrentMessage)(message));
     });
   };
@@ -66830,7 +66830,6 @@ var MessageReplies = function (_React$Component) {
       // } else {
       //   let allReplies = "no replies"
       // }
-      debugger;
 
       var current_user_id = this.props.current_user_id;
       var message_id = this.props.current_message.message_id;
@@ -66847,7 +66846,7 @@ var MessageReplies = function (_React$Component) {
       if (this.props.current_message.count > 0) {
         reply1 = _react2.default.createElement(_message_reply_item2.default, { reply: this.props.current_message.replies[0] });
       }
-      //  ""
+      debugger;
       return _react2.default.createElement(
         'div',
         null,
@@ -66873,7 +66872,11 @@ var MessageReplies = function (_React$Component) {
             null,
             allReplies
           ),
-          _react2.default.createElement(_message_reply_input2.default, { message_id: message_id, user_id: current_user_id })
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(_message_reply_input2.default, { message_id: message_id, user_id: current_user_id })
+          )
         )
       );
     }
@@ -67114,15 +67117,29 @@ var MessageReplyInput = function (_React$Component) {
         return _this3.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
+
+    // handleSubmit(e){
+    //   e.preventDefault();
+    //
+    //  this.setState(function(prevState, props){
+    //     return {reply: ''}
+    //  });
+    // }
+
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.setState(function () {
-        return { reply: '' };
-      });
+
+      // this.setState({reply: "REPLACED"}, function () {
+      //   return console.log(this.state)
+      // });
+      // this.setState({reply:"REPLACED"}, function () {
+      // console.log(this.state.reply);
+      // });
       var reply_obj = { content: this.state.reply, message_id: this.props.message_id };
       this.props.createMessageReply(reply_obj);
+      this.setState({ reply: '' });
     }
   }, {
     key: 'render',
@@ -67135,7 +67152,7 @@ var MessageReplyInput = function (_React$Component) {
           'form',
           { className: 'reply-input-form', onSubmit: this.handleSubmit },
           _react2.default.createElement('input', {
-            value: this.state.message,
+            value: this.state.reply,
             onClick: this.empty("reply"),
             onChange: this.update("reply")
           })

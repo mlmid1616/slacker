@@ -34,11 +34,26 @@ class MessageReplyInput extends React.Component {
     });
   }
 
+  // handleSubmit(e){
+  //   e.preventDefault();
+  //
+  //  this.setState(function(prevState, props){
+  //     return {reply: ''}
+  //  });
+  // }
+
   handleSubmit(e){
     e.preventDefault();
-    this.setState( () => { return {reply:''}  });
+
+    // this.setState({reply: "REPLACED"}, function () {
+    //   return console.log(this.state)
+    // });
+    // this.setState({reply:"REPLACED"}, function () {
+    // console.log(this.state.reply);
+    // });
     const reply_obj = {content: this.state.reply, message_id: this.props.message_id};
     this.props.createMessageReply(reply_obj);
+    this.setState( { reply:''} );
   }
 
 
@@ -49,7 +64,7 @@ class MessageReplyInput extends React.Component {
       <div className="reply-input-div">
         <form className="reply-input-form" onSubmit={this.handleSubmit}>
           <input
-            value={this.state.message}
+            value={this.state.reply}
             onClick={this.empty("reply")}
             onChange={this.update("reply")}
             />
