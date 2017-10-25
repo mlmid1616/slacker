@@ -1,4 +1,4 @@
-
+import { receiveCurrentMessage } from './current_message_actions'
 export const RECEIVE_SELECTED_MESSAGES = "RECEIVE_SELECTED_MESSAGES";
 export const RECEIVE_SELECTED_MESSAGE = "RECEIVE_SELECTED_MESSAGE";
 
@@ -19,15 +19,27 @@ export const receiveSelectedMessage = message => {
   });
 };
 
-export const fetchSelectedMessages = channel_id => dispatch => {
+export const createMessageReply = reply => dispatch => {
+  return APIUtil.createMessageReply(reply)
+  .then( message => {
+    dispatch(receiveSelectedMessage(message));
+    dispatch(receiveCurrentMessage(message));
+    }
+  );
+}
 
+export const fetchSelectedMessages = channel_id => dispatch => {
   return APIUtil.fetchSelectedMessages(channel_id)
     .then(messages => dispatch(receiveSelectedMessages(messages)));
 };
 // err => (dispatch(receiveErrors(err.responseJSON))));
 
-export const createSelectedMessage = message  => dispatch => {
+export const fetchSelectedMessage = message_id => dispatch => {
+  return APIUtil.fetchSelectedMessage(message_id)
+  .then(message => dispatch(receiveSelectedMessage(message)))
+};
 
+export const createSelectedMessage = message  => dispatch => {
   return APIUtil.createSelectedMessage(message)
   .then( message => dispatch(receiveSelectedMessage(message)));
 };

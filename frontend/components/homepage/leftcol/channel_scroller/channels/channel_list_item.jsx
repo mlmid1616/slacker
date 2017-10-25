@@ -1,22 +1,69 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { receiveCurrentMessage } from '../../../../../actions/current_message_actions';
 
 
-const ChannelListItem = ({ channel }) => {
+// const ChannelListItem = ({ channel }) => {
+//
+//   let pretext;
+//   if (channel.private) {
+//     pretext = <i className="fa fa-circle" aria-hidden="true"></i>
+//   } else {
+//     pretext = "#";
+//   }
+//   return(
+//     <li className="channel-list-item">
+//       <NavLink activeClassName="selector" exact to={`/messages/${channel.id}`}>
+//         {pretext}{channel.name}
+//       </NavLink>
+//     </li>
+//   );
+// };
+//
+// export default ChannelListItem;
 
-  let pretext;
-  if (channel.private) {
-    pretext = <i className="fa fa-circle" aria-hidden="true"></i>
-  } else {
-    pretext = "#";
+
+
+
+class ChannelListItem extends React.Component {
+
+  constructor(props){
+    super(props)
+
   }
-  return(
-    <li className="channel-list-item">
-      <NavLink activeClassName="selector" exact to={`/messages/${channel.id}`}>
-        {pretext}{channel.name}
-      </NavLink>
-    </li>
-  );
+
+  render() {
+    let channel = this.props.channel;
+    let pretext;
+    if (channel.private) {
+      pretext = <i className="fa fa-circle" aria-hidden="true"></i>
+    } else {
+      pretext = "#";
+    }
+
+    return (
+      <li onClick={() => this.props.receiveCurrentMessage({})} className="channel-list-item">
+        <NavLink activeClassName="selector" exact to={`/messages/${channel.id}`}>
+          {pretext}{channel.name}
+        </NavLink>
+      </li>
+      );
+  }
 };
 
-export default ChannelListItem;
+const mapStateToProps = (state) => {
+  return({});
+};
+
+
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    receiveCurrentMessage: (message) => dispatch(receiveCurrentMessage(message))
+  });
+};
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ChannelListItem));

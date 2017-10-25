@@ -1,5 +1,4 @@
   export const fetchSelectedMessages = (channel_id) => {
-      
     return(
       $.ajax({
         type: "GET",
@@ -9,8 +8,18 @@
     );
   };
 
+  export const fetchSelectedMessage = (message_id) => {
+    return (
+      $.ajax({
+        type: "GET",
+        url: "api/messages/${message_id}",
+        data: {message: message_id}
+      })
+    )
+  }
+
+
   export const createSelectedMessage = message => {
-    //
     return(
       $.ajax({
         type:"POST",
@@ -19,3 +28,33 @@
       })
     );
   };
+
+  export const createMessageReply = reply => {
+    return(
+      $.ajax({
+        type:"POST",
+        url:"api/replies",
+        data: {reply: reply}
+      })
+    )
+  }
+
+  export const updateSelectedMessage = message => {
+    return(
+      $.ajax({
+        type:"POST",
+        url:"api/message/${message_id}",
+        data: {message: message}
+      })
+    )
+  }
+
+  export const deleteSelectedMessage = message => {
+    return (
+      $.ajax({
+        type:"DELETE",
+        url:"api/messages",
+        data: {message_id: message.message_id}
+      })
+    )
+  }

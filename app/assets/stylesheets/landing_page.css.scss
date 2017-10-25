@@ -1,18 +1,88 @@
 #landing-text {
-  display: flex;
-  margin-top: 551px;
-  margin-left: 25px;
-  font-size: 56px;
-  color: white;
-  font-family: 'Nunito', sans-serif;
+    display: flex;
+    margin-top: 551px;
+    margin-left: 25px;
+    font-size: 56px;
+    color: black;
+    font-family: 'Nunito', sans-serif;
+    z-index: 3;
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
 }
 
 
-#landing-div {
-  background-image: image-url("yosemitesmall.jpg");
-  background-size: 1920px 1080px;
+
+.landing-block {
+  display: flex;
+  flex-direction: row;
+  font-family: 'Merriweather', serif;
+  position: relative;
+  top: 100px;
+  left: 50px;
+  max-width: 1000px;
+}
+
+.overall-description {
+  // font-size: 32px;
+  color: #b92e2e;
+  position: relative;
+  bottom: 15px;
+  // left: 50px;
+  font-family: 'Poiret One', cursive;
+  font-size: 28px;
+}
+
+
+#rwb-background {
+  background-image: image-url("rwb-stars2.jpg");
+  // height: 100vh;
+  // width: 100vw;
+  width: 100%;
+  height: 100%;
+  opacity: .040;
+  position:absolute;
+}
+
+#background-div {
+  background-image: image-url("detailed-wh.png");
+  background-size: 500px 350px;
+font-family: 'Nunito', sans-serif;
+// height: 100vh;
+background-repeat: no-repeat;
+height: 440px;
+width: 900px;
+left: 69px;
   font-family: 'Nunito', sans-serif;
-  height: 100vh;
+  background-repeat:no-repeat;
+  height: 440px;
+  width: 900px;
+  opacity: 1 !important;
+}
+
+
+.landing-intro {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  // z-index 3;
+  opacity: 1;
+  width: 450px;
+  position: relative;
+  top: 74px;
+  left: 10px;
+}
+
+.landing-intro .intro-name {
+  font-size: 62px;
+  color: #b92e2e;
+}
+
+.landing-intro .intro-description {
+  font-size: 22px;
+  color: #272992;
+  margin-top: 20px;
+  line-height: 30px;
 }
 
 html {
@@ -20,13 +90,12 @@ html {
 }
 
 
-
 .nav {
   display: flex;
   flex-direction: row-reverse;
   border-bottom: solid;
-  background-color: gray;
-  opacity: .5;
+  background-color: #1e297b;
+  // opacity: .5;
 }
 
 .auth {
@@ -34,7 +103,7 @@ html {
     background-color: Transparent;
     background-repeat:no-repeat;
     border: none;
-    overflow: hidden;         
+    overflow: hidden;
     cursor:pointer;
     font-size: 24px;
     font-family: 'Nunito', sans-serif;
@@ -93,18 +162,3 @@ html {
   justify-content: center;
   text-align: center;
 }
-
-
-
-
-
-
-// .session-wrapper {
-//   display: flex;
-//   justify-content: center;
-//   background: url(https://discordapp.com/assets/85e031dc63742b86264cc0dbc2a6fdb8.jpg) 50% no-repeat;
-//   background-size: 1920px 1080px;
-//   position: relative;
-//   overflow: hidden;
-//   height: 100vh;
-// }

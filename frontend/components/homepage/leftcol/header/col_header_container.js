@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../../../actions/session_actions';
 import { fetchCurrentChannel } from '../../../../actions/channel_actions';
+import { receiveCurrentMessage } from '../../../../actions/current_message_actions';
 import { withRouter } from 'react-router-dom';
 
 import ColHeader from './col_header';
@@ -25,7 +26,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return({
     logout: () => dispatch(logout()),
-    fetchCurrentChannel: (channel_name) => dispatch(fetchCurrentChannel(channel_name))
+    fetchCurrentChannel: (channel_name) => dispatch(fetchCurrentChannel(channel_name)),
+    receiveCurrentMessage: (message) => dispatch(receiveCurrentMessage(message))
   });
 };
 

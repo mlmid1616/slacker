@@ -1,9 +1,326 @@
-.selected-message-item {
-  background-color: white;
-  height: 45px;
-  margin-left: 27px;
-  margin-top: 5px;
+
+
+/* -------  REPLY Input CSS */
+
+.reply-input-div {
+    display: flex;
+    min-height: 21px;
+    box-sizing: border-box;
+    cursor: text;
+    line-height: 1.42;
+    outline: 0;
+    overflow-y: scroll;
+    padding: 12px 15px;
+    /* overflow-x: scroll; */
+    tab-size: 4;
+    -moz-tab-size: 4;
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding-bottom: 20px;
+    padding-top: 0px;
+    overflow: hidden;
+    position: absolute;
+    /* z-index: 3; */
+    width: 93%;
+    bottom: 10px;
+}
+
+.reply-input-form {
+    height: 40px;
+    width: 98%;
+    border: none;
+    input{
+      &:focus {
+        border-color: #bbbdbf;
+        outline: none;
+        color: black
+      }
+      padding-left: 12px;
+      width: 100%;
+      height: 40px;
+      border: 2px solid #E0E0E0;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: 'Nunito', sans-serif;
+      color: #a0a0a0
+    }
+}
+
+/* -------  end REPLY Input CSS */
+
+
+
+
+/* -------  REPLY ITEM CSS */
+
+@media only screen and (max-width: 870px) {
+  .reply-item {
+    width: 110px !important;
+    // background: red;
+    font-size: 12px;
+  }
+
+  .reply-author-name {
+    font-size: 0px !important;
+    // background: yellow;
+  }
+
+  .selected-message-item {
+    width: 35% !important;
+  }
+
+  .all-replies {
+    height: 55% !important;
+    width: 110px !important;
+  }
+
+  .original-avatar {
+    margin-left: 8px !important;
+  }
+
+  .original-thread {
+    font-size: 12px !important;
+  }
+
+  .reply-content {
+    width: 55px !important;
+  }
+}
+
+
+.reply-item {
+  width: 1% !important;
+  padding-left: 8px !important;
   display: flex;
+  flex-direction: row;
+  padding-top: 4px;
+  border-left: 3px solid transparent;
+}
+
+.reply-item:hover {
+  // background: #f9f9f9;
+  border-left: 3px solid #aaacad;
+}
+
+.reply-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  margin-right: 5px;
+}
+
+.reply-item-div {
+ display: flex;
+ flex-direction: column;
+}
+
+.reply-author-name {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+.reply-time-stamp {
+  font-size: 8px;
+  color: gray;
+}
+
+.reply-content {
+  width: 160px;
+  position: relative;
+  bottom: 14px;
+  left: 3px;
+
+}
+
+/* END of Reply item CSS */
+
+.all-replies {
+  overflow-y: scroll;
+  height: 63%;
+  max-height: 376px;
+}
+
+@media only screen and (max-height: 640px) {
+  .all-replies  {
+    height: 59%
+  }
+}
+
+
+
+.small-reply-avatar {
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
+}
+
+.reply-label {
+  color: black;
+  padding-left: 13px;
+}
+
+.reply-box {
+  display: none;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  border: 1px solid black;
+  border-radius: 30px;
+  width: 75px;
+  position: relative;
+  bottom: 5px;
+}
+
+.reply-thread-value {
+  position: relative;
+left: 3%;
+font-size: 30px;
+color: #e2d6d6;
+margin-top: 10px;
+}
+
+@media only screen and (min-width: 960px) {
+  .reply-thread-value  {
+    left: 10%;
+  }
+}
+
+@media only screen and (min-width: 1050px) {
+  .reply-thread-value  {
+    left: 13%;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  .reply-thread-value  {
+    left: 16%;
+  }
+}
+
+
+
+.original-avatar {
+  height: 35px;
+  width: 35px;
+  margin-right: 5px;
+  border-radius: 15px;
+  margin-left: 20px;
+}
+
+
+.original-thread {
+  font-weight: 100;
+  border-bottom: solid 2px #4d3a4b;
+  padding-bottom: 20px;
+  padding-top: 5px;
+  padding-left: 16px;
+  font-weight: 100;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 16px;
+  background: #f3eeee;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.reply-box:hover {
+  cursor: pointer;
+}
+
+.replies-label {
+  position: relative;
+  bottom: 3px;
+}
+
+.replies-box {
+  display: block;
+  padding-top: 3px;
+  // padding-bottom: 3px;
+  padding-left: 5px;
+  border: 1px solid gray;
+  border-radius: 30px;
+  width: 125px;
+  position: relative;
+  bottom: 14px;
+}
+
+.one-reply-box {
+  display: block;
+  padding-top: 3px;
+  // padding-bottom: 3px;
+  padding-left: 5px;
+  border: 1px solid gray;
+  border-radius: 30px;
+  width: 90px;
+  position: relative;
+  bottom: 14px;
+}
+
+.one-reply-box:hover {
+  cursor: pointer;
+}
+
+
+.replies-box:hover {
+  cursor: pointer;
+}
+
+.selected-message-item:hover .reply-box {
+  display: block;
+}
+
+.original-message-container {
+  align-items: center;
+}
+
+.big {
+  position: absolute;
+top: 69px;
+height: 77%;
+width: 400px;
+right: 15px;
+width: 23%;
+border-radius: 18px;
+border: solid 5px #4d3a4b;
+background: white;
+}
+
+@media only screen and (max-width: 870px) {
+  .big  {
+    width: 130px;
+  }
+}
+
+.selected-message-item {
+    background-color: white;
+    /* height: 46px; */
+    margin-left: 27px;
+    margin-top: 5px;
+    display: flex;
+    width: 47%;
+
+      -moz-transition: padding-bottom .15s ease-in;
+       -o-transition: padding-bottom  .15s ease-in;
+       -webkit-transition: padding-bottom  .15s ease-in;
+       transition: padding-bottom  .15s ease-in;
+}
+
+.selected-message-item:hover {
+  background: #f9f9f9;
+  padding-bottom:10px;
+}
+
+
+
+.reply-offer {
+  font-size: 10px;
+}
+
+.selected-message-item-div:hover .reply-box {
+  display: block;
 }
 
 .selected-message-list {
@@ -30,10 +347,15 @@
 // padding-top: 63px;
 
 .authorPic {
-  height: 40px;
-  width: 40px;
+  height: 40px !important;
+  width: 40px !important;
   border-radius: 3px;
   margin-right: 7px;
+}
+
+.search-list-item img {
+  height: 40px !important;
+  width: 40px !important;
 }
 
 .selected-message-item-div {
@@ -49,19 +371,12 @@
   flex-direction: row;
 }
 
-// .message-content {
-//   font-size: 14px;
-//     font-style: oblique;
-//     margin-bottom: 12px;
-//     position: relative;
-//     bottom: 11px;
-// }
 
 .message-content {
     font-size: 14px;
     font-style: oblique;
-    margin-bottom: 12px;
+    margin-bottom: 0px;
     position: relative;
-    bottom: 11px;
-    margin-top: 12px;
+    bottom: 22px;
+    margin-top: 10px;
 }
