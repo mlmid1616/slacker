@@ -48,3 +48,13 @@
       })
     )
   }
+
+  export const deleteSelectedMessage = message => {
+    return (
+      $.ajax({
+        type:"DELETE",
+        url:"api/messages",
+        data: {message_id: message.message_id}
+      })
+    )
+  }

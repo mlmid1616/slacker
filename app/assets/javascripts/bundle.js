@@ -66212,6 +66212,14 @@ var updateSelectedMessage = exports.updateSelectedMessage = function updateSelec
   });
 };
 
+var deleteSelectedMessage = exports.deleteSelectedMessage = function deleteSelectedMessage(message) {
+  return $.ajax({
+    type: "DELETE",
+    url: "api/messages",
+    data: { message_id: message.message_id }
+  });
+};
+
 /***/ }),
 /* 442 */
 /***/ (function(module, exports, __webpack_require__) {

@@ -32,7 +32,7 @@ class Api::MessagesController < ApplicationController
   end
 
   def destroy
-    @message = Message.find_by(id: params[:id])
+    @message = Message.find_by(id: params[:message_id])
     if @message
       @message.destroy
       render json: @message.id
