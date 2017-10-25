@@ -53,10 +53,11 @@
   height: 14px;
   width: -1px;
   padding-left: 8px;
+  border-radius: 5px;
 }
 
 .selector {
-  background-color: #4c9689;
+  background-color: #4c9689 !important;
   color: white !important;
   border-radius: 5px !important;
 }
@@ -215,20 +216,24 @@ channel-list-item:hover{
 }
 
 .search-list-item {
-    font-size: 16px;
-    display: flex;
-    /* align-content: center; */
-    position: relative;
-    left: 24%;
+  font-size: 16px;
+  display: flex;
+  position: relative;
+  bottom: 5px;
+  left: 17%;
+  padding-bottom: 4px;
+  border-radius: 20px;
 }
 
 .search-list-item:hover {
   cursor: pointer;
+  // background: #f5f5ef;
+  font-weight:bolder;
 }
 
 .search-list-item img {
-  position: relative;
-  top: 5px;
-  height: 25px;
-  width: 25px;
+    height: 40px !important;
+    width: 40px !important;
+    position: relative;
+    top: 15px;
 }

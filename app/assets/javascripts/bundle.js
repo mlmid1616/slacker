@@ -65791,7 +65791,7 @@ var SelectedMessageItem = function (_React$Component) {
       if (message.count == 1) {
         replyOffer = _react2.default.createElement(
           'div',
-          { className: 'replies-box', onClick: function onClick() {
+          { className: 'one-reply-box', onClick: function onClick() {
               _this2.props.receiveCurrentMessage(message);
             } },
           _react2.default.createElement('img', { className: 'small-reply-avatar', src: message.replies[0].avatar }),
@@ -65800,7 +65800,7 @@ var SelectedMessageItem = function (_React$Component) {
             'span',
             { className: 'replies-label' },
             message.count,
-            ' Replies'
+            ' Reply '
           )
         );
       } else if (message.count >= 2) {
@@ -66844,17 +66844,6 @@ var MessageReplies = function (_React$Component) {
     key: 'render',
     value: function render() {
 
-      // let x = !!this.props.replies
-      //
-      // if ( x ) {
-      //     let allReplies = this.props.replies.map(
-      //       (reply,idx) => {
-      //         return <MessageReplyItem reply={reply} key={idx}/>;
-      //       });
-      // } else {
-      //   let allReplies = "no replies"
-      // }
-
       var current_user_id = this.props.current_user_id;
       var message_id = this.props.current_message.message_id;
 
@@ -66878,8 +66867,6 @@ var MessageReplies = function (_React$Component) {
 
       // let originalAvatar = this.props.current_message.authorPic;
 
-
-      var reply1 = "No Replies";
       var allReplies = [];
       var i = 0;
       while (i < this.props.current_message.count) {
@@ -66887,8 +66874,15 @@ var MessageReplies = function (_React$Component) {
         i += 1;
       }
 
-      if (this.props.current_message.count > 0) {
-        reply1 = _react2.default.createElement(_message_reply_item2.default, { reply: this.props.current_message.replies[0] });
+      // if (this.props.current_message.count > 0) {
+      //   reply1 = <MessageReplyItem reply={this.props.current_message.replies[0]} />
+      // }
+
+      var messageReplyInput = void 0;
+      if (this.props.current_message.message_id) {
+        messageReplyInput = _react2.default.createElement(_message_reply_input2.default, { message_id: message_id, user_id: current_user_id });
+      } else {
+        messageReplyInput = "";
       }
 
       return _react2.default.createElement(
@@ -66903,7 +66897,11 @@ var MessageReplies = function (_React$Component) {
             _react2.default.createElement(
               'div',
               null,
-              originalMessage
+              _react2.default.createElement(
+                'div',
+                { className: 'original-message-container' },
+                originalMessage
+              )
             ),
             _react2.default.createElement(
               'div',
@@ -66919,7 +66917,7 @@ var MessageReplies = function (_React$Component) {
           _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement(_message_reply_input2.default, { message_id: message_id, user_id: current_user_id })
+            messageReplyInput
           )
         )
       );
@@ -67135,10 +67133,6 @@ var MessageReplyInput = function (_React$Component) {
     _this.empty = _this.empty.bind(_this);
     return _this;
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   
-  // }
 
   _createClass(MessageReplyInput, [{
     key: 'empty',

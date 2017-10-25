@@ -79,9 +79,9 @@ class SelectedMessageItem extends React.Component {
 
       if (message.count == 1) {
         replyOffer =
-        <div className="replies-box" onClick={() => { this.props.receiveCurrentMessage(message)}}>
+        <div className="one-reply-box" onClick={() => { this.props.receiveCurrentMessage(message)}}>
             <img className="small-reply-avatar" src={message.replies[0].avatar} />
-            &nbsp;<span className="replies-label">{message.count} Replies</span>
+            &nbsp;<span className="replies-label">{message.count} Reply </span>
         </div>
       } else if (message.count >= 2) {
         replyOffer =

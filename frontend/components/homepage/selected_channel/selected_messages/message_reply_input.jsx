@@ -15,9 +15,7 @@ class MessageReplyInput extends React.Component {
 
 
 
-  // componentWillReceiveProps(nextProps) {
-  //   
-  // }
+
 
   empty(type) {
     return (e) => {

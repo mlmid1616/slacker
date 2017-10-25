@@ -28,17 +28,6 @@ class MessageReplies extends React.Component {
 
     render() {
 
-      // let x = !!this.props.replies
-      //
-      // if ( x ) {
-      //     let allReplies = this.props.replies.map(
-      //       (reply,idx) => {
-      //         return <MessageReplyItem reply={reply} key={idx}/>;
-      //       });
-      // } else {
-      //   let allReplies = "no replies"
-      // }
-
       let current_user_id = this.props.current_user_id;
       let message_id = this.props.current_message.message_id;
 
@@ -58,9 +47,6 @@ class MessageReplies extends React.Component {
 
       // let originalAvatar = this.props.current_message.authorPic;
 
-
-
-      let reply1 = "No Replies"
       let allReplies = [];
       let i = 0;
       while (i < this.props.current_message.count) {
@@ -68,8 +54,15 @@ class MessageReplies extends React.Component {
         i += 1;
       }
 
-      if (this.props.current_message.count > 0) {
-        reply1 = <MessageReplyItem reply={this.props.current_message.replies[0]} />
+      // if (this.props.current_message.count > 0) {
+      //   reply1 = <MessageReplyItem reply={this.props.current_message.replies[0]} />
+      // }
+
+      let messageReplyInput;
+      if ( this.props.current_message.message_id) {
+        messageReplyInput = <MessageReplyInput message_id={message_id} user_id={current_user_id}  />;
+      } else {
+        messageReplyInput = "";
       }
 
         return (
@@ -77,7 +70,9 @@ class MessageReplies extends React.Component {
             <div className="big">
               <div className="original-thread">
                 <div>
-                  {originalMessage}
+                  <div className="original-message-container">
+                    {originalMessage}
+                  </div>
                 </div>
                 <div>
                   {originalAvatar}
@@ -87,7 +82,7 @@ class MessageReplies extends React.Component {
                 {allReplies}
               </div>
               <div>
-                <MessageReplyInput message_id={message_id} user_id={current_user_id}  />
+                {messageReplyInput}
               </div>
             </div>
           </div>

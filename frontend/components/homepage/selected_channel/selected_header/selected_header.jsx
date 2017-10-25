@@ -18,6 +18,7 @@ class SelectedHeader extends React.Component {
       <div className="selected-header">
         <div className="selected-header-text">
           <h2>{pretext}{channel_name}</h2>
+          
         </div>
       </div>
     );
