@@ -11,10 +11,7 @@
     left: 40px;
 }
 
-// #landing-div {
-//   display: flex;
-//   flex-direction: row;
-// }
+
 
 .landing-block {
   display: flex;
@@ -57,11 +54,9 @@ height: 440px;
 width: 900px;
 left: 69px;
   font-family: 'Nunito', sans-serif;
-  // height: 100vh;
   background-repeat:no-repeat;
   height: 440px;
   width: 900px;
-  // z-index: 3;
   opacity: 1 !important;
 }
 
@@ -87,7 +82,7 @@ left: 69px;
   font-size: 22px;
   color: #272992;
   margin-top: 20px;
-  line-height: 30px; 
+  line-height: 30px;
 }
 
 html {
@@ -167,18 +162,3 @@ html {
   justify-content: center;
   text-align: center;
 }
-
-
-
-
-
-
-// .session-wrapper {
-//   display: flex;
-//   justify-content: center;
-//   background: url(https://discordapp.com/assets/85e031dc63742b86264cc0dbc2a6fdb8.jpg) 50% no-repeat;
-//   background-size: 1920px 1080px;
-//   position: relative;
-//   overflow: hidden;
-//   height: 100vh;
-// }

@@ -1,10 +1,4 @@
-// .selected-message-item {
-//   background-color: white;
-//   height: 45px;
-//   margin-left: 27px;
-//   margin-top: 5px;
-//   display: flex;
-// }
+
 
 /* -------  REPLY Input CSS */
 
@@ -108,9 +102,17 @@
 
 .all-replies {
   overflow-y: scroll;
-  height: 70%;
+  height: 63%;
   max-height: 376px;
 }
+
+@media only screen and (max-height: 640px) {
+  .all-replies  {
+    height: 59%
+  }
+}
+
+
 
 .small-reply-avatar {
   height: 20px;
@@ -272,11 +274,10 @@ background: white;
 
 .selected-message-item:hover {
   background: #f9f9f9;
-  // padding-left:4px;
   padding-bottom:10px;
-
-
 }
+
+
 
 .reply-offer {
   font-size: 10px;
@@ -343,10 +344,3 @@ background: white;
     bottom: 22px;
     margin-top: 10px;
 }
-
-
-/* channel list item */
-
-// .selected:target {
-//   color: red;
-// }
