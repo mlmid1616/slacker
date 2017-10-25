@@ -64333,6 +64333,8 @@ var _session_actions = __webpack_require__(28);
 
 var _channel_actions = __webpack_require__(23);
 
+var _current_message_actions = __webpack_require__(48);
+
 var _reactRouterDom = __webpack_require__(16);
 
 var _col_header = __webpack_require__(425);
@@ -64362,6 +64364,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     },
     fetchCurrentChannel: function fetchCurrentChannel(channel_name) {
       return dispatch((0, _channel_actions.fetchCurrentChannel)(channel_name));
+    },
+    receiveCurrentMessage: function receiveCurrentMessage(message) {
+      return dispatch((0, _current_message_actions.receiveCurrentMessage)(message));
     }
   };
 };
@@ -64437,8 +64442,11 @@ var ColHeader = function (_React$Component) {
     key: 'handleClick',
     value: function handleClick(e) {
       e.preventDefault();
+      debugger;
       this.props.logout();
+      this.props.receiveCurrentMessage({});
       this.props.history.push('/');
+      debugger;
     }
   }, {
     key: 'render',

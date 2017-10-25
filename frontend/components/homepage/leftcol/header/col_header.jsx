@@ -11,8 +11,11 @@ class ColHeader extends React.Component {
 
   handleClick(e){
     e.preventDefault();
+    debugger
     this.props.logout();
+    this.props.receiveCurrentMessage({});
     this.props.history.push('/');
+    debugger
   }
   render(){
     // let channel_id = this.props.channel_id;
