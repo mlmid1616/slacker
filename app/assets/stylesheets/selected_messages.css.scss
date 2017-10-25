@@ -53,6 +53,42 @@
 
 
 /* -------  REPLY ITEM CSS */
+
+@media only screen and (max-width: 870px) {
+  .reply-item {
+    width: 110px !important;
+    // background: red;
+    font-size: 12px;
+  }
+
+  .reply-author-name {
+    font-size: 0px !important;
+    // background: yellow;
+  }
+
+  .selected-message-item {
+    width: 35% !important;
+  }
+
+  .all-replies {
+    height: 62% !important;
+    width: 110px !important;
+  }
+
+  .original-avatar {
+    margin-left: 8px !important;
+  }
+
+  .original-thread {
+    font-size: 12px !important;
+  }
+
+  .reply-content {
+    width: 55px !important;
+  }
+}
+
+
 .reply-item {
   width: 1% !important;
   padding-left: 8px !important;
