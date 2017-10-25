@@ -39,12 +39,13 @@
 
 .fa-sign-out:hover {
     cursor: pointer;
+    font-size: 20px;
+
 }
 
 .fa-sign-out {
-  // font-size:12px;
   color: white;
-  position: relative;
-  left: 68px;
-  top: 5px;
+    position: fixed;
+    left: 197px;
+    top: 13px;
 }
