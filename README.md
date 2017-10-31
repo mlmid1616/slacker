@@ -98,9 +98,7 @@ Slacker allows users to Sign Up and Log in using intuitive modals on the splash 
 
 On Slacker, the demo accounts (George Washington and Theodore Roosevelt) begin with memberships to several channels in addition to the ability to create more. Because users have many channels and channels have many users I employed a through table called 'Memberships' to handle the relationship of channels and users. Upon creating a channel, the selected users will have a 'Membership' created with that specific channel.   
 
-There are two types of channels in Slacker - private, public. The difference between private and public is that all users can see public chat, but they cannot see private chats. Then, the difference between private chats and direct messages is that users do not have to go through naming and describing them.
-
-Channels and Direct Message are created in the left column of the application. Upon clicking the plus sign, a modal will appear showing the names of every user in the database. The user can click the the names of the users they would like in the new channel or direct message.  
+There are two types of channels in Slacker - public Public Channels and Direct Messages. Both are created in the left column of the application. Upon clicking the plus sign, a modal will appear showing the names of every user in the database. The user can click the the names of the users they would like in the new channel or direct message.  
 
 
 ## Messages
