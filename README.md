@@ -93,7 +93,7 @@ Slacker allows users to Sign Up and Log in using intuitive modals on the splash 
 
 ## Channels and Subscriptions
 <div style="display: flex; justify-content: space-between;">
-  <img src="app/assets/gifs/channel-gif.gif" alt="new-channel" width="70%";>
+  <img src="app/assets/gifs/channel-gif.gif" alt="new-channel" width="100%";>
 </div>
 
 On Slacker, the demo accounts (George Washington and Theodore Roosevelt) begin with memberships to several channels in addition to the ability to create more. Because users have many channels and channels have many users I employed a through table called 'Memberships' to handle the relationship of channels and users. Upon creating a channel, the selected users will have a 'Membership' created with that specific channel.   
@@ -105,7 +105,7 @@ Channels and Direct Message are created in the left column of the application. U
 
 ## Messages
 <div style="display: flex; justify-content: space-between;">
-  <img src="app/assets/gifs/new-message-gif.gif" alt="new-message" width="70%";>
+  <img src="app/assets/gifs/new-message-gif.gif" alt="new-message" width="100%";>
 </div>
 
 Messages are created when the user submits content in the most bottom part of middle column. Upon submitting, the message is immediately displayed and the bottom of the chat will come into screen. Messages are stored in the database and only called upon the clicking of the channel they belong to. This keeps the initial rendering of the application quick.  
@@ -113,7 +113,7 @@ Messages are created when the user submits content in the most bottom part of mi
 
 ## Live Chat
 <div style="display: flex; justify-content: space-between;">
-  <img src="app/assets/gifs/live-chat-gif.gif" alt="chatting" width="70%";>
+  <img src="app/assets/gifs/live-chat-gif.gif" alt="chatting" width="100%";>
 </div>
 
 Live chat is available using the pusher api. When a message is sent and validated on the on the backend, pusher's 'trigger' method is called with the event 'message_published' and the specific channel's id with which it was saved. The channels, which listening for 'message_published', will fetch the new message when this event is received.
@@ -123,7 +123,7 @@ Using the publish and subscribe model users enjoy live group chat in all channel
 
 ## Replies
 <div style="display: flex; justify-content: space-between;">
-  <img src="app/assets/gifs/replies-gif.gif" alt="replies" width="70%";>
+  <img src="app/assets/gifs/replies-gif.gif" alt="replies" width="100%";>
 </div>
 
 In addition to responding to messages in the channel, users can directly respond to messages in the reply thread. When messages are sent to the frontend using jBuilder, they hold their replies as an object in the state. This allows for fast look up on the frontend.
@@ -131,7 +131,7 @@ In addition to responding to messages in the channel, users can directly respond
 
 ## Responsiveness
 <div style="display: flex; justify-content: space-between;">
-<img src="app/assets/gifs/responsive-gif.gif" alt="responsive" width="70%";>
+<img src="app/assets/gifs/responsive-gif.gif" alt="responsive" width="100%";>
 </div>
 
 The width of browser determines how long, how big, and which of the elements will appear on the application. By using media queries, the messages and replies adjust so that the content of each can be seen in any circumstance.
