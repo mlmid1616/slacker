@@ -85,8 +85,8 @@ To provide most sensible explanation of what Slick is capable of, its features  
 
 ## Users
 <div style="display: flex; justify-content: space-between;">
-  <img src="app/assets/gifs/login-gif.gif" alt="login" width="50%";>
-  <img src="app/assets/gifs/auth-gif.gif" alt="auth" width="50%";>
+  <img src="app/assets/gifs/login-gif.gif" alt="login" width="45%";>
+  <img src="app/assets/gifs/auth-gif.gif" alt="auth" width="45%";>
 </div>
 
 Slacker allows users to Sign Up and Log in using intuitive modals on the splash page. The application has front end and back end authorization to safely store the password for old and new users. On the backend, the password is put through a hashing function and stored in the database under 'password_digest'. When a user then goes to sign in, the password is put through the same hashing function (BCrpyt) and if the two password_digests are equal the user will be logged in. Upon logging in, the users session_token is attached to the browser so that the user can refresh the page and not have to tediously log in another time.
@@ -123,7 +123,7 @@ Using the publish and subscribe model users enjoy live group chat in all channel
 
 ## Replies
 <div style="display: flex; justify-content: space-between;">
-<img src="app/assets/gifs/replies-gif.gif" alt="replies" width="70%";>
+  <img src="app/assets/gifs/replies-gif.gif" alt="replies" width="70%";>
 </div>
 
 In addition to responding to messages in the channel, users can directly respond to messages in the reply thread. When messages are sent to the frontend using jBuilder, they hold their replies as an object in the state. This allows for fast look up on the frontend.
