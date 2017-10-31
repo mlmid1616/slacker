@@ -1,4 +1,4 @@
-# Slacker
+<!-- # Slacker
 
 ## README
 Slacker is a collaborative live messaging platform inspired by Slack and was built end-to-end in 2 weeks.
@@ -48,9 +48,9 @@ Slacker will always be improving. The next features I plan to implement are:
 
 1. Notifications
 2. Channel Search
-3. Emoticons
+3. Emoticons -->
 
-<!-- # Slacker
+# Slacker
 
 [LIVE](https://fullstackslacker.herokuapp.com/)
 <div>
@@ -85,15 +85,15 @@ To provide most sensible explanation of what Slick is capable of, its features  
 
 ## Users
 <div style="display: flex; justify-content: space-between;">
-  <img src="app/assets/gifs/signup.gif" alt="signup" width="45%";>
-  <img src="app/assets/gifs/login.gif" alt="login" width="45%";>
+  <img src="app/assets/gifs/login-gif.gif" alt="login" width="45%";>
+  <img src="app/assets/gifs/auth-gif.gif" alt="auth" width="45%";>
 </div>
 
 Slacker allows users to Sign Up and Log in using intuitive modals on the splash page. The application has front end and back end authorization to safely store the password for old and new users. On the backend, the password is put through a hashing function and stored in the database under 'password_digest'. When a user then goes to sign in, the password is put through the same hashing function (BCrpyt) and if the two password_digests are equal the user will be logged in. Upon logging in, the users session_token is attached to the browser so that the user can refresh the page and not have to tediously log in another time.
 
 ## Channels and Subscriptions
 <div style="display: flex; justify-content: space-between;">
-  <img src="app/assets/gifs/new-channel.gif" alt="new-channel" width="45%";>
+  <img src="app/assets/gifs/channel-gif.gif" alt="new-channel" width="45%";>
 </div>
 
 On Slacker, the demo accounts (George Washington and Theodore Roosevelt) begin with memberships to several channels in addition to the ability to create more. Because users have many channels and channels have many users I employed a through table called 'Memberships' to handle the relationship of channels and users. Upon creating a channel, the selected users will have a 'Membership' created with that specific channel.   
@@ -105,7 +105,7 @@ Channels and Direct Message are created in the left column of the application. U
 
 ## Messages
 <div style="display: flex; justify-content: space-between;">
-  <img src="app/assets/gifs/edit-message.gif" alt="edit-message" width="45%";>
+  <img src="app/assets/gifs/new-message-gif.gif" alt="new-message" width="45%";>
 </div>
 
 Messages are created when the user submits content in the most bottom part of middle column. Upon submitting, the message is immediately displayed and the bottom of the chat will come into screen. Messages are stored in the database and only called upon the clicking of the channel they belong to. This keeps the initial rendering of the application quick.  
@@ -113,8 +113,7 @@ Messages are created when the user submits content in the most bottom part of mi
 
 ## Live Chat
 <div style="display: flex; justify-content: space-between;">
-  <img src="app/assets/gifs/chatting.gif" alt="chatting" width="45%";>
-  <img src="app/assets/gifs/inviting-live.gif" alt="inviting-live" width="45%";>
+  <img src="app/assets/gifs/live-chat-gif.gif" alt="chatting" width="45%";>
 </div>
 
 Live chat is available using the pusher api. When a message is sent and validated on the on the backend, pusher's 'trigger' method is called with the event 'message_published' and the specific channel's id with which it was saved. The channels, which listening for 'message_published', will fetch the new message when this event is received.
@@ -124,7 +123,7 @@ Using the publish and subscribe model users enjoy live group chat in all channel
 
 ## Replies
 <div style="display: flex; justify-content: space-between;">
-<img src="app/assets/gifs/different-room-chat.gif" alt="different-room-chat" width="45%";>
+<img src="app/assets/gifs/replies-gif.gif" alt="replies" width="45%";>
 </div>
 
 In addition to responding to messages in the channel, users can directly respond to messages in the reply thread. When messages are sent to the frontend using jBuilder, they hold their replies as an object in the state. This allows for fast look up on the frontend.
@@ -132,7 +131,7 @@ In addition to responding to messages in the channel, users can directly respond
 
 ## Responsiveness
 <div style="display: flex; justify-content: space-between;">
-<img src="app/assets/gifs/different-room-chat.gif" alt="different-room-chat" width="45%";>
+<img src="app/assets/gifs/responsive-gif.gif" alt="responsive" width="45%";>
 </div>
 
 The width of browser determines how long, how big, and which of the elements will appear on the application. By using media queries, the messages and replies adjust so that the content of each can be seen in any circumstance.
@@ -142,4 +141,4 @@ The width of browser determines how long, how big, and which of the elements wil
 As for future directions, following are desired features for Slick:
 
 1. Persisting emoticon data
-2. Notifications  -->
+2. Notifications  
